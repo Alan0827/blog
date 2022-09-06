@@ -8,7 +8,7 @@ import dayjs from 'dayjs'
 import baiduCode from './config/baiduCode' // 百度统计hm码
 import htmlModules from './config/htmlModules' // 自定义插入的html块
 
-const DOMAIN_NAME = 'ufade.com' // 域名 (不带https)
+const DOMAIN_NAME = 'github.ufade.com' // 域名 (不带https)
 const WEB_SITE = `https://${DOMAIN_NAME}` // 网址
 
 export default defineConfig4CustomTheme<VdoingThemeConfig>({
@@ -230,14 +230,14 @@ export default defineConfig4CustomTheme<VdoingThemeConfig>({
       },
     ],
 
-    // 'vuepress-plugin-baidu-autopush', // 百度自动推送
+    'vuepress-plugin-baidu-autopush', // 百度自动推送
 
-    // [
-    //   'vuepress-plugin-baidu-tongji', // 百度统计
-    //   {
-    //     hm: baiduCode,
-    //   },
-    // ],
+    [
+      'vuepress-plugin-baidu-tongji', // 百度统计
+      {
+        hm: baiduCode,
+      },
+    ],
 
     // 全文搜索。 ⚠️注意：此插件会在打开网站时多加载部分js文件用于搜索，导致初次访问网站变慢。如在意初次访问速度的话可以不使用此插件！（推荐：vuepress-plugin-thirdparty-search）
     // 'fulltext-search',
@@ -251,10 +251,6 @@ export default defineConfig4CustomTheme<VdoingThemeConfig>({
             title: '在MDN中搜索',
             frontUrl: 'https://developer.mozilla.org/zh-CN/search?q=', // 搜索链接的前面部分
             behindUrl: '', // 搜索链接的后面部分，可选，默认 ''
-          },
-          {
-            title: '在Runoob中搜索',
-            frontUrl: 'https://www.runoob.com/?s=',
           },
           {
             title: '在Vue API中搜索',
@@ -304,26 +300,18 @@ export default defineConfig4CustomTheme<VdoingThemeConfig>({
         },
       },
     ],
-    // [
-    //   'vuepress-plugin-comment', // 评论
-    //   {
-    //     choosen: 'gitalk',
-    //     options: {
-    //       clientID: 'a6e1355287947096b88b',
-    //       clientSecret: 'f0e77d070fabfcd5af95bebb82b2d574d7248d71',
-    //       repo: 'blog-gitalk-comment', // GitHub 仓库
-    //       owner: 'xugaoyi', // GitHub仓库所有者
-    //       admin: ['xugaoyi'], // 对仓库有写权限的人
-    //       // distractionFreeMode: true,
-    //       pagerDirection: 'last', // 'first'正序 | 'last'倒序
-    //       id: '<%- (frontmatter.permalink || frontmatter.to.path).slice(-16) %>', //  页面的唯一标识,长度不能超过50
-    //       title: '「评论」<%- frontmatter.title %>', // GitHub issue 的标题
-    //       labels: ['Gitalk', 'Comment'], // GitHub issue 的标签
-    //       body:
-    //         '页面：<%- window.location.origin + (frontmatter.to.path || window.location.pathname) %>', // GitHub issue 的内容
-    //     },
-    //   },
-    // ],
+    [
+      'vuepress-plugin-comment', // 评论
+      {
+        choosen: 'valine',
+        // options选项中的所有参数，会传给Valine的配置
+        options: {
+          el: '#valine-vuepress-comment',
+          appId: 'APhxuRmOWK6CGRk6fr1poaat-gzGzoHsz',
+          appKey: 'rgaOrdHmVuNts3yRo6co4oT5'
+        }
+      }
+    ],
     [
       '@vuepress/last-updated', // "上次更新"时间格式
       {
