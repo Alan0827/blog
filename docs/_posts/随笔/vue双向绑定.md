@@ -1,0 +1,309 @@
+---
+title: vue双向绑定原理1
+date: 2018-05-20 20:17:10
+tags: 
+  - vue
+  - js
+categories:
+  - 随笔
+permalink: /pages/2c78e7/
+sidebar: auto
+author: 
+  name: Alan0827
+  link: https://github.com/Alan0827
+---
+
+### vue的定义：
+
+* vue是一套用于构建用户界面的渐进式框架
+* vue是一款基于MVVM方式的轻量级的框架
+* vue是一款基于数据驱动、组件化思想的框架
+* vue被设计为可以自底向上、逐层应用的框架
+* vue的核心库只关注视图层，易于上手，还便于与第三方库或既有项目整合
+* 当与现代化的工具链以及各种支持类库结合使用时，vue也完全能够为复杂的单页应用提供驱动
+
+<!-- more -->
+
+> 数据驱动：
+
+Vue.js 一个核心思想是数据驱动。所谓数据驱动是指视图是由数据驱动生成的，对视图的修改，不会直接操作 DOM，而是通过修改数据。相比传统的前端开发，如使用 jQuery 等前端库直接修改 DOM，大大简化了代码量，特别是当交互复杂的时候，只关心数据的修改会让代码的逻辑变的非常清晰，因为 DOM 变成了数据的映射，我们所有的逻辑都是对数据的修改，而不用碰触 DOM，这样的代码非常利于维护
+
+在MVVM中，M(model)---代表JavaScript  Objects，V(view)---DOM也就是UI，VM(ViewModel)----代表Vue实例对象（在该对象中有Directives和DOM Listeners）
+
+在vue.js里面只需要改变数据，Vue.js通过Directives指令去对DOM做封装，当数据发生变化，会通知指令去修改对应的DOM，数据驱动DOM的变化，DOM是数据的一种自然的映射。vue.js还会对View操作做一些监听（DOM Listener），当我们修改视图的时候，vue.js监听到这些变化，从而改变数据。这样就形成了数据的双向绑定。
+
+
+> vue实现双向绑定原理
+
+![vue 原理](./reactive/vue.png)
+
+
+
+### 变化侦测 --- Observer
+
+那Vue是怎么知道state变化了呢？换句话说，数据变化了是怎么通知给Vue呢？
+
+变化侦测就是追踪状态，一旦发生了变化，就要去更新视图。
+
+变化侦测，前端三大框架中均有涉及。在Angular中是通过脏值检查流程来实现变化侦测；在React是通过对比虚拟DOM来实现变化侦测，而在Vue中也有自己的一套变化侦测实现机制。
+
+
+```
+// 数据可侦测
+
+let man = {
+  age:18
+}
+let val = 18
+Object.defineProperty(man, 'age', {
+  enumerable: true,
+  configurable: true,
+  get(){
+    console.log('age属性被读取了')
+    return val
+  },
+  set(newVal){
+    console.log('age属性被修改了')
+    val = newVal
+  }
+})
+```
+通过Object.defineProperty()方法把这个属性的读和写分别使用get()和set()进行拦截，每当该属性进行读或写操作的时候就会触发get()和set()。
+
+```
+// 对应源码位置：src/core/observer/index.js
+
+/**
+ * Observer类会通过递归的方式把一个对象的所有属性都转化成可观测对象
+ */
+export class Observer {
+  constructor (value) {
+    this.value = value
+    // 给value新增一个__ob__属性，值为该value的Observer实例
+    // 相当于为value打上标记，表示它已经被转化成响应式了，避免重复操作
+    def(value,'__ob__',this)
+    if (Array.isArray(value)) {
+      // 当value为数组时的逻辑
+      // ...
+    } else {
+      this.walk(value)
+    }
+  }
+
+  walk (obj: Object) {
+    const keys = Object.keys(obj)
+    for (let i = 0; i < keys.length; i++) {
+      defineReactive(obj, keys[i])
+    }
+  }
+}
+/**
+ * 使一个对象转化成可观测对象
+ * @param { Object } obj 对象
+ * @param { String } key 对象的key
+ * @param { Any } val 对象的某个key的值
+ */
+function defineReactive (obj,key,val) {
+  // 如果只传了obj和key，那么val = obj[key]
+  if (arguments.length === 2) {
+    val = obj[key]
+  }
+  if(typeof val === 'object'){
+      new Observer(val)
+  }
+  Object.defineProperty(obj, key, {
+    enumerable: true,
+    configurable: true,
+    get(){
+      console.log(`${key}属性被读取了`);
+      return val;
+    },
+    set(newVal){
+      if(val === newVal){
+          return
+      }
+      console.log(`${key}属性被修改了`);
+      val = newVal;
+    }
+  })
+}
+```
+上述代码省略大部分源码，只看核心逻辑。
+只要我们将一个object传到observer中，那么这个object就会变成可观测的、响应式的object。
+observer类位于源码的src/core/observer/index.js中。
+
+### 依赖收集 Dep
+
+1.什么是依赖收集?
+> 数据的变化需要反映到视图上去，这个过程我们需要收集数据。
+我们把"谁用到了这个数据"称为"谁依赖了这个数据",我们给每个数据都建一个依赖数组(因为一个数据可能被多处使用)，谁依赖了这个数据(即谁用到了这个数据)我们就把谁放入这个依赖数组中，那么当这个数据发生变化的时候，我们就去它对应的依赖数组中，把每个依赖都通知一遍，告诉他们："你们依赖的数据变啦，你们该更新啦！"。这个过程就是依赖收集。
+
+2.何时收集依赖？何时通知依赖更新？
+> 在getter中收集依赖，在setter中通知依赖更新。
+
+3.把依赖收集到哪里
+> 为每一个数据都建立一个依赖管理器，把这个数据所有的依赖都管理起来。
+
+```
+// 源码位置：src/core/observer/dep.js
+export default class Dep {
+  constructor () {
+    this.subs = []
+  }
+
+  addSub (sub) {
+    this.subs.push(sub)
+  }
+  // 删除一个依赖
+  removeSub (sub) {
+    remove(this.subs, sub)
+  }
+  // 添加一个依赖
+  depend () {
+    if (window.target) {
+      this.addSub(window.target)
+    }
+  }
+  // 通知所有依赖更新
+  notify () {
+    const subs = this.subs.slice()
+    for (let i = 0, l = subs.length; i < l; i++) {
+      subs[i].update()
+    }
+  }
+}
+
+/**
+ * Remove an item from an array
+ */
+export function remove (arr, item) {
+  if (arr.length) {
+    const index = arr.indexOf(item)
+    if (index > -1) {
+      return arr.splice(index, 1)
+    }
+  }
+}
+```
+
+然后，在getter中收集，在setter中通知依赖更新
+
+```
+function defineReactive (obj,key,val) {
+  if (arguments.length === 2) {
+    val = obj[key]
+  }
+  if(typeof val === 'object'){
+    new Observer(val)
+  }
+  const dep = new Dep()  //实例化一个依赖管理器，生成一个依赖管理数组dep
+  Object.defineProperty(obj, key, {
+    enumerable: true,
+    configurable: true,
+    get(){
+      dep.depend()    // 在getter中收集依赖,调用depend方法
+      return val;
+    },
+    set(newVal){
+      if(val === newVal){
+          return
+      }
+      val = newVal;
+      dep.notify()   // 在setter中通知依赖更新，调用notify方法
+    }
+  })
+}
+```
+
+### Watcher类
+
+谁用到了数据，谁就是依赖，我们就为谁创建一个Watcher实例。在之后数据变化时，我们不直接去通知依赖更新，而是通知依赖对应的Watch实例，由Watcher实例update方法去通知真正的视图。
+
+实现方法如下：
+
+```
+export default class Watcher {
+  constructor (vm,expOrFn,cb) {
+    this.vm = vm;
+    this.cb = cb;
+    this.getter = parsePath(expOrFn)
+    this.value = this.get()
+  }
+  get () {
+    window.target = this;
+    const vm = this.vm
+    let value = this.getter.call(vm, vm)
+    window.target = undefined;
+    return value
+  }
+  update () {
+    const oldValue = this.value
+    this.value = this.get()
+    this.cb.call(this.vm, this.value, oldValue)
+  }
+}
+
+/**
+ * Parse simple path.
+ * 把一个形如'data.a.b.c'的字符串路径所表示的值，从真实的data对象中取出来
+ * 例如：
+ * data = {a:{b:{c:2}}}
+ * parsePath('a.b.c')(data)  // 2
+ */
+const bailRE = /[^\w.$]/
+export function parsePath (path) {
+  if (bailRE.test(path)) {
+    return
+  }
+  const segments = path.split('.')
+  return function (obj) {
+    for (let i = 0; i < segments.length; i++) {
+      if (!obj) return
+      obj = obj[segments[i]]
+    }
+    return obj
+  }
+}
+```
+
+
+以上，就彻底完成了对Object数据的侦测，依赖收集，依赖的更新等所有操作。
+
+
+大致流程：
+1.Data通过observer转换成了getter/setter的形式来追踪变化。
+2.当外界通过Watcher读取数据时，会触发getter从而将Watcher添加到依赖中。
+3.当数据发生了变化时，会触发setter，从而向Dep中的依赖（即Watcher）发送通知。
+4.Watcher接收到通知后，会向外界发送通知，变化通知到外界后可能会触发视图更新，也有可能触发用户的某个回调函数等。
+
+<font color="red"> 注意事项：</font>
+
+Object.defineProperty只能对属性值的变化进行拦截，但是不能拦截对象，比如属性的新增、删除等。这就导致了我们没法收集依赖，通知视图。
+为了解决这一问题，Vue增加了两个全局API:Vue.set和Vue.delete。
+
+
+
+---
+
+参考文档：
+https://github.com/vuejs/vue/tree/dev/src/core
+https://cn.vuejs.org/v2/guide/reactivity.html
+https://vue-js.com/learn-vue/start/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

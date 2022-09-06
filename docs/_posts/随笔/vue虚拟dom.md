@@ -1,0 +1,514 @@
+---
+title: vue 虚拟DOM
+date: 2019-03-24 22:10:49
+tags: 
+  - vue
+  - js
+categories:
+  - 随笔
+permalink: /pages/74de51/
+sidebar: auto
+author: 
+  name: Alan0827
+  link: https://github.com/Alan0827
+---
+### 虚拟DOM
+
+概念：虚拟DOM，实际上就是描述DOM节点的Js对象。
+作用：避免频繁操作真实DOM，而浪费性能。
+
+<!-- more -->
+
+```
+<div class="class" id="id">内容123</div>
+
+{
+  tag:'div',        // 元素标签
+  attrs:{           // 属性
+    class:'class',
+    id:'id'
+  },
+  text:'内容123',  // 文本内容
+  children:[]       // 子元素
+}
+```
+
+我们就是把DOM通过js对象描述出来，这个js对象就是这个真实DOM的虚拟DOM节点。
+当数据发生变化的时候，我们对比变化前后的虚拟DOM，通过DOM-Diff算法计算出需要更新的地方，然后去更新需要更新的视图。
+
+```
+// 源码位置：src/core/vdom/vnode.js
+
+export default class VNode {
+  constructor (
+    tag?: string,
+    data?: VNodeData,
+    children?: ?Array<VNode>,
+    text?: string,
+    elm?: Node,
+    context?: Component,
+    componentOptions?: VNodeComponentOptions,
+    asyncFactory?: Function
+  ) {
+    this.tag = tag                                /*当前节点的标签名*/
+    this.data = data        /*当前节点对应的对象，包含了具体的一些数据信息，是一个VNodeData类型，可以参考VNodeData类型中的数据信息*/
+    this.children = children  /*当前节点的子节点，是一个数组*/
+    this.text = text     /*当前节点的文本*/
+    this.elm = elm       /*当前虚拟节点对应的真实dom节点*/
+    this.ns = undefined            /*当前节点的名字空间*/
+    this.context = context          /*当前组件节点对应的Vue实例*/
+    this.fnContext = undefined       /*函数式组件对应的Vue实例*/
+    this.fnOptions = undefined
+    this.fnScopeId = undefined
+    this.key = data && data.key           /*节点的key属性，被当作节点的标志，用以优化*/
+    this.componentOptions = componentOptions   /*组件的option选项*/
+    this.componentInstance = undefined       /*当前节点对应的组件的实例*/
+    this.parent = undefined           /*当前节点的父节点*/
+    this.raw = false         /*简而言之就是是否为原生HTML或只是普通文本，innerHTML的时候为true，textContent的时候为false*/
+    this.isStatic = false         /*静态节点标志*/
+    this.isRootInsert = true      /*是否作为跟节点插入*/
+    this.isComment = false             /*是否为注释节点*/
+    this.isCloned = false           /*是否为克隆节点*/
+    this.isOnce = false                /*是否有v-once指令*/
+    this.asyncFactory = asyncFactory
+    this.asyncMeta = undefined
+    this.isAsyncPlaceholder = false
+  }
+
+  get child (): Component | void {
+    return this.componentInstance
+  }
+}
+
+// 注释节点类型
+export const createEmptyVNode = (text: string = '') => {
+  const node = new VNode()
+  node.text = text   //注释信息
+  node.isComment = true  // 是否是注释节点标识
+  return node
+}
+
+// 文本节点
+export function createTextVNode (val: string | number) {
+  return new VNode(undefined, undefined, undefined, String(val))
+}
+
+// optimized shallow clone
+// used for static nodes and slot nodes because they may be reused across
+// multiple renders, cloning them avoids errors when DOM manipulations rely
+// on their elm reference.
+// 克隆节点，唯一区别就是isCLone为true
+export function cloneVNode (vnode: VNode): VNode {
+  const cloned = new VNode(
+    vnode.tag,
+    vnode.data,
+    // #7975
+    // clone children array to avoid mutating original in case of cloning
+    // a child.
+    vnode.children && vnode.children.slice(),
+    vnode.text,
+    vnode.elm,
+    vnode.context,
+    vnode.componentOptions,
+    vnode.asyncFactory
+  )
+  cloned.ns = vnode.ns
+  cloned.isStatic = vnode.isStatic
+  cloned.key = vnode.key
+  cloned.isComment = vnode.isComment
+  cloned.fnContext = vnode.fnContext
+  cloned.fnOptions = vnode.fnOptions
+  cloned.fnScopeId = vnode.fnScopeId
+  cloned.asyncMeta = vnode.asyncMeta
+  cloned.isCloned = true   // 克隆的标识
+  return cloned
+}
+```
+VNode类中包含了描述一个真实DOM节点所需要的一系列属性，如tag表示节点的标签名，text表示节点中包含的文本，children表示该节点包含的子节点等。通过属性之间不同的搭配，就可以描述出各种类型的真实DOM节点。
+
+**节点类型**
+上述代码中包含了注释节点、文本节点、克隆节点3种类型，还有以下几种节点类型
+
+元素节点
+```
+// 源码位置：src/core/vdom/create-element.js
+
+// wrapper function for providing a more flexible interface
+// without getting yelled at by flow
+export function createElement (
+  context: Component,
+  tag: any,
+  data: any,
+  children: any,
+  normalizationType: any,
+  alwaysNormalize: boolean
+): VNode | Array<VNode> {
+  if (Array.isArray(data) || isPrimitive(data)) {
+    normalizationType = children
+    children = data
+    data = undefined
+  }
+  if (isTrue(alwaysNormalize)) {
+    normalizationType = ALWAYS_NORMALIZE
+  }
+  return _createElement(context, tag, data, children, normalizationType)
+}
+
+...
+
+```
+
+列子如下，元素节点更贴近于我们通常看到的真实DOM节点
+```
+// 真实DOM节点
+<div id='a'><span>难凉热血</span></div>
+
+// VNode节点
+{
+  tag:'div',
+  data:{},
+  children:[
+    {
+      tag:'span',
+      text:'难凉热血'
+    }
+  ]
+}
+```
+
+组件节点
+```
+// 源码位置：src/core/vdom/create-component.js
+
+...
+```
+组件节点除了有元素节点具有的属性之外，它还有两个特有的属性：
+* componentOptions :组件的option选项，如组件的props等
+* componentInstance :当前组件节点对应的Vue实例
+
+函数式组件节点
+```
+// 源码位置：src/core/vdom/create-component.js
+
+...
+```
+函数式组件节点相较于组件节点，它又有两个特有的属性：
+* fnContext:函数式组件对应的Vue实例
+* fnOptions: 组件的option选项
+
+
+> 以上就是VNode可以描述的多种节点类型，它们本质上都是VNode类的实例，只是在实例化的时候传入的属性参数不同而已。
+
+
+### DOM-Diff
+
+DOM-Diff 是虚拟DOM的整个核心所在，通过比对数据变化前后的VNode，找到差异，更新到真实DOM。
+DOM-Diff 实际上就是patch的过程，而patch主要干3件事：
+1.创建节点
+2.删除节点
+3.更新节点
+
+patch的规则：
+* 以新的VNode为基准，改造旧的oldVNode使之成为跟新的VNode一样
+
+#### 创建节点
+
+VNode类型只有3种类型可插入到DOM中，分别是，元素节点、注释节点、文本节点。
+
+```
+// 源码位置: /src/core/vdom/patch.js
+function createElm (
+    vnode,
+    insertedVnodeQueue,
+    parentElm,
+    refElm,
+    nested,
+    ownerArray,
+    index
+  ) {
+    ...
+    if (isDef(tag)) {  // 元素节点
+      if (process.env.NODE_ENV !== 'production') {
+        if (data && data.pre) {
+          creatingElmInVPre++
+        }
+        if (isUnknownElement(vnode, creatingElmInVPre)) {
+          warn(
+            'Unknown custom element: <' + tag + '> - did you ' +
+            'register the component correctly? For recursive components, ' +
+            'make sure to provide the "name" option.',
+            vnode.context
+          )
+        }
+      }
+
+      vnode.elm = vnode.ns
+        ? nodeOps.createElementNS(vnode.ns, tag)
+        : nodeOps.createElement(tag, vnode)
+      setScope(vnode)
+
+      /* istanbul ignore if */
+      if (__WEEX__) {
+        // in Weex, the default insertion order is parent-first.
+        // List items can be optimized to use children-first insertion
+        // with append="tree".
+        const appendAsTree = isDef(data) && isTrue(data.appendAsTree)
+        if (!appendAsTree) {
+          if (isDef(data)) {
+            invokeCreateHooks(vnode, insertedVnodeQueue)
+          }
+          insert(parentElm, vnode.elm, refElm)
+        }
+        createChildren(vnode, children, insertedVnodeQueue)
+        if (appendAsTree) {
+          if (isDef(data)) {
+            invokeCreateHooks(vnode, insertedVnodeQueue)
+          }
+          insert(parentElm, vnode.elm, refElm)
+        }
+      } else {
+        createChildren(vnode, children, insertedVnodeQueue)
+        if (isDef(data)) {
+          invokeCreateHooks(vnode, insertedVnodeQueue)
+        }
+        insert(parentElm, vnode.elm, refElm)
+      }
+
+      if (process.env.NODE_ENV !== 'production' && data && data.pre) {
+        creatingElmInVPre--
+      }
+    } else if (isTrue(vnode.isComment)) {  // 注释节点
+      vnode.elm = nodeOps.createComment(vnode.text)
+      insert(parentElm, vnode.elm, refElm)
+    } else {  //  文本节点
+      vnode.elm = nodeOps.createTextNode(vnode.text)
+      insert(parentElm, vnode.elm, refElm)
+    }
+  }
+
+  
+```
+nodeOps是Vue为了跨平台兼容性，对所有节点操作进行了封装，例如nodeOps.createTextNode()在浏览器端等同于document.createTextNode()
+
+以上完成了 节点的创建。
+
+
+#### 删除节点
+
+删除节点非常简单，只需在要删除节点的父元素上调用removeChild方法即可。
+
+```
+function removeNode (el) {
+    const parent = nodeOps.parentNode(el)  // 获取父节点
+    // element may have already been removed due to v-html / v-text
+    if (isDef(parent)) {
+        nodeOps.removeChild(parent, el) // 调用父节点的removeChild方法
+    }
+}
+```
+
+#### 更新节点
+
+```
+// 源码位置: /src/core/vdom/patch.js
+
+// 更新节点
+function patchVnode (
+    oldVnode,
+    vnode,
+    insertedVnodeQueue,
+    ownerArray,
+    index,
+    removeOnly
+  ) {
+    // vnode与oldVnode是否完全一样？若是，退出程序
+    if (oldVnode === vnode) {
+      return
+    }
+
+    if (isDef(vnode.elm) && isDef(ownerArray)) {
+      // clone reused vnode
+      vnode = ownerArray[index] = cloneVNode(vnode)
+    }
+
+    const elm = vnode.elm = oldVnode.elm
+
+
+    // vnode与oldVnode是否都是静态节点？若是，退出程序（静态节点指渲染过一次，下次不会改变的节点）
+    if (isTrue(vnode.isStatic) &&
+      isTrue(oldVnode.isStatic) &&
+      vnode.key === oldVnode.key &&
+      (isTrue(vnode.isCloned) || isTrue(vnode.isOnce))
+    ) {
+      vnode.componentInstance = oldVnode.componentInstance
+      return
+    }
+
+    
+    // vnode有text属性？若没有：
+    if (isUndef(vnode.text)) {
+
+      // vnode的子节点与oldVnode的子节点是否都存在？
+      if (isDef(oldCh) && isDef(ch)) {
+
+        // 若都存在，判断子节点是否相同，不同则更新子节点
+        if (oldCh !== ch) updateChildren(elm, oldCh, ch, insertedVnodeQueue, removeOnly)
+
+        // 若只有vnode的子节点存在
+      } else if (isDef(ch)) {
+        /**
+        * 判断oldVnode是否有文本？
+        * 若没有，则把vnode的子节点添加到真实DOM中
+        * 若有，则清空Dom中的文本，再把vnode的子节点添加到真实DOM中
+        */
+        if (isDef(oldVnode.text)) nodeOps.setTextContent(elm, '')
+        addVnodes(elm, null, ch, 0, ch.length - 1, insertedVnodeQueue)
+
+        // 若只有oldnode的子节点存在,清空DOM中的子节点
+      } else if (isDef(oldCh)) {
+        removeVnodes(oldCh, 0, oldCh.length - 1)
+
+        // 若vnode和oldnode都没有子节点，但是oldnode中有文本,清空oldnode文本
+      } else if (isDef(oldVnode.text)) {
+        nodeOps.setTextContent(elm, '')
+      }
+
+      // 若有，vnode的text属性与oldVnode的text属性是否相同？
+    } else if (oldVnode.text !== vnode.text) {
+
+        // 若不相同：则用vnode的text替换真实DOM的文本
+      nodeOps.setTextContent(elm, vnode.text)
+    }
+    
+  }
+```
+
+大概判断逻辑就如代码注释里面一样，分几种情况。
+
+1.VNode和oldVNode是静态节点。
+2.VNode是文本节点，只需看oldVNode是否也是文本节点，如果是，那就比较两个文本是否不同，如果不同则把oldVNode里的文本改成跟VNode的文本一样。如果oldVNode不是文本节点，那么不论它是什么，直接调用setTextNode方法把它改成文本节点，并且文本内容跟VNode相同。
+3.如果VNode是元素节点：
+* 包含子节点
+oldVNode包含子节点，递归更新；
+oldVNode不包含子节点，空或者文本节点，直接清空，把VNode子节点拷贝一份插入oldVNode的子节点
+
+* 不包含子节点
+子节点是空，或文本节点，直接清空oldVNode子节点
+
+
+#### 更新子节点
+还有一种情况，上面没说，就是VNode 和 oldVNode  都包含子节点的时候，我们更新子节点的时候逻辑就会复杂很多，下面来看看更新子节点。
+更新子节点，我们先假设是新旧节点循环比对。
+
+1.创建子节点，如图
+newVNode 有，而oldVNode 没有的话，就认为是新增子节点。
+
+![](./virtual-dom/compare.png)
+
+注意，我们插入子节点的合适的位置是**所有未处理节点之前，而并非所有已处理节点之后。**
+
+2.删除子节点
+oldVNode 有未处理的子节点，而newVNode里面没有的，直接删除即可。
+
+3.移动子节点
+newVNode 和 oldVNode 里面都有，但是所处位置不一样的话，就要移动子节点。
+如图，
+![](./virtual-dom/compare2.png)
+同上，合适位置是**所有未处理节点之前，而并非所有已处理节点之后。**
+
+
+4.更新子节点
+newVNode 和 oldVNode 里面都有，并且所处位置一样，直接更新即可。
+
+```
+// 源码位置： /src/core/vdom/patch.js
+
+if (isUndef(idxInOld)) {    // 如果在oldChildren里找不到当前循环的newChildren里的子节点
+    // 新增节点并插入到合适位置
+    createElm(newStartVnode, insertedVnodeQueue, parentElm, oldStartVnode.elm, false, newCh, newStartIdx)
+} else {
+    // 如果在oldChildren里找到了当前循环的newChildren里的子节点
+    vnodeToMove = oldCh[idxInOld]
+    // 如果两个节点相同
+    if (sameVnode(vnodeToMove, newStartVnode)) {
+        // 调用patchVnode更新节点
+        patchVnode(vnodeToMove, newStartVnode, insertedVnodeQueue)
+        oldCh[idxInOld] = undefined
+        // canmove表示是否需要移动节点，如果为true表示需要移动，则移动节点，如果为false则不用移动
+        canMove && nodeOps.insertBefore(parentElm, vnodeToMove.elm, oldStartVnode.elm)
+    }
+}
+```
+
+updateChildren()方法源码，实际上是while循环
+```
+// 源码位置： /src/core/vdom/patch.js
+
+function updateChildren (parentElm, oldCh, newCh,insertedVnodeQueue, removeOnly) {
+    let oldStartIdx = 0
+    let newStartIdx = 0
+    let oldEndIdx = oldCh.length - 1
+    let oldStartVnode = oldCh[0]
+    let oldEndVnode = oldCh[oldEndIdx]
+    let newEndIdx = newCh.length - 1
+    let newStartVnode = newCh[0]
+    let newEndVnode = newCh[newEndIdx]
+    let oldKeyToIdx, idxInOld, vnodeToMove, refElm
+
+    // removeOnly is a special flag used only by <transition-group>
+    // to ensure removed elements stay in correct relative positions
+    // during leaving transitions
+    const canMove = !removeOnly
+
+    if (process.env.NODE_ENV !== 'production') {
+      checkDuplicateKeys(newCh)
+    }
+
+    while (oldStartIdx <= oldEndIdx && newStartIdx <= newEndIdx) {
+        ...
+        if (isUndef(idxInOld)) {    // 如果在oldChildren里找不到当前循环的newChildren里的子节点
+            // 新增节点并插入到合适位置
+            createElm(newStartVnode, insertedVnodeQueue, parentElm, oldStartVnode.elm, false, newCh, newStartIdx)
+        } else {
+            // 如果在oldChildren里找到了当前循环的newChildren里的子节点
+            vnodeToMove = oldCh[idxInOld]
+            // 如果两个节点相同
+            if (sameVnode(vnodeToMove, newStartVnode)) {
+                // 调用patchVnode更新节点
+                patchVnode(vnodeToMove, newStartVnode, insertedVnodeQueue)
+                oldCh[idxInOld] = undefined
+                // canmove表示是否需要移动节点，如果为true表示需要移动，则移动节点，如果为false则不用移动
+                canMove && nodeOps.insertBefore(parentElm, vnodeToMove.elm, oldStartVnode.elm)
+            }
+        }
+        ...
+    }
+}
+```
+
+vue 内部更新子节点的算法，我们后续再详细介绍一下，本章我们理清楚diff的整个流程。
+
+
+---
+
+参考文档：
+https://github.com/vuejs/vue/tree/dev/src/core
+https://cn.vuejs.org/v2/guide/reactivity.html
+https://vue-js.com/learn-vue/start/
+https://blog.csdn.net/M6i37JK/article/details/78140159
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

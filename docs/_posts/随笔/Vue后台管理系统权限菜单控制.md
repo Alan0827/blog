@@ -1,0 +1,198 @@
+---
+title: Vue 后台管理系统权限菜单控制
+date: 2019-10-15 20:27:19
+tags: 
+  - vue
+  - js
+  - element
+categories:
+  - 随笔
+permalink: /pages/6e93c4/
+sidebar: auto
+author: 
+  name: Alan0827
+  link: https://github.com/Alan0827
+---
+
+最近手头做一个项目，左侧菜单这块类似后台管理系统，需要动态的获取到当前用户对应【角色】下面的菜单，需求就是这样的。
+
+<!-- more -->
+
+> 权限控制 permission.js
+
+* 实现方式：通过获取当前用户的权限菜单去比对路由表，生成当前用户具的权限可访问的路由表，通过 router.addRoutes 动态挂载到 router 上。
+
+
+> 在main.js中引入permission.js文件，我们再路由钩子beforeEach中做处理，判断是否有token，才往下走，利用vuex对权限路由做控制，保存到state中的addRouters上面，没有值的话我们就做请求，获取权限菜单路由。
+
+
+```
+import router from './router'
+import store from './store'
+import { Message } from 'element-ui'
+import { getToken } from '@/utils/auth' // get token from cookie
+const whiteList = ['/login']
+
+router.beforeEach(async(to, from, next) => {
+if (getToken('token')) {
+	if (to.path === '/login') {
+		//如果登录了，就跳转首页
+		next({ path: '/' })
+	} else {
+		if (!store.getters.addRouters.length) {  //无权限路由，dispatch获取路由
+			await store.dispatch('GetAsyncRoutes').then((res) => {
+				//此处不知道为啥。。。router.options.routes没有添加的话，addroutes不起作用，还望各位大神指导
+				router.options.routes = router.options.routes.concat(store.getters.addRouters)
+				router.addRoutes(store.getters.addRouters)
+				next({ ...to, replace: true })
+			}).catch((err) => {
+				Message.error(err || 'Verification failed, please login again')
+				next({ path: '/' })
+			})
+		} else {
+			next()
+		}
+	}
+} else {
+	/* has no token*/
+	if (whiteList.indexOf(to.path) !== -1) { // 在免登录白名单，直接进入
+		next()
+	} else {
+		next('/login') // 否则全部重定向到登录页
+	}
+}
+})
+
+router.afterEach(() => {
+	// finish
+})
+
+
+
+
+```
+--------------------------------------------------
+
+> 在store.dispatch('GetAsyncRoutes')中获取，做数据比对，映射。
+> dispatch('GetAsyncRoutes') 代码，保存在store文件夹下面，对项目的状态进行管控
+
+```
+import { asyncRouterMap, constantRouterMap, constantAfterRouterMap, childrenRouter } from '@/router'
+import { listSystemMenuByUser } from '@/api/meun'
+
+//asyncRouterMap  是本地存的需要和后端返回权限菜单做比对映射的路由
+//constantRouterMap  主要是存不需要权限的路由  如/login  
+//constantAfterRouterMap   是保存/404 等必须放到路由最后的
+//childrenRouter  存放不是菜单的一些路由。。。感觉有点假哈，菜单哈哈（但是我们菜单权限配置的时候只配左侧主要菜单，详情之类的不配）
+
+【强调一点，/404路由必须放到所有路由的最后，要不然的话，首次加载是没有问题的，刷新页面就会跳转404】
+
+// 计算获取component于path的映射表（打平路由嵌套，由于我们路由就两层，懒得递归了。。。）
+const LoopForFn = function(data) {
+	const biz = []
+	data.forEach(v => {
+		if (v.children && v.children.length) {
+			v.children.forEach(d => {
+				biz.push(d)
+			})
+		}
+		biz.push(v)
+	})
+return biz
+}
+// 根据后台返回的权限菜单树的path 来动态匹配component映射表
+function hasPermissionMenu(routerList, hasPermissionData) {
+	var list = LoopForFn(asyncRouterMap)
+	hasPermissionData.forEach((v, i) => {
+		list.forEach(d => {
+			//比对后端url和本地的path，如果匹配到了的话，我们就组合响应的菜单
+			if (v.url.replace(/^\s*|\s*$/g, '') === d.path.replace(/^\s*|\s*$/g, '')) {
+				const menu = {
+					path: d.path,
+					component: d.component,
+					name: d.name,
+					meta: { title: v.name, icon: d.meta.icon },
+					hidden: !JSON.parse(v.isUse),
+					children: []
+				}
+				if (v.children && v.children.length) {  //递归比对
+					hasPermissionMenu(menu.children, v.children)
+				}
+				routerList.push(menu)
+			}
+		})
+	})
+}
+const permission = {
+  state: {
+    routers: constantRouterMap,
+    addRouters: []
+  },
+  mutations: {
+    CLEAR: (state, routerList) => {
+      state.addRouters = routerList
+    },
+    SET_ROUTERS: (state, routerList) => {
+      routerList.map(x => {
+        // 过滤详情页等子路由,子路层级也是按照路由表走的，若组合过的权限菜单匹配到映射表里的path，就把映射表里的children追加到权限菜单中
+        const c = childrenRouter.filter(y => y.path === x.path)[0]
+        if (c.children && c.children.length > 0) {
+          x.children = [...x.children, ...c.children]
+        }
+      })
+			//更新动态添加的路由，后续有用处
+      state.addRouters = [...routerList, ...constantAfterRouterMap]  //必须把/404路由追加到最后
+      //更新所有的路由
+			state.routers = [...constantRouterMap, ...state.addRouters]
+    }
+  },
+  actions: {
+		//清理动态添加的路由
+    ClearAddRouters({ commit }) {
+      commit('CLEAR', [])
+    },
+		//动态获取权限菜单
+    GetAsyncRoutes({ commit }) {
+      return new Promise(resolve => {
+				//权限菜单接口
+        listSystemMenuByUser().then(response => {
+          if (!response.data || response.data.length === 0) return
+          const routerList = []
+          hasPermissionMenu(routerList, response.data)
+          commit('SET_ROUTERS', routerList)
+          resolve()
+        })
+      })
+    }
+  }
+}
+export default permission
+```
+--------------------------------------------------
+
+>到这里基本上的动态获取权限菜单的方式就差不多了，添加就是这么些逻辑。有一点需要注意，在退出的时候一定要清楚添加过的权限菜单，store.dispatch('ClearAddRouters'),不然的话，下次登录的话就不会去调接口，上面这里有个判断
+```
+if (!store.getters.addRouters.length) {  //无权限路由，dispatch获取路由
+	await store.dispatch('GetAsyncRoutes').then((res) => {
+		//此处不知道为啥。。。router.options.routes没有添加的话，addroutes不起作用，还望各位大神指导
+		router.options.routes = router.options.routes.concat(store.getters.addRouters)
+		router.addRoutes(store.getters.addRouters)
+		next({ ...to, replace: true })
+	}).catch((err) => {
+		Message.error(err || 'Verification failed, please login again')
+		next({ path: '/' })
+	})
+} else {
+	next()
+}
+```
+--------------------------------------------------
+>vue动态添加路由就到这里了，下回希望讨论一下，组件缓存的问题，项目中也需要用到，keep-alive组件，里面也遇到一些坑，分享出来，希望后来者不必再走弯路。
+
+
+
+
+
+有好的见解，欢迎留言，留下联系方式，大家互相沟通！
+
+不喜勿喷，谢谢！

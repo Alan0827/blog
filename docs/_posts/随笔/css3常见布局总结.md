@@ -1,0 +1,259 @@
+---
+title: css常见布局总结
+date: 2018-12-20 21:37:38
+tags: 
+  - css3
+  - js
+categories:
+  - 随笔
+permalink: /pages/5019f7/
+sidebar: auto
+author: 
+  name: Alan0827
+  link: https://github.com/Alan0827
+---
+
+css对于我们前端来说，非常重要，使我们开发静态页面的利器，虽然一些颜色、大小都是很容易调整，基本上没有什么难度，记忆力好点也就OK了，
+我感觉布局这块对于我们尤其重要，我平时自己使用的时候，忘记总结了，这里总结一下。
+
+<!-- more -->
+
+## 垂直水平居中
+
+我们经常用到的就是水平居中，垂直居中一旦遇到的话，有哪些方法可以解决呢？
+
+### display:table-cell
+
+* 父级元素display:table-cell;vertical-align:midde;
+
+```
+
+.parent{
+	display: table-cell;
+	vertical-align: middle;
+}
+.child{
+	margin:0 auto;
+}
+<div class="parent">
+	<div class="child"></div>
+</div>
+
+```
+
+
+### 绝对定位
+* 父元素相对定位，子元素绝对定位。
+* 若子元素定宽高，写margin-left:-50px;margin-top:-50px也行，不定的话，transform: translate(-50%,-50%)即可
+
+```
+.parent{
+	position: relative;
+}
+.child{
+	position: absolute;
+	left: 50%;
+	top:50%;
+	transform: translate(-50%,-50%);
+}
+<div class="parent">
+	<div class="child"></div>
+</div>
+```
+也可以
+```
+.parent{
+	position: relative;
+}
+.child{
+	position: absolute;
+	left: 0;
+	top:0;
+	bottom:0;
+	right:0;
+	margin:auto;
+}
+<div class="parent">
+	<div class="child"></div>
+</div>
+```
+
+### flex布局
+* 直接设置父元素 display:flex(设置为flex布局)，justify-content:center(主轴对齐方式)，align-items:center(垂直轴上的对齐方式)
+
+```
+	.parent{
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	.child{
+	}
+<div class="parent">
+	<div class="child"></div>
+</div>
+```
+
+### 文本水平垂直居中
+
+* 父元素设置height，line-height相等
+
+```
+height:400px;
+line-height:400px;
+```
+
+### 垂直居中图片
+
+```
+.parent {
+	line-height: 200px;
+}
+.parent img {
+	vertical-align: middle;
+}
+```
+### grid网格布局
+
+* 网格布局代码量比flex布局还要少，但是兼容性不好
+```
+.parent {
+    display: grid;
+}
+.child {
+	align-self: center;
+	justify-self: center;
+}
+```
+
+## 两列布局
+
+### 左测定宽浮动，右侧宽100%；
+```
+.left{
+	width:200px
+	float: left;
+}
+.right{
+	width: 100%;
+	margin-left: 200px;
+}
+```
+
+### flex布局（flex布局出现了之后，很多问题就很好处理了）
+```
+body{
+	display: flex;
+}
+.right{
+	flex:1
+}
+```
+
+### 负margin
+* 首先修改页面结构，为自适应部分添加容器 .container, 同时改变左右部分的位置，如下：
+
+```
+<div class="container">
+    <section class="right">Right</section>
+</div>
+<aside class="left">Left</aside>
+
+.left{
+		float:left;
+		margin-left: -100%;
+}
+.right{
+		margin-left: 200px;
+}
+.container{
+		float:left;
+		width:100%
+}
+```
+### 定位
+
+```
+.left{
+		position: absolute;
+		left:0;
+}
+.right{
+		position: absolute;
+		left:200px;
+		width:100%
+}
+```
+### table 布局
+
+```
+body{
+		display: table;
+		width:100%;
+}
+.left{
+		display: table-cell;
+}
+.right{
+		display: table-cell;
+}
+```
+
+##  圣杯布局
+
+> 圣杯布局就是两侧宽度固定，中间宽度自适应的三列布局
+
+```
+<div class="header">头</div>
+	<div class="content">
+		<div class="center">中</div>
+		<div class="left">左</div>
+		<div class="right">右</div>
+	</div>
+<div class="footer">脚</div>
+
+.header,.footer{
+	width: 100%;
+	height: 50px;
+	background: #ddd;
+	clear: both;
+}
+.left,.right,.center{
+	height: 80vh;
+}
+.content{
+	padding: 0 200px;
+}
+.center{
+	width: 100%;
+	background: #00f;
+	float: left;
+}
+.left {
+	background: #0f0;
+	width: 200px;
+	float: left;
+	margin-left: -100%;
+	position: relative;
+	right:200px;
+}
+
+.right {
+	width: 200px;
+	background: #f00;
+	float:left;
+	margin-right: -200px;
+}
+```
+圣杯布局其实就是三列都浮动，中间列在元素最前面，width为100%，左侧部分margin-left:-100%,相对定位，right:左侧元素宽度；
+右侧margin-right：右侧元素宽度;
+
+这个布局也是我们最常用的布局，前端工程师面试的时候经常会被问到，双飞翼布局的话，原理和圣杯布局类似；还有就是flex布局和grid盒子可以实现，这里不做讲解了，
+简单但是有兼容性问题。
+
+css常见的两列、三列布局和垂直居中对齐大概就是这么多了，有没有总结到的地方以后继续。
+
+
+有好的见解，欢迎留言，留下联系方式，大家互相沟通！
+
+不喜勿喷，谢谢！
