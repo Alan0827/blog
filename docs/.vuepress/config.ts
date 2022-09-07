@@ -41,6 +41,12 @@ export default defineConfig4CustomTheme<VdoingThemeConfig>({
             ],
           },
           {
+            text: '三方库',
+            items: [
+              { text: 'vue', link: '/pages/2c78e7/' },
+            ],
+          },
+          {
             text: '学习笔记',
             items: [
               { text: '《JavaScript高级程序设计》', link: '/note/js/' },
@@ -61,6 +67,7 @@ export default defineConfig4CustomTheme<VdoingThemeConfig>({
         link: '/ui/',
         items: [
           { text: 'HTML', link: '/pages/8309a5b876fc95e3/' },
+          { text: 'CSS', link: '/pages/df9e7c7214fa5046/' },
         ],
       },
       {
@@ -331,6 +338,6 @@ export default defineConfig4CustomTheme<VdoingThemeConfig>({
   extraWatchFiles: [
     '.vuepress/config.ts',
     '.vuepress/config/htmlModules.ts',
-    'docs/**'
+    'docs/**.*'
   ]
 })
