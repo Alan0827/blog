@@ -108,7 +108,7 @@ JavaScript 的类型分为两种：原始数据类型（Primitive data types）�
 
 原始数据类型包括：布尔值、数值、字符串、null、undefined 以及 ES6 中的新类型 Symbol 和 ES10 中的新类型 BigInt。
 
-#### 布尔值
+#### 1.布尔值
 
 布尔值是最基础的数据类型，在 TypeScript 中，使用 **boolean**  定义布尔值类型：
 ```
@@ -130,7 +130,7 @@ let createdByBoolean: boolean = Boolean(1);   // boolean 类型
 ```
 在 TypeScript 中，boolean 是 JavaScript 中的基本类型，而 Boolean 是 JavaScript 中的构造函数。其他基本类型（除了 null 和 undefined）一样
 
-#### 数值
+#### 2.数值
 
 使用 **number**  定义数值类型：
 ```lang
@@ -147,7 +147,7 @@ let infinityNumber: number = Infinity;
 其中 0b1010 和 0o744 是 ES6 中的二进制和八进制表示法，它们会被编译为十进制数字。
 
 
-#### 字符串
+#### 3.字符串
 
 使用 **string** 定义字符串类型：
 ```lang
@@ -159,7 +159,7 @@ let sentence: string = `Hello, my name is ${myName}.
 I'll be ${myAge + 1} years old next month.`;
 ```
 
-#### 空值
+#### 4.空值
 
 JavaScript 没有空值（Void）的概念，在 TypeScript 中，可以用 void 表示没有任何返回值的函数：
 ```lang
@@ -169,7 +169,7 @@ function alertName(): void {
 ```
 声明一个 void 类型的变量没有什么用，因为你只能将它赋值为 undefined 和 null（只在 --strictNullChecks 未指定时）：
 
-#### Null 和 Undefined
+#### 5.Null 和 Undefined
 
 ```lang
 let u: undefined = undefined;
@@ -262,7 +262,7 @@ let tom: Person = {
 
 注意：**赋值的时候，变量的形状必须和接口的形状保持一致。**
 
-#### 可选属性
+#### 1.可选属性
 
 ```lang
 interface Person {
@@ -292,7 +292,7 @@ let tom: Person = {
 //   Object literal may only specify known properties, and 'gender' does not exist in type 'Person'.
 ```
 
-#### 任意属性
+#### 2.任意属性
 
 ```lang
 interface Person {
@@ -309,7 +309,7 @@ let tom: Person = {
 > 一旦定义了任意属性，那么确定属性和可选属性的类型都必须是它的类型的子集
 > 一个接口中只能定义一个任意属性 可以使用联合属性
 
-#### 只读属性
+#### 3.只读属性
 
 ```lang
 interface Person {
@@ -361,7 +361,7 @@ tom.id = 89757;
 ### 数组的类型
 在 TypeScript 中，数组类型有多种定义方式，比较灵活。
 
-#### 类型 + 方括号
+#### 1.类型 + 方括号
 
 
 ```lang
@@ -379,13 +379,13 @@ fibonacci.push('8');
 // Argument of type '"8"' is not assignable to parameter of type 'number'.
 ```
 
-#### 数组泛型
+#### 2.数组泛型
 
 ```lang
 let fibonacci: Array<number> = [1, 1, 2, 3, 5];
 ```
 
-#### 用接口表示数组
+#### 3.用接口表示数组
 
 ```lang
 interface NumberArray {
@@ -397,7 +397,7 @@ NumberArray 表示：只要索引的类型是数字时，那么值的类型必�
 虽然接口也可以用来描述数组，但是我们一般不会这么做，因为这种方式比前两种方式复杂多了。
 不过有一种情况例外，那就是它常用来表示类数组
 
-#### 类数组
+#### 4.类数组
 
 类数组（Array-like Object）不是数组类型，比如 arguments
 
@@ -439,7 +439,7 @@ interface IArguments {
 ```
 
 
-#### any 在数组中的应用
+#### 5.any 在数组中的应用
 
 ```lang
 let list: any[] = ['xcatliu', 25, { website: 'http://xcatliu.com' }];
@@ -448,7 +448,7 @@ let list: any[] = ['xcatliu', 25, { website: 'http://xcatliu.com' }];
 
 ### 函数的类型
 
-#### 函数声明
+#### 1.函数声明
   
 在 JavaScript 中，有两种常见的定义函数的方式——函数声明（Function Declaration）和函数表达式（Function Expression）：
 ```lang
@@ -471,7 +471,7 @@ function sum(x: number, y: number): number {
 注意，输入多余的（或者少于要求的）参数，是不被允许的
 
 
-#### 函数表达式
+#### 2.函数表达式
 
 如果要我们现在写一个对函数表达式（Function Expression）的定义，可能会写成这样：
 ```
@@ -490,7 +490,7 @@ let mySum: (x: number, y: number) => number = function (x: number, y: number): n
 
 在 TypeScript 的类型定义中，=> 用来表示函数的定义，左边是输入类型，需要用括号括起来，右边是输出类型。
 
-#### 用接口定义函数的形状
+#### 3.用接口定义函数的形状
 
 ```
 interface SearchFunc {
@@ -504,7 +504,7 @@ mySearch = function(source: string, subString: string) {
 ```
 采用函数表达式、接口定义函数的方式时，对等号左侧进行类型限制，可以保证以后对函数名赋值时保证参数个数、参数类型、返回值类型不变
 
-#### 可选参数
+#### 4.可选参数
 
 ```
 function buildName(firstName: string, lastName?: string) {
@@ -517,7 +517,7 @@ function buildName(firstName: string, lastName?: string) {
 ```
 注意，可选参数后面不允许再出现必需参数了
 
-#### 参数默认值
+#### 5.参数默认值
 
 在 ES6 中，我们允许给函数的参数添加默认值，TypeScript 会将添加了默认值的参数识别为可选参数：
 ```
@@ -536,7 +536,7 @@ let tomcat = buildName('Tom', 'Cat');
 let cat = buildName(undefined, 'Cat');
 ```
 
-#### 剩余参数
+#### 6.剩余参数
 
 ```
 function push(array: any[], ...items: any[]) {
@@ -550,7 +550,7 @@ push(a, 1, 2, 3);
 ```
 事实上，items 是一个数组。所以我们可以用数组的类型来定义它：
 
-#### 重载
+#### 7.重载
 
 重载允许一个函数接受不同数量或类型的参数时，作出不同的处理
 利用联合类型，我们可以这么实现
@@ -584,7 +584,7 @@ function reverse(x: number | string): number | string | void {
 ### 类型断言
 类型断言（Type Assertion）可以用来手动指定一个值的类型。
 
-#### 语法
+#### 1.语法
 
 ```js
 值 as 类型
@@ -596,10 +596,10 @@ function reverse(x: number | string): number | string | void {
 形如 《Foo》 的语法在 tsx 中表示的是一个 ReactNode，在 ts 中除了表示类型断言之外，也可能是表示一个泛型。
 故建议大家在使用类型断言时，统一使用 值 as 类型 这样的语法
 
-#### 类型断言的用途
+#### 2.类型断言的用途
 
 
-##### 将一个联合类型断言为其中一个类型
+##### 1）将一个联合类型断言为其中一个类型
 
 当 TypeScript 不确定一个联合类型的变量到底是哪个类型的时候，我们只能访问此联合类型的所有类型中共有的属性或方法：
 
@@ -694,7 +694,7 @@ swim(tom);
 ---
 
 
-##### 将一个父类断言为更加具体的子类
+##### 2）将一个父类断言为更加具体的子类
 当类之间有继承关系时，类型断言也是很常见的：
 ```
 class ApiError extends Error {
@@ -752,7 +752,7 @@ function isApiError(error: Error) {
 此时就只能用类型断言，通过判断是否存在 code 属性，来判断传入的参数是不是 ApiError 了：
 
 
-##### 将任何一个类型断言为 any
+##### 3）将任何一个类型断言为 any
 理想情况下，TypeScript 的类型系统运转良好，每个值的类型都具体而精确。
 
 ```
@@ -773,7 +773,7 @@ window.foo = 1;
 总之，一方面不能滥用 as any，另一方面也不要完全否定它的作用，我们需要在类型的严格性和开发的便利性之间掌握平衡（这也是 TypeScript 的设计理念之一），才能发挥出 TypeScript 最大的价值。
 
 
-##### 将 any 断言为一个具体的类型
+##### 4）将 any 断言为一个具体的类型
 举例来说，历史遗留的代码中有个 getCacheData，它的返回值是 any：
 ```
 function getCacheData(key: string): any {
@@ -798,7 +798,7 @@ tom.run();
 上面的例子中，我们调用完 getCacheData 之后，立即将它断言为 Cat 类型。这样的话明确了 tom 的类型，后续对 tom 的访问时就有了代码补全，提高了代码的可维护性。
 
 
-#### 类型断言的限制
+#### 3.类型断言的限制
 
 并不是任何一个类型都可以被断言为任何另一个类型
 具体来说，若 A 兼容 B，那么 A 能够被断言为 B，B 也能被断言为 A。
@@ -841,7 +841,7 @@ function testCat(cat: Cat) {
 * 子类可以被断言为父类
 
 
-#### 双重断言
+#### 4.双重断言
 
 
 * 任何类型都可以被断言为 any
@@ -864,7 +864,7 @@ function testCat(cat: Cat) {
 *除非迫不得已，千万别用双重断言*
 
 
-#### 类型断言 vs 类型转换
+#### 5.类型断言 vs 类型转换
 
 类型断言只会影响 TypeScript 编译时的类型，类型断言语句在编译结果中会被删除
 ```
@@ -898,7 +898,7 @@ toBoolean(1);
 ```
 
 
-#### 类型断言 vs 类型声明
+#### 6.类型断言 vs 类型声明
 
 断言
 ```
@@ -979,7 +979,7 @@ let tom: Cat = animal;
 所以为了增加代码的质量，我们最好优先使用类型声明，这也比类型断言的 as 语法更加优雅。
 
 
-#### 类型断言 vs 泛型
+#### 7.类型断言 vs 泛型
 
 ```
 function getCacheData(key: string): any {
@@ -1014,7 +1014,7 @@ tom.run();
 
 当使用第三方库时，我们需要引用它的声明文件，才能获得对应的代码补全、接口提示等功能。
 
-#### 新语法
+#### 1.新语法
 
 * declare var 声明全局变量
 * declare function 声明全局方法
@@ -1031,7 +1031,7 @@ tom.run();
 * declare module 扩展模块
 * /// <reference /> 三斜线指令
 
-#### 什么是声明语句
+#### 2.什么是声明语句
 
 ```
 $('#foo');
@@ -1049,7 +1049,7 @@ jQuery('#foo');
 上例中，declare var 并没有真的定义一个变量，只是定义了全局变量 jQuery 的类型，仅仅会用于编译时的检查，在编译结果中会被删除
 
 
-#### 什么是声明文件
+#### 3.什么是声明文件
 
 通常我们会把声明语句放到一个单独的文件（jQuery.d.ts）中，这就是声明文件
 ```
@@ -1058,7 +1058,7 @@ jQuery('#foo');
 declare var jQuery: (selector: string) => any;
 ```
 
-##### 第三方声明文件
+##### 1）第三方声明文件
 当然，jQuery 的声明文件不需要我们定义了，社区已经帮我们定义好了：jQuery in DefinitelyTyped。
 
 我们可以直接下载下来使用，但是更推荐的是使用 @types 统一管理第三方库的声明文件
@@ -1069,10 +1069,10 @@ npm install @types/jquery --save-dev
 可以在[这里](https://microsoft.github.io/TypeSearch/)查找
 
 
-#### 书写声明文件
+#### 4.书写声明文件
 真正书写一个声明文件并不是一件简单的事
 
-##### 全局变量
+##### 1）全局变量
 全局变量的声明文件主要有以下几种语法
 
 * declare var 声明全局变量
@@ -1239,7 +1239,7 @@ let settings: jQuery.AjaxSettings = {
 };
 ```
 
-##### npm 包
+##### 2）npm 包
 一般我们通过 import foo from 'foo' 导入一个 npm 包，这是符合 ES6 模块规范的。
 
 在我们尝试给一个 npm 包创建声明文件之前，需要先看看它的声明文件是否已经存在。一般来说，npm 包的声明文件可能存在于两个地方：
@@ -1420,7 +1420,7 @@ declare namespace foo {
 由于很多第三方库是 commonjs 规范的，所以声明文件也就不得不用到 export = 这种语法了。但是还是需要再强调下，相比与 export =，我们更推荐使用 ES6 标准的 export default 和 export。
 
 
-##### UMD 库
+##### 3）UMD 库
 既可以通过 script 标签引入，又可以通过 import 导入的库，称为 UMD 库。相比于 npm 包的类型声明文件，我们需要额外声明一个全局变量，为了实现这种方式，ts 提供了一个新语法 export as namespace
 
 一般使用 export as namespace 时，都是先有了 npm 包的声明文件，再基于它添加一条 export as namespace 语句，即可将声明好的一个变量声明为全局变量
@@ -1449,7 +1449,7 @@ declare namespace foo {
 }
 ```
 
-##### 直接扩展全局变量
+##### 4）直接扩展全局变量
 有的第三方库扩展了一个全局变量，可是此全局变量的类型却没有相应的更新过来，就会导致 ts 编译错误，此时就需要扩展全局变量的类型。比如扩展 String 类型
 ```
 interface String {
@@ -1483,7 +1483,7 @@ jQuery.foo({
 });
 ```
 
-##### 在 npm 包或 UMD 库中扩展全局变量
+##### 5）在 npm 包或 UMD 库中扩展全局变量
 如之前所说，对于一个 npm 包或者 UMD 库的声明文件，只有 export 导出的类型声明才能被导入。所以对于 npm 包或 UMD 库，如果导入此库之后会扩展全局变量，则需要使用另一种语法在声明文件中扩展全局变量的类型，那就是 declare global
 
 使用 declare global 可以在 npm 包或者 UMD 库的声明文件中扩展全局变量的类型
@@ -1501,7 +1501,7 @@ export {};
 
 注意即使此声明文件不需要导出任何东西，仍然需要导出一个空对象，用来告诉编译器这是一个模块的声明文件，而不是一个全局变量的声明文件
 
-##### 模块插件
+##### 6）模块插件
 有时通过 import 导入一个模块插件，可以改变另一个原有模块的结构。此时如果原有模块已经有了类型声明文件，而插件模块没有类型声明文件，就会导致类型不完整，缺少插件部分的类型。ts 提供了一个语法 declare module，它可以用来扩展原有模块的类型。
 
 如果是需要扩展原有模块的话，需要在类型声明文件中先引用原有模块，再使用 declare module 扩展原有模块
@@ -1523,7 +1523,7 @@ import 'moment-plugin';
 moment.foo();
 ```
 
-##### 声明文件中的依赖
+##### 7）声明文件中的依赖
 除了可以在声明文件中通过 import 导入另一个声明文件中的类型之外，还有一个语法也可以用来导入另一个声明文件，那就是三斜线指令
 
 ###### 三斜线指令
@@ -1586,7 +1586,7 @@ export = jQuery;
 其中用到了 types 和 path 两种不同的指令。它们的区别是：types 用于声明对另一个库的依赖，而 path 用于声明对另一个文件的依赖。
 
 
-##### 自动生成声明文件
+##### 8）自动生成声明文件
 如果库的源码本身就是由 ts 写的，那么在使用 tsc 脚本将 ts 编译为 js 的时候，添加 declaration 选项，就可以同时也生成 .d.ts 声明文件了。
 
 我们可以在命令行中添加 --declaration（简写 -d），或者在 tsconfig.json 中添加 declaration 选项。这里以 tsconfig.json 为例
@@ -1600,19 +1600,19 @@ export = jQuery;
 }
 ```
 
-#### 发布声明文件
+#### 5.发布声明文件
 * 将声明文件和源码放在一起
 * 将声明文件发布到 @types 下
 
-##### 将声明文件和源码放在一起
+##### 1）将声明文件和源码放在一起
 
 
-## 内置对象
+### 6.内置对象
 JavaScript 中有很多内置对象，它们可以直接在 TypeScript 中当做定义好了的类型。
 
 内置对象是指根据标准在全局作用域（Global）上存在的对象。这里的标准是指 ECMAScript 和其他环境（比如 DOM）的标准。
 
-### ECMAScript 的内置对象
+#### 1）ECMAScript 的内置对象
 CMAScript 标准提供的内置对象有：
 
 Boolean、Error、Date、RegExp 等。
@@ -1628,7 +1628,7 @@ let r: RegExp = /[a-z]/;
 
 而他们的定义文件，则在 [TypeScript 核心库的定义文件](https://github.com/Microsoft/TypeScript/tree/main/src/lib)中 
 
-### DOM 和 BOM 的内置对象
+#### 2）DOM 和 BOM 的内置对象
 DOM 和 BOM 提供的内置对象有：
 
 Document、HTMLElement、Event、NodeList 等。
@@ -1645,7 +1645,7 @@ document.addEventListener('click', function(e: MouseEvent) {
 
 [TypeScript 核心库的定义文件](https://github.com/Microsoft/TypeScript/tree/main/src/lib)中 
 
-### TypeScript 核心库的定义文件
+#### 3）TypeScript 核心库的定义文件
 TypeScript 核心库的定义文件中定义了所有浏览器环境需要用到的类型，并且是预置在 TypeScript 中的。
 
 当你在使用一些常用的方法的时候，TypeScript 实际上已经帮你做了很多类型判断的工作了，比如
@@ -1686,7 +1686,7 @@ interface Document extends Node, GlobalEventHandlers, NodeSelector, DocumentEven
 
 注意，TypeScript 核心库的定义中不包含 Node.js 部分
 
-### 用 TypeScript 写 Node.js
+#### 4）用 TypeScript 写 Node.js
 Node.js 不是内置对象的一部分，如果想用 TypeScript 写 Node.js，则需要引入第三方声明文件：
 
 ```
