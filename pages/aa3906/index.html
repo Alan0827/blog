@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>高德地图采坑 | 喋喋不休</title>
+    <meta name="generator" content="VuePress 1.9.5">
+    <link rel="icon" href="/img/favicon.ico">
+    <meta name="description" content="web前端技术博客,专注web前端学习与总结。JavaScript,js,ES6,TypeScript,vue,React,python,css3,html5,Node,git,github等技术文章。">
+    <meta name="keywords" content="前端博客,个人技术博客,前端,前端开发,前端框架,web前端,前端面试题,技术文档,学习,面试,JavaScript,js,ES6,TypeScript,vue,python,css3,html5,Node,git,github,markdown">
+    <meta name="theme-color" content="#11a8cd">
+    
+    <link rel="preload" href="/assets/css/0.styles.d7cefdcf.css" as="style"><link rel="preload" href="/assets/js/app.502030ef.js" as="script"><link rel="preload" href="/assets/js/2.37fd325c.js" as="script"><link rel="preload" href="/assets/js/43.f6f8f22e.js" as="script"><link rel="prefetch" href="/assets/js/10.3bf3467f.js"><link rel="prefetch" href="/assets/js/11.1671f56e.js"><link rel="prefetch" href="/assets/js/12.520756ec.js"><link rel="prefetch" href="/assets/js/13.fc9f385c.js"><link rel="prefetch" href="/assets/js/14.4bdc3317.js"><link rel="prefetch" href="/assets/js/15.c10f2d9c.js"><link rel="prefetch" href="/assets/js/16.d9561bd0.js"><link rel="prefetch" href="/assets/js/17.7c1ac696.js"><link rel="prefetch" href="/assets/js/18.639ba6d7.js"><link rel="prefetch" href="/assets/js/19.1d37547b.js"><link rel="prefetch" href="/assets/js/20.45a32314.js"><link rel="prefetch" href="/assets/js/21.c13fa205.js"><link rel="prefetch" href="/assets/js/22.deb35007.js"><link rel="prefetch" href="/assets/js/23.26004c0f.js"><link rel="prefetch" href="/assets/js/24.baff357a.js"><link rel="prefetch" href="/assets/js/25.883fbf61.js"><link rel="prefetch" href="/assets/js/26.eda1df76.js"><link rel="prefetch" href="/assets/js/27.1e5e89d6.js"><link rel="prefetch" href="/assets/js/28.6a734bf9.js"><link rel="prefetch" href="/assets/js/29.6c33ff22.js"><link rel="prefetch" href="/assets/js/3.a29bebb0.js"><link rel="prefetch" href="/assets/js/30.7accb464.js"><link rel="prefetch" href="/assets/js/31.b3422b43.js"><link rel="prefetch" href="/assets/js/32.8b499135.js"><link rel="prefetch" href="/assets/js/33.4688a9c9.js"><link rel="prefetch" href="/assets/js/34.8e7dcde5.js"><link rel="prefetch" href="/assets/js/35.7cb7e5a4.js"><link rel="prefetch" href="/assets/js/36.8947a2d5.js"><link rel="prefetch" href="/assets/js/37.e819bc16.js"><link rel="prefetch" href="/assets/js/38.3e17d605.js"><link rel="prefetch" href="/assets/js/39.2c1f6b06.js"><link rel="prefetch" href="/assets/js/4.ee9e3e73.js"><link rel="prefetch" href="/assets/js/40.28231893.js"><link rel="prefetch" href="/assets/js/41.3c7f4c17.js"><link rel="prefetch" href="/assets/js/42.d4658879.js"><link rel="prefetch" href="/assets/js/44.a0fcaa15.js"><link rel="prefetch" href="/assets/js/45.116a6126.js"><link rel="prefetch" href="/assets/js/46.517eb739.js"><link rel="prefetch" href="/assets/js/47.2e40a3df.js"><link rel="prefetch" href="/assets/js/48.3f31c072.js"><link rel="prefetch" href="/assets/js/49.ba5b0c67.js"><link rel="prefetch" href="/assets/js/5.1ce2f959.js"><link rel="prefetch" href="/assets/js/50.0e9486c2.js"><link rel="prefetch" href="/assets/js/51.f27ff9f6.js"><link rel="prefetch" href="/assets/js/52.fc399590.js"><link rel="prefetch" href="/assets/js/53.adeb26f4.js"><link rel="prefetch" href="/assets/js/54.e8749544.js"><link rel="prefetch" href="/assets/js/55.6ae99ae0.js"><link rel="prefetch" href="/assets/js/56.dd7faa0a.js"><link rel="prefetch" href="/assets/js/57.21edae9e.js"><link rel="prefetch" href="/assets/js/58.8dd991f0.js"><link rel="prefetch" href="/assets/js/59.18a186bf.js"><link rel="prefetch" href="/assets/js/6.7d348fe3.js"><link rel="prefetch" href="/assets/js/60.10f7b652.js"><link rel="prefetch" href="/assets/js/61.793cf588.js"><link rel="prefetch" href="/assets/js/62.e3d301a6.js"><link rel="prefetch" href="/assets/js/63.3c552be2.js"><link rel="prefetch" href="/assets/js/64.cd42a078.js"><link rel="prefetch" href="/assets/js/65.b21fe95c.js"><link rel="prefetch" href="/assets/js/66.eeef8457.js"><link rel="prefetch" href="/assets/js/67.92e8283a.js"><link rel="prefetch" href="/assets/js/68.831f5a86.js"><link rel="prefetch" href="/assets/js/69.0ab83fc6.js"><link rel="prefetch" href="/assets/js/7.9c1ccfd0.js"><link rel="prefetch" href="/assets/js/70.cebe8dee.js"><link rel="prefetch" href="/assets/js/71.3dfcb1c9.js"><link rel="prefetch" href="/assets/js/72.82f6092f.js"><link rel="prefetch" href="/assets/js/73.1e5dfc37.js"><link rel="prefetch" href="/assets/js/74.9a6b522f.js"><link rel="prefetch" href="/assets/js/75.666f2dd2.js"><link rel="prefetch" href="/assets/js/76.c5c8820f.js"><link rel="prefetch" href="/assets/js/77.37299bbe.js"><link rel="prefetch" href="/assets/js/78.9f108f2a.js"><link rel="prefetch" href="/assets/js/79.60c21a09.js"><link rel="prefetch" href="/assets/js/8.c111f01d.js"><link rel="prefetch" href="/assets/js/80.07d580f2.js"><link rel="prefetch" href="/assets/js/81.78137a41.js"><link rel="prefetch" href="/assets/js/82.a91cfa51.js"><link rel="prefetch" href="/assets/js/83.65534be8.js"><link rel="prefetch" href="/assets/js/84.fa9cf2f6.js"><link rel="prefetch" href="/assets/js/85.5bab0043.js"><link rel="prefetch" href="/assets/js/86.a9f4d48a.js"><link rel="prefetch" href="/assets/js/87.5125fe5d.js"><link rel="prefetch" href="/assets/js/88.49f9f955.js"><link rel="prefetch" href="/assets/js/9.88e209db.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.d7cefdcf.css">
+  </head>
+  <body class="theme-mode-light">
+    <div id="app" data-server-rendered="true"><div class="theme-container sidebar-open have-rightmenu have-body-img"><header class="navbar blur"><div title="目录" class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><img src="/img/logo.png" alt="喋喋不休" class="logo"> <span class="site-name can-hide">喋喋不休</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="前端" class="dropdown-title"><a href="/web/" class="link-title">前端</a> <span class="title" style="display:none;">前端</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>前端文章</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/pages/8143cc480faf9a11/" class="nav-link">JavaScript</a></li><li class="dropdown-subitem"><a href="/pages/8309a5b876fc95e3/" class="nav-link">HTML</a></li><li class="dropdown-subitem"><a href="/pages/df9e7c7214fa5046/" class="nav-link">CSS</a></li></ul></li><li class="dropdown-item"><h4>三方库</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/pages/2c78e7/" class="nav-link">vue</a></li></ul></li><li class="dropdown-item"><h4>学习笔记</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/note/js/" class="nav-link">《JavaScript高级程序设计》</a></li><li class="dropdown-subitem"><a href="/pages/51afd6/" class="nav-link">TypeScript</a></li><li class="dropdown-subitem"><a href="/pages/4643cd/" class="nav-link">JS设计模式总结</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="技术" class="dropdown-title"><a href="/technology/" class="link-title">技术</a> <span class="title" style="display:none;">技术</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/pages/9a7ee40fc232253e/" class="nav-link">技术文档</a></li><li class="dropdown-item"><!----> <a href="/pages/4c778760be26d8b3/" class="nav-link">GitHub技巧</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="更多" class="dropdown-title"><a href="/more/" class="link-title">更多</a> <span class="title" style="display:none;">更多</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/pages/f2a556/" class="nav-link">学习</a></li><li class="dropdown-item"><!----> <a href="/pages/aea6571b7a8bae86/" class="nav-link">面试</a></li><li class="dropdown-item"><!----> <a href="/pages/2d615df9a36a98ed/" class="nav-link">心情杂货</a></li><li class="dropdown-item"><!----> <a href="/pages/baaa02/" class="nav-link">实用技巧</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="收藏" class="dropdown-title"><a href="/pages/beb6c0bd8a66cea6/" class="link-title">收藏</a> <span class="title" style="display:none;">收藏</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/pages/beb6c0bd8a66cea6/" class="nav-link">网站</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="索引" class="dropdown-title"><a href="/archives/" class="link-title">索引</a> <span class="title" style="display:none;">索引</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/categories/" class="nav-link">分类</a></li><li class="dropdown-item"><!----> <a href="/tags/" class="nav-link">标签</a></li><li class="dropdown-item"><!----> <a href="/archives/" class="nav-link">归档</a></li><li class="dropdown-item"><!----> <a href="/about/" class="nav-link">关于</a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <div class="sidebar-hover-trigger"></div> <aside class="sidebar" style="display:none;"><div class="blogger"><img src="/img/logo.png"> <div class="blogger-info"><h3>Alan0827</h3> <span>扯淡的玩意er。。</span></div></div> <nav class="nav-links"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="前端" class="dropdown-title"><a href="/web/" class="link-title">前端</a> <span class="title" style="display:none;">前端</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>前端文章</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/pages/8143cc480faf9a11/" class="nav-link">JavaScript</a></li><li class="dropdown-subitem"><a href="/pages/8309a5b876fc95e3/" class="nav-link">HTML</a></li><li class="dropdown-subitem"><a href="/pages/df9e7c7214fa5046/" class="nav-link">CSS</a></li></ul></li><li class="dropdown-item"><h4>三方库</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/pages/2c78e7/" class="nav-link">vue</a></li></ul></li><li class="dropdown-item"><h4>学习笔记</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/note/js/" class="nav-link">《JavaScript高级程序设计》</a></li><li class="dropdown-subitem"><a href="/pages/51afd6/" class="nav-link">TypeScript</a></li><li class="dropdown-subitem"><a href="/pages/4643cd/" class="nav-link">JS设计模式总结</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="技术" class="dropdown-title"><a href="/technology/" class="link-title">技术</a> <span class="title" style="display:none;">技术</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/pages/9a7ee40fc232253e/" class="nav-link">技术文档</a></li><li class="dropdown-item"><!----> <a href="/pages/4c778760be26d8b3/" class="nav-link">GitHub技巧</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="更多" class="dropdown-title"><a href="/more/" class="link-title">更多</a> <span class="title" style="display:none;">更多</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/pages/f2a556/" class="nav-link">学习</a></li><li class="dropdown-item"><!----> <a href="/pages/aea6571b7a8bae86/" class="nav-link">面试</a></li><li class="dropdown-item"><!----> <a href="/pages/2d615df9a36a98ed/" class="nav-link">心情杂货</a></li><li class="dropdown-item"><!----> <a href="/pages/baaa02/" class="nav-link">实用技巧</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="收藏" class="dropdown-title"><a href="/pages/beb6c0bd8a66cea6/" class="link-title">收藏</a> <span class="title" style="display:none;">收藏</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/pages/beb6c0bd8a66cea6/" class="nav-link">网站</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="索引" class="dropdown-title"><a href="/archives/" class="link-title">索引</a> <span class="title" style="display:none;">索引</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/categories/" class="nav-link">分类</a></li><li class="dropdown-item"><!----> <a href="/tags/" class="nav-link">标签</a></li><li class="dropdown-item"><!----> <a href="/archives/" class="nav-link">归档</a></li><li class="dropdown-item"><!----> <a href="/about/" class="nav-link">关于</a></li></ul></div></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>HTML</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>CSS</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>JavaScript文章</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>vue学习</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>学习笔记</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/note/js/" class="sidebar-link">《JavaScript高级程序设计》笔记</a></li><li><a href="/pages/51afd6/" class="sidebar-link">TypeScript笔记</a></li><li><a href="/pages/4643cd/" class="sidebar-link">JS设计模式总结笔记</a></li><li><a href="/pages/a0e866/" class="sidebar-link">前端工作流调研</a></li><li><a href="/pages/bc3411/" class="sidebar-link">低代码平台</a></li><li><a href="/pages/aa3906/" aria-current="page" class="active sidebar-link">高德地图采坑</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header level2"><a href="/pages/aa3906/#本次需求分析" class="sidebar-link">本次需求分析：</a></li><li class="sidebar-sub-header level2"><a href="/pages/aa3906/#_1-权限区域绘制" class="sidebar-link">1. 权限区域绘制</a></li><li class="sidebar-sub-header level2"><a href="/pages/aa3906/#_2-地图点击需要切换到当前区域的数据" class="sidebar-link">2. 地图点击需要切换到当前区域的数据</a></li><li class="sidebar-sub-header level2"><a href="/pages/aa3906/#_3-根据地图缩放级别展示不同的icon-回收机" class="sidebar-link">3. 根据地图缩放级别展示不同的icon  回收机</a></li><li class="sidebar-sub-header level2"><a href="/pages/aa3906/#_4-实时投递弹窗和实时清运弹窗" class="sidebar-link">4. 实时投递弹窗和实时清运弹窗</a></li></ul></li><li><a href="/pages/175c51/" class="sidebar-link">argo原理</a></li></ul></section></li></ul> </aside> <div><main class="page"><div class="theme-vdoing-wrapper bg-style-6"><div class="articleInfo-wrap" data-v-06225672><div class="articleInfo" data-v-06225672><ul class="breadcrumbs" data-v-06225672><li data-v-06225672><a href="/" title="首页" class="iconfont icon-home router-link-active" data-v-06225672></a></li> <li data-v-06225672><a href="/web/#前端" data-v-06225672>前端</a></li><li data-v-06225672><a href="/web/#学习笔记" data-v-06225672>学习笔记</a></li></ul> <div class="info" data-v-06225672><div title="作者" class="author iconfont icon-touxiang" data-v-06225672><a href="https://github.com/Alan0827" target="_blank" title="作者" class="beLink" data-v-06225672>Alan0827</a></div> <div title="创建时间" class="date iconfont icon-riqi" data-v-06225672><a href="javascript:;" data-v-06225672>2018-11-20</a></div> <!----></div></div></div> <!----> <div class="content-wrapper"><div class="right-menu-wrapper"><div class="right-menu-margin"><div class="right-menu-title">目录</div> <div class="right-menu-content"></div></div></div> <h1><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAABH1JREFUSA3tVl1oHFUUPmdmd2ltklqbpJDiNnXFmgbFktho7YMPNiJSSZM0+CAYSkUELVhM6YuwIPpgoOKDqOBDC0XE2CQoNtQXBUFTTcCi+Wlh1V2TQExsUzcltd3M9Tt3ZjZzZ2fT+OJTL8yeM+eee757fmeJbq//KQL8X3DUSFOcfr7cRsRtxNQMWueeVzOkaITIGqQHNg5y8+jNW9ldM7A6nTpAjuolUikAwq7CE3WcM2RRDz+XGVgN3FptU/aUSlvq9Pa3iZ1+sgAqJyyAFqkipd9dqiwHF3P65YycLWc/6sqGrvoEoIp6DOFaX5h6+dnfjkWprwqsPk0dUGq5vySwDImC10KxFHgGL1SWoc92O3eVht09qdXNH11I2SsTsJYqMWzihqGMi+A+Garf3BAuuLI5oGlULyNfyB/HYNujwktOfRrMr5t77NmevqaUopx0grnKAyvVpmwUDB4x6FPXuGvYLTDwWsejwgtgkYKPqRJg8SV6xaiZ3ZTppGneS4yfH5/66fZSDHv+QZci/+h5c5UHtpy67JUqGppM0sh0Nc1dW6/N1W5Yoqat8/TU/VnadmdeW2PLLSyh0cvxBs3KbqTmwYPpxN4do/mzE8nEpvX/UMu2Wbp74zUAK5q6WkHns7V0eWkdPbPzd3rxkTGybadYySumVzhcaJFbs5UrEkQ/+CK8gF5dnh/6ciIZ73gwQ927L1IitoxKLXYP3SjYdOrHHfTZhRRlFyrorafPk20B3HPD1y2G3qKZME5Jcf3t/HUC13/8tSd++vqFveMUTwAUxSUFI1QekR1+bIze3D9MF2aq6cPvG72CgnldWCFqyRw3lwH8ZMerjTD9ElRO7Gv44wNpC90aASqGfVlz/Rx17srQ57/UU26hkhQqUB7dBR71WmzQhHUnblGmVOEw0jhbV1n9OlXUDCIRGaNV5Jp43N516fN7JmnTHdfp7Hgy0luO4aMhtkLL8Bi3bUWYvzh5Mn1dTxrL6QmGuRhGL/TiTTxRoEdTszSaq9GR0NGA3KdkOz3hqSV3MIDhQ5IVX/Ivx3umBti2es2h4eZby7x8br1rkf7Mo90AqC8aQ3sJeNzqFRu+vSANAQe3PL7l0HGOAdwDCeZYvNKeoZp1Qfs6Aipndh86HmFRi0LAnEO47wsqM6cdfjh3jBPUzhZy7nvlUfFsamED1VQt6aISHVymXZ/B2aCtIG8AI8xfobj2d3en1wWVhOeHELKmLQ1s211s88comkv4UCwWyF787mJdYXtNfhKAXVqnKTq8QZvGAGGOfaTo5pGZ/PwbUCr5+DPr/1J92JNHr9aOl/F3iI5+O1nfybsGxoimvZ3ViWSluDITw3P37mypheDIPY0tw7+O/5ApbkYw+zpfaUVu32Pi98+defdUhEpZkRFq0aqyNh9FuL9hpYbEm6iwi0z2REd09ZmyENEbuhjDWzKvZXTqKYaBIr3tt5kuPtQBZFvEUwHt60vfCNu41XsksH9Ij1BMMz1Y0OOunHNShFIP5868g5zeXmuLwL9T4b6Q2+KejgAAAABJRU5ErkJggg==">高德地图采坑<span class="title-tag">原创</span></h1> <!----> <div class="theme-vdoing-content content__default"><h2 id="本次需求分析"><a href="#本次需求分析" class="header-anchor">#</a> 本次需求分析：</h2> <ol><li>从原来城市的数据，变为省市区的数据；</li> <li>地图需要根据缩放级别绘制icon；</li> <li>地图点击需要切换到当前点击区域的数据；</li> <li>实时投递弹窗和实时清运弹窗；</li> <li>有权限区域的绘制；</li></ol> <h2 id="_1-权限区域绘制"><a href="#_1-权限区域绘制" class="header-anchor">#</a> 1. 权限区域绘制</h2> <blockquote><p>目前项目使用行政区划浏览 绘制权限区域 具体用法如下：</p></blockquote> <div class="language- extra-class"><pre><code>//加载DistrictExplorer，loadUI的路径参数为模块名中 'ui/' 之后的部分 
+AMapUI.loadUI(['geo/DistrictExplorer'], function(DistrictExplorer) {
+//启动页面
+initPage(DistrictExplorer);
+}); 
+
+function initPage(DistrictExplorer) {
+//创建一个实例
+var districtExplorer = new DistrictExplorer({
+    map: map //关联的地图实例
+});
+
+var adcode = 100000; //全国的区划编码
+
+districtExplorer.loadAreaNode(adcode, function(error, areaNode) {
+
+    if (error) {
+        console.error(error);
+        return;
+    }
+
+    //绘制载入的区划节点
+    renderAreaNode(districtExplorer, areaNode);
+});
+}
+
+function renderAreaNode(districtExplorer, areaNode) {
+
+//清除已有的绘制内容
+districtExplorer.clearFeaturePolygons();
+
+//just some colors
+var colors = [&quot;#3366cc&quot;, &quot;#dc3912&quot;, &quot;#ff9900&quot;, &quot;#109618&quot;, &quot;#990099&quot;, &quot;#0099c6&quot;, &quot;#dd4477&quot;, &quot;#66aa00&quot;];
+
+//绘制子级区划
+districtExplorer.renderSubFeatures(areaNode, function(feature, i) {
+
+    var fillColor = colors[i % colors.length];
+    var strokeColor = colors[colors.length - 1 - i % colors.length];
+
+    return {
+        cursor: 'default',
+        bubble: true,
+        strokeColor: strokeColor, //线颜色
+        strokeOpacity: 1, //线透明度
+        strokeWeight: 1, //线宽
+        fillColor: fillColor, //填充色
+        fillOpacity: 0.35, //填充透明度
+    };
+});
+
+//绘制父级区划，仅用黑色描边
+districtExplorer.renderParentFeature(areaNode, {
+    cursor: 'default',
+    bubble: true,
+    strokeColor: 'black', //线颜色
+    fillColor: null,
+    strokeWeight: 3, //线宽
+});
+
+//更新地图视野以适合区划面
+map.setFitView(districtExplorer.getAllFeaturePolygons());
+}
+</code></pre></div><p><img src="https://cdn.staticaly.com/gh/Alan0827/image-house@master/gaode/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20181219185610.313udrtl2560.webp" alt="avatar">
+新需求是要求到区一级，有权限的区域可能不是一个市的全部区域，行政区划浏览会把一个城市的所有区域绘制出来，或者把一个省的所有市绘制出来，所以，这种绘制区域的方案pass掉。。。。</p> <div align="center"><img src="https://cdn.staticaly.com/gh/Alan0827/image-house@master/gaode/微信图片_20181219185622.1elzsm6otl28.webp"></div> <div class="language- extra-class"><pre><code>我新的方案采用的是 高德的 “行政区查询” 
+AMap.plugin('AMap.DistrictSearch', function () {
+    // 创建行政区查询对象
+    var district = new AMap.DistrictSearch({
+        // 返回行政区边界坐标等具体信息
+        extensions: 'all',
+        // 设置查询行政区级别为 区 
+        level: 'district'
+    })
+
+    district.search('110110', function(status, result) {
+        // 获取朝阳区的边界信息
+        var bounds = result.districtList[0].boundaries
+        var polygons = []
+        if (bounds) {
+        for (var i = 0, l = bounds.length; i &lt; l; i++) {
+        //生成行政区划polygon
+        var polygon = new AMap.Polygon({
+            map: map,
+            strokeWeight: 1,
+            path: bounds[i],
+            fillOpacity: 0.7,
+            fillColor: '#CCF3FF',
+            strokeColor: '#CC66CC'
+        })
+        polygons.push(polygon)
+        }
+        // 地图自适应
+        map.setFitView()
+    }
+    })
+})
+</code></pre></div><p>我们要做的只有，把有权限区域的区域编码拿到，就可以绘制权限区域了。</p> <h2 id="_2-地图点击需要切换到当前区域的数据"><a href="#_2-地图点击需要切换到当前区域的数据" class="header-anchor">#</a> 2. 地图点击需要切换到当前区域的数据</h2> <p><img src="https://cdn.staticaly.com/gh/Alan0827/image-house@master/gaode/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20181219185650.4udsai8mgqg0.webp" alt="avatar">
+例如，当前点击的是 广东省深圳市南山区，我们没法判断到底是点击的是广东省，深圳市，还是南山区，所以区分不了点击的省市区；</p> <p>而且，点击地图的时候只会返回城市级别的code，用code做请求的时候，来获取数据。</p> <p>这里我利用了地图的“缩放级别”来做控制。利用map.getZoom()来获取地图的缩放级别，我分为三个档次：x&lt;8,8&lt;=x&lt;=10,x&gt;10,根据地图当前的级别，分别三个档次的点击代表省市区，这样我们可以获取到地图返回的中文省市区，拿中文省市区，去后台给到的有权限的三级区域列表做匹配，然后，拿到对应的code做请求，获取数据。</p> <p>点击地图之后的具体方法，如下：</p> <div class="language- extra-class"><pre><code>geocoder.getAddress(e.lnglat, function (status, result) {
+    if (status === 'complete' &amp;&amp; result.info === 'OK') {
+        // console.log(JSON.stringify(result))
+        // console.log(map.getZoom())
+        //当前的名称
+        var currentName = ''
+        //权限列表是否包含当前name
+        var isContain = true;
+        //各级名称
+        var provinceName = result.regeocode.addressComponent.province
+        var cityName = result.regeocode.addressComponent.city
+        var districtName = result.regeocode.addressComponent.district
+
+        //没区的时候直接取cityCode
+        var noDistrictCityCode = result.regeocode.addressComponent.adcode
+        if (map.getZoom() &lt; 8) { //此处去拿省的回收机数量 传给MachineNumWindow
+            // 拿省的名称去匹配 
+            selectName = currentName = provinceName
+            let list = provinceList.filter(x =&gt; x.cityName.includes(currentName))[0]
+            if (list) {
+                isContain = true
+                currentAdcode = list.cityCode
+            } else {
+                isContain = false
+            }
+
+        } else if (map.getZoom() &gt;= 8 &amp;&amp; map.getZoom() &lt;= 10) {
+            //北京、上海等地可能没有cityName
+            selectName = currentName = cityName ? cityName : provinceName
+            // console.log(currentName)
+            let list = cityList.filter(x =&gt; x.cityName.includes(currentName))[0]
+            // console.log(list)
+            if (list) {
+                isContain = true
+                currentName = provinceName + cityName
+                currentAdcode = list.cityCode
+            } else {
+                isContain = false
+            }
+
+        } else {
+            currentName = districtName
+            if (districtName == '') {
+                currentName = provinceName + cityName;
+                currentAdcode = noDistrictCityCode * 1000000;
+                isContain = true;
+            } else {
+                let list = districtList.filter(x =&gt; x.cityName.includes(currentName))[0]
+                // console.log(list)
+                if (list) {
+                    isContain = true
+                    currentName = provinceName + cityName + districtName
+                    currentAdcode = list.cityCode
+                } else {
+                    isContain = false;
+                }
+            }
+            selectName = cityName ? cityName + districtName : provinceName + districtName
+        }
+        // console.log(isContain)
+        //如果没有匹配到return
+        if (!isContain) {
+            map.clearInfoWindow();
+            return false;
+        }
+
+        //拿到当前的名称去请求当前区域中心经纬度
+        geocoder.getLocation(currentName, function (status, result) {
+            if (status === 'complete' &amp;&amp; result.info === 'OK') {
+                // result中对应详细地理坐标信息
+                // console.log(JSON.stringify(result))
+                let location = result.geocodes[0].location;
+                currentLnglat = [location.lng, location.lat]
+            }
+        })
+
+        // console.log(currentLnglat)
+
+        //打开名称数量信息窗体
+        openNumWindow(clickLnglat, {
+            name: currentName,
+            // num: currentNum
+        })
+
+
+    }
+
+});
+</code></pre></div><p>我们是需要弹出当前点击的区域名称，然后点击当前的信息窗体，请求数据。。。。</p> <h2 id="_3-根据地图缩放级别展示不同的icon-回收机"><a href="#_3-根据地图缩放级别展示不同的icon-回收机" class="header-anchor">#</a> 3. 根据地图缩放级别展示不同的icon  回收机</h2> <p><img src="https://cdn.staticaly.com/gh/Alan0827/image-house@master/gaode/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20181219185628.1hpuku52bagw.webp" alt="avatar">
+这个之前做城市数据墙的时候，可能回收机的数量不是特别大，只是显示一个城市的回收机，而且也不用变换图标，所以性能上面没有发现问题，后来，我沿用之前添加marker的方法，由于我的地图是需要显示大量的点，而且会做切换，上了生产环境之后发现严重的性能问题，pass掉了，测试，预发布。。。。。没有生产那么多的数据，并没有发现。。。。。悲催</p> <div align="center"><img src="https://cdn.staticaly.com/gh/Alan0827/image-house@master/gaode/微信图片_20181219185631.214jss41enk0.webp"></div> <p>后来，经过团队的讨论，选了高德地图海量点的方案，此方案“据高德说”，10万+ 以下都可以hold住，牛鼻。。。。。。</p> <div class="language- extra-class"><pre><code>//海量点的style  图标提前定义写死，后面更换时直接修改数据里的style
+var massStyle = [{
+        url: './images/point.png',
+        anchor: new AMap.Pixel(3, 6),
+        size: new AMap.Size(6, 6)
+    },
+    {
+        url: './images/city_full.png',
+        anchor: new AMap.Pixel(27, 57),
+        size: new AMap.Size(54, 57)
+    },
+    {
+        url: './images/city_unfull.png',
+        anchor: new AMap.Pixel(27, 57),
+        size: new AMap.Size(54, 57)
+    },
+    {
+        url: './images/district_full.png',
+        anchor: new AMap.Pixel(27, 61),
+        size: new AMap.Size(54, 61)
+    },
+    {
+        url: './images/district_unfull.png',
+        anchor: new AMap.Pixel(27, 61),
+        size: new AMap.Size(54, 61)
+    },
+]
+var massMarks = [] //海量点
+//海量点  需要提前创建实例，避免每次权限变动多次实例化，造成性能问题,创建实例时先放空数据进去，按照官网不放数据setData不行
+massMarks = new AMap.MassMarks([], {
+    zIndex: 111,
+    cursor: 'pointer',
+    style: massStyle
+});
+
+
+
+/**
+* 绘制回收机
+* @date 2018-12-04
+* @param {*} data 中心地图原始回收机列表
+* @returns
+*/
+function getMapFun(data) {
+    // console.log(data)
+    if (!data || data.length == 0) { //此处要判断data  如不的话，试试，神坑。。。地图样式加载不出来
+        return false;
+    }
+    machineList = []
+    data.map(x =&gt; {
+        machineList.push({
+            lnglat: [x.longitude, x.latitude],
+            siteCode: x.siteCode,
+            isFull: x.isFull,
+            style: 0
+        })
+    })
+
+    massMarks.clear()
+    massMarks.setData(machineList)
+    massMarks.setMap(map);
+
+    //渲染回收机
+    renderMap(machineList)
+
+}
+
+
+/**
+* 渲染中心地图数据回收机，不同缩放级别替换图标
+* @date 2018-12-04
+* @param {*} data  处理过后的回收机列表
+* @returns
+*/
+function renderMap(data) {
+    // console.log(data)
+    //监听地图缩放前后级别，如果在同一区间内就不做渲染了,节约性能
+    if (startZoom &lt;= 9 &amp;&amp; startZoom &gt;= 3 &amp;&amp; endZoom &lt;= 9 &amp;&amp; endZoom &gt;= 3) {
+        return false;
+    }
+    if (startZoom &gt; 9 &amp;&amp; startZoom &lt;= 14 &amp;&amp; endZoom &gt; 9 &amp;&amp; endZoom &lt;= 14) {
+        return false;
+    }
+    if (startZoom &gt;= 15 &amp;&amp; endZoom &gt;= 15) {
+        return false;
+    }
+    // console.log(map.getZoom())
+    //不同级别的data中style要换，图标动态更换，重新渲染style
+    if (map.getZoom() &lt;= 9) {
+        massMarks.setStyle(massStyle[0])
+    }
+    if (map.getZoom() &gt; 9 &amp;&amp; map.getZoom() &lt;= 14) {
+        data.map(x =&gt; {
+            x.isFull == 1 ? x.style = 1 : x.style = 2
+        })
+        massMarks.setStyle(massStyle)
+    }
+    if (map.getZoom() &gt;= 15) {
+        data.map(x =&gt; {
+            x.isFull == 1 ? x.style = 3 : x.style = 4
+        })
+        massMarks.setStyle(massStyle)
+    }
+}
+</code></pre></div><p><img src="https://cdn.staticaly.com/gh/Alan0827/image-house@master/gaode/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20181219185636.6ubvqfz4qc40.webp" alt="avatar"> <img src="https://cdn.staticaly.com/gh/Alan0827/image-house@master/gaode/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20181219185642.4mqvh7b3i3a0.webp" alt="avatar"> <img src="https://cdn.staticaly.com/gh/Alan0827/image-house@master/gaode/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20181219185646.45d1c6em2k20.webp" alt="avatar">
+详细的方法都在上面了，图标的话根据级别不同，共有5种。</p> <p>至此，高德地图项目的坑都被我踩了好多了。。。过程其实蛮曲折的，记录下来的话，好像没有什么东西似的，不过平时多记录以下踩坑的话，会后相信遇到类似的问题，会好很多，希望大家一样。。。。。</p> <p>哦，好像还有个实时弹窗的问题</p> <h2 id="_4-实时投递弹窗和实时清运弹窗"><a href="#_4-实时投递弹窗和实时清运弹窗" class="header-anchor">#</a> 4. 实时投递弹窗和实时清运弹窗</h2> <p>实时弹窗利用的就是new Amap.Marker()方法，绘制的marker，为什么用这个呢？不用信息窗体，信息窗体在地图中只能同时存在一个，这个就操蛋了。。。。。所以，这里实时弹窗放弃信息窗体，因为其他地方我已经用过信息窗体。</p> <p>直接上代码吧  显示3s，然后去掉，这里有个判断就是不在可视区域内的话，放在右上角，一个dom操作，在可视区域的话，需要显示在当前的实时的点上面，大概就这样。</p> <div class="language- extra-class"><pre><code>/**
+* 绘制实时投机信息窗体
+* @date 2018-12-04
+* @param {*} data
+*/
+function renderToudiWindow(data) {
+    // console.dir(data)
+    let lng = data.longitude;
+    let lat = data.latitude;
+    var bound = map.getBounds(); //地图可视区域
+    //判断该点是否在可视范围内（针对东经，北纬）
+    if (lng &lt; bound.northeast.lng &amp;&amp; lng &gt; bound.southwest.lng &amp;&amp; lat &lt; bound.northeast.lat &amp;&amp; lat &gt; bound.southwest.lat) {
+        recoveryMarker = new AMap.Marker({
+            position: [lng, lat],
+            content: createToudiWindow(data),
+            offset: new AMap.Pixel(14, -26)
+        });
+        map.add(recoveryMarker)
+        setTimeout(function () {
+            map.remove(recoveryMarker)
+            recoveryMarker = null
+        }, 3000)
+    } else {
+        $(&quot;.module4 .nowWindow&quot;).append(createToudiWindow(data))
+        setTimeout(function () {
+            $(&quot;.module4 .nowWindow&quot;).children().first().remove();
+        }, 3000)
+    }
+}
+
+
+
+/**
+* 实时投递信息窗体
+* @date 2018-12-04
+* @param {*} data
+* @returns
+*/
+function createToudiWindow(data) {
+    let info = `&lt;div class=&quot;toudi-window&quot;&gt;
+                    &lt;div class=&quot;qingyun-content&quot;&gt;
+                        &lt;div class=&quot;title&quot;&gt;回收机实时投递&lt;/div&gt;
+                        &lt;div class=&quot;time&quot;&gt;
+                            &lt;span&gt;${data.cityName}&lt;/span&gt;
+                        &lt;/div&gt;
+                        ${data.list.map(x=&gt;
+                            `&lt;div class=&quot;num&quot;&gt;
+                                &lt;span&gt;${x.typeName}：&lt;/span&gt;
+                                &lt;span&gt;
+                                    &lt;b&gt;${x.type=='0'?Number(x.value):x.value}&lt;/b&gt;
+                                    ${x.valueCompany}
+                                &lt;/span&gt;
+                            &lt;/div&gt;`
+                        ).join('')}
+                        &lt;div class=&quot;weight&quot;&gt;
+                            &lt;span&gt;${data.nickName}&lt;/span&gt;
+                            &lt;span&gt;
+                                ${data.time}
+                            &lt;/span&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;`
+    return info
+}
+</code></pre></div></div></div> <!----> <div class="page-edit"><!----> <div class="tags"><a href="/tags/?tag=%E9%AB%98%E5%BE%B7%E5%9C%B0%E5%9B%BE" title="标签">#高德地图</a><a href="/tags/?tag=js" title="标签">#js</a></div> <div class="last-updated"><span class="prefix">上次更新:</span> <span class="time">2022/09/07, 17:55:11</span></div></div> <div class="page-nav-wapper"><div class="page-nav-centre-wrap"><a href="/pages/bc3411/" class="page-nav-centre page-nav-centre-prev"><div class="tooltip">低代码平台</div></a> <a href="/pages/175c51/" class="page-nav-centre page-nav-centre-next"><div class="tooltip">argo原理</div></a></div> <div class="page-nav"><p class="inner"><span class="prev">
+        ←
+        <a href="/pages/bc3411/" class="prev">低代码平台</a></span> <span class="next"><a href="/pages/175c51/">argo原理</a>→
+      </span></p></div></div></div> <div class="article-list"><div class="article-title"><a href="/archives/" class="iconfont icon-bi">最近更新</a></div> <div class="article-wrapper"><dl><dd>01</dd> <dt><a href="/pages/53eff0/"><div>
+            typescript基本使用
+            <!----></div></a> <span class="date">03-10</span></dt></dl><dl><dd>02</dd> <dt><a href="/pages/1678441859170/"><div>
+            vue2 升级vue3 路线
+            <!----></div></a> <span class="date">02-20</span></dt></dl><dl><dd>03</dd> <dt><a href="/pages/175c51/"><div>
+            argo原理
+            <span class="title-tag">
+              原创
+            </span></div></a> <span class="date">09-21</span></dt></dl> <dl><dd></dd> <dt><a href="/archives/" class="more">更多文章&gt;</a></dt></dl></div></div></main></div> <div class="footer"><div class="icons"><a href="mailto:990235922@qq.com" title="发邮件" target="_blank" class="iconfont icon-youjian"></a><a href="https://github.com/Alan0827" title="GitHub" target="_blank" class="iconfont icon-github"></a><a href="https://music.163.com/#/playlist?id=755597173" title="听音乐" target="_blank" class="iconfont icon-erji"></a></div> 
+  Theme by
+  <a href="https://github.com/xugaoyi/vuepress-theme-vdoing" target="_blank" title="本站主题">Vdoing</a> 
+    | Copyright © 2016-2023
+    <span>Alan0827</span></div> <div class="buttons"><div title="返回顶部" class="button blur go-to-top iconfont icon-fanhuidingbu" style="display:none;"></div> <div title="去评论" class="button blur go-to-comment iconfont icon-pinglun" style="display:none;"></div> <div title="主题模式" class="button blur theme-mode-but iconfont icon-zhuti"><ul class="select-box" style="display:none;"><li class="iconfont icon-zidong">
+          跟随系统
+        </li><li class="iconfont icon-rijianmoshi">
+          浅色模式
+        </li><li class="iconfont icon-yejianmoshi">
+          深色模式
+        </li><li class="iconfont icon-yuedu">
+          阅读模式
+        </li></ul></div></div> <div class="body-bg" style="background:url() center center / cover no-repeat;opacity:0.5;"></div> <!----> <!----></div><div class="global-ui"><div></div></div></div>
+    <script src="/assets/js/app.502030ef.js" defer></script><script src="/assets/js/2.37fd325c.js" defer></script><script src="/assets/js/43.f6f8f22e.js" defer></script>
+  </body>
+</html>
