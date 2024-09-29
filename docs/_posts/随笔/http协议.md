@@ -17,24 +17,24 @@ author:
 ### 1.1 发展史以及概念
 超文本传输协议（英语：HyperText Transfer Protocol，缩写：HTTP）是一种用于分布式、协作式和超媒体信息系统的应用层协议[1]
 
-![http1](https://cdn.staticaly.com/gh/Alan0827/image-house@master/20220907/http1.6o4d97zanh80.jpg)
+![http1](https://jsd.cdn.zzko.cn/gh/Alan0827/picx-images-hosting@master/20220907/http1.6o4d97zanh80.jpg)
 
 ### 1.2 计算机网络体系结构分层
 不同的硬件、操作系统之间的通信，所有的一切都需要一种规则，这种规则被称为 协议protocol， 而TCP/IP是互联网相关协议的各类协议族的总称
-![http2](https://cdn.staticaly.com/gh/Alan0827/image-house@master/20220907/http2.67gx3i2xo5w0.jpg)
+![http2](https://jsd.cdn.zzko.cn/gh/Alan0827/picx-images-hosting@master/20220907/http2.67gx3i2xo5w0.jpg)
 
 ### 1.3 TCP/IP 通信传输流
 利用 TCP/IP 协议族进行网络通信时，会通过分层顺序与对方进行通信。发送端从应用层往下走，接收端则从链路层往上走， 如下图
-<div align=center><img src="https://cdn.staticaly.com/gh/Alan0827/image-house@master/20220907/http3.15ekbjp5k1ds.jpg"></div>
+<div align=center><img src="https://jsd.cdn.zzko.cn/gh/Alan0827/picx-images-hosting@master/20220907/http3.15ekbjp5k1ds.jpg"></div>
 
-<div align=center><img src="https://cdn.staticaly.com/gh/Alan0827/image-house@master/20220907/http4.2ov4abqbauq0.jpg"></div>
+<div align=center><img src="https://jsd.cdn.zzko.cn/gh/Alan0827/picx-images-hosting@master/20220907/http4.2ov4abqbauq0.jpg"></div>
 
-<div align=center><img src="https://cdn.staticaly.com/gh/Alan0827/image-house@master/20220907/http5.4ewa6dd4tyq0.jpg"></div>
+<div align=center><img src="https://jsd.cdn.zzko.cn/gh/Alan0827/picx-images-hosting@master/20220907/http5.4ewa6dd4tyq0.jpg"></div>
 
-<div align=center><img src="https://cdn.staticaly.com/gh/Alan0827/image-house@master/20220907/http6.14odfgkgpyw0.jpg"></div>
+<div align=center><img src="https://jsd.cdn.zzko.cn/gh/Alan0827/picx-images-hosting@master/20220907/http6.14odfgkgpyw0.jpg"></div>
 
-<div align=center><img src="https://cdn.staticaly.com/gh/Alan0827/image-house@master/20220907/http7.27bh0ckj7vb4.jpg"></div>
-<div align=center><img src="https://cdn.staticaly.com/gh/Alan0827/image-house@master/20220907/http8.6nwvuwst9qw0.jpg"></div>
+<div align=center><img src="https://jsd.cdn.zzko.cn/gh/Alan0827/picx-images-hosting@master/20220907/http7.27bh0ckj7vb4.jpg"></div>
+<div align=center><img src="https://jsd.cdn.zzko.cn/gh/Alan0827/picx-images-hosting@master/20220907/http8.6nwvuwst9qw0.jpg"></div>
 
 # 2. HTTP 协议报文结构
 ### 2.1 概念
@@ -44,53 +44,53 @@ author:
 2.HTTP 报文结构
 HTTP 报文大致可分为报文首部和报文主体两部分。两者由最初出现的空行（CR+LF）来划分。通常，并不一定有报文主体。如图：
 
-<div align=center><img src="https://cdn.staticaly.com/gh/Alan0827/image-house@master/20220907/http9.4sfd6paj1qw.jpg"></div>
+<div align=center><img src="https://jsd.cdn.zzko.cn/gh/Alan0827/picx-images-hosting@master/20220907/http9.4sfd6paj1qw.jpg"></div>
 
 ### 2.2 响应报文结构
-<div align=center><img src="https://cdn.staticaly.com/gh/Alan0827/image-house@master/20220907/http10.4rpvr01v3no0.jpg"></div>
-<div align=center><img src="https://cdn.staticaly.com/gh/Alan0827/image-house@master/20220907/http11.2kpnfc03abw0.jpg"></div>
-<div align=center><img src="https://cdn.staticaly.com/gh/Alan0827/image-house@master/20220907/http12.6sent2ln8pg0.jpg"></div>
+<div align=center><img src="https://jsd.cdn.zzko.cn/gh/Alan0827/picx-images-hosting@master/20220907/http10.4rpvr01v3no0.jpg"></div>
+<div align=center><img src="https://jsd.cdn.zzko.cn/gh/Alan0827/picx-images-hosting@master/20220907/http11.2kpnfc03abw0.jpg"></div>
+<div align=center><img src="https://jsd.cdn.zzko.cn/gh/Alan0827/picx-images-hosting@master/20220907/http12.6sent2ln8pg0.jpg"></div>
 
 # 3. HTTP 报文首部
 ### 3.1 首部字段结构
-<div align=center><img src="https://cdn.staticaly.com/gh/Alan0827/image-house@master/20220907/http13.2yuigg8x88g0.jpg"></div>
+<div align=center><img src="https://jsd.cdn.zzko.cn/gh/Alan0827/picx-images-hosting@master/20220907/http13.2yuigg8x88g0.jpg"></div>
 
 ### 3.2 首部字段类型
-<div align=center><img src="https://cdn.staticaly.com/gh/Alan0827/image-house@master/20220907/http14.4qm3oto8t6g0.jpg"></div>
+<div align=center><img src="https://jsd.cdn.zzko.cn/gh/Alan0827/picx-images-hosting@master/20220907/http14.4qm3oto8t6g0.jpg"></div>
 
 
 ### 3.3通用首部字段（HTTP/1.1）
-![http15](https://cdn.staticaly.com/gh/Alan0827/image-house@master/20220907/http15.4rcho4od9ee0.jpg)
+![http15](https://jsd.cdn.zzko.cn/gh/Alan0827/picx-images-hosting@master/20220907/http15.4rcho4od9ee0.jpg)
 
 ### 3.4请求首部字段（HTTP/1.1）
-![http16](https://cdn.staticaly.com/gh/Alan0827/image-house@master/20220907/http16.56p63ep7lvk0.jpg)
+![http16](https://jsd.cdn.zzko.cn/gh/Alan0827/picx-images-hosting@master/20220907/http16.56p63ep7lvk0.jpg)
 
 ### 3.5 响应首部字段（HTTP/1.1）
-![http17](https://cdn.staticaly.com/gh/Alan0827/image-house@master/20220907/http17.1q7kvv9gcyf4.jpg)
+![http17](https://jsd.cdn.zzko.cn/gh/Alan0827/picx-images-hosting@master/20220907/http17.1q7kvv9gcyf4.jpg)
 
 ### 3.6 实体首部字段（HTTP/1.1）
-![http18](https://cdn.staticaly.com/gh/Alan0827/image-house@master/20220907/http18.4jrxxg81ok80.jpg)
+![http18](https://jsd.cdn.zzko.cn/gh/Alan0827/picx-images-hosting@master/20220907/http18.4jrxxg81ok80.jpg)
 
 ### 3.7 其他首部字段
-![http19](https://cdn.staticaly.com/gh/Alan0827/image-house@master/20220907/http19.th2bkc4ky1c.jpg)
+![http19](https://jsd.cdn.zzko.cn/gh/Alan0827/picx-images-hosting@master/20220907/http19.th2bkc4ky1c.jpg)
 
 # 4. 响应状态码
 ### 4.1状态码类别
-![http20](https://cdn.staticaly.com/gh/Alan0827/image-house@master/20220907/http20.788dgrnib880.jpg)
+![http20](https://jsd.cdn.zzko.cn/gh/Alan0827/picx-images-hosting@master/20220907/http20.788dgrnib880.jpg)
 
 
 # 其他
-![http21](https://cdn.staticaly.com/gh/Alan0827/image-house@master/20220907/http21.4njx5yn21qw0.jpg)
-![http22](https://cdn.staticaly.com/gh/Alan0827/image-house@master/20220907/http22.55hnc2qcmis0.jpg)
-![http23](https://cdn.staticaly.com/gh/Alan0827/image-house@master/20220907/http23.57nxdib9pi00.jpg)
-![http24](https://cdn.staticaly.com/gh/Alan0827/image-house@master/20220907/http24.lnnk1labbf4.jpg)
-![http25](https://cdn.staticaly.com/gh/Alan0827/image-house@master/20220907/http25.699pigcn3t40.jpg)
-![http26](https://cdn.staticaly.com/gh/Alan0827/image-house@master/20220907/http26.71bjzxwydks0.jpg)
+![http21](https://jsd.cdn.zzko.cn/gh/Alan0827/picx-images-hosting@master/20220907/http21.4njx5yn21qw0.jpg)
+![http22](https://jsd.cdn.zzko.cn/gh/Alan0827/picx-images-hosting@master/20220907/http22.55hnc2qcmis0.jpg)
+![http23](https://jsd.cdn.zzko.cn/gh/Alan0827/picx-images-hosting@master/20220907/http23.57nxdib9pi00.jpg)
+![http24](https://jsd.cdn.zzko.cn/gh/Alan0827/picx-images-hosting@master/20220907/http24.lnnk1labbf4.jpg)
+![http25](https://jsd.cdn.zzko.cn/gh/Alan0827/picx-images-hosting@master/20220907/http25.699pigcn3t40.jpg)
+![http26](https://jsd.cdn.zzko.cn/gh/Alan0827/picx-images-hosting@master/20220907/http26.71bjzxwydks0.jpg)
 
 
 ### cookie
-![http27](https://cdn.staticaly.com/gh/Alan0827/image-house@master/20220907/http27.4czninkgwdk0.jpg)
-![http28](https://cdn.staticaly.com/gh/Alan0827/image-house@master/20220907/http28.7gbwoxj6izc.jpg)
+![http27](https://jsd.cdn.zzko.cn/gh/Alan0827/picx-images-hosting@master/20220907/http27.4czninkgwdk0.jpg)
+![http28](https://jsd.cdn.zzko.cn/gh/Alan0827/picx-images-hosting@master/20220907/http28.7gbwoxj6izc.jpg)
 
 cookie格式如下：
 Set-Cookie: "name=value;domain=.domain.com;path=/;expires=Sat, 11 Jun 2016 11:29:42 GMT;HttpOnly;secure"其中name=value是必选项，其它都是可选项。name:一个唯一确定的cookie名称。通常来讲cookie的名称是不区分大小写的。
@@ -109,27 +109,27 @@ secure: 安全标志，指定后，只有在使用SSL链接时候才能发送到
 ### DNS
 
 DNS（Domain Name System）服务是和 HTTP协议一样位于应用层的协议，它提供域名到 IP 地址之间的解析服务
-<div align=center><img src="https://cdn.staticaly.com/gh/Alan0827/image-house@master/20220907/http29.1ps0tla6r16o.jpg"></div>
+<div align=center><img src="https://jsd.cdn.zzko.cn/gh/Alan0827/picx-images-hosting@master/20220907/http29.1ps0tla6r16o.jpg"></div>
 
 ### HTTPS
 超文本传输安全协议（英语：HyperText Transfer Protocol Secure，缩写：HTTPS；常称为HTTP over TLS、HTTP over SSL或HTTP Secure）是一种通过计算机网络进行安全通信的传输协议。HTTPS经由HTTP进行通信，但利用SSL/TLS来加密数据包。HTTPS开发的主要目的，是提供对网站服务器的身份认证，保护交换数据的隐私与完整性。
 
 ### TCP
-![http30](https://cdn.staticaly.com/gh/Alan0827/image-house@master/20220907/http30.3a27qs84lk20.jpg)
-![http31](https://cdn.staticaly.com/gh/Alan0827/image-house@master/20220907/http31.qcbmuyatk40.jpg)
+![http30](https://jsd.cdn.zzko.cn/gh/Alan0827/picx-images-hosting@master/20220907/http30.3a27qs84lk20.jpg)
+![http31](https://jsd.cdn.zzko.cn/gh/Alan0827/picx-images-hosting@master/20220907/http31.qcbmuyatk40.jpg)
 TCP(Transmission Control Protocol 传输控制协议)是一种面向连接(连接导向)的、可靠的、 基于IP的传输层协议。
-![http32](https://cdn.staticaly.com/gh/Alan0827/image-house@master/20220907/http32.7d0vscjhbf00.jpg)
+![http32](https://jsd.cdn.zzko.cn/gh/Alan0827/picx-images-hosting@master/20220907/http32.7d0vscjhbf00.jpg)
 
 ### TCP/UDP
 TCP/IP 中有两个具有代表性的传输层协议，分别是 TCP 和 UDP
-![http33](https://cdn.staticaly.com/gh/Alan0827/image-house@master/20220907/http33.3kby3w30buw0.jpg)
+![http33](https://jsd.cdn.zzko.cn/gh/Alan0827/picx-images-hosting@master/20220907/http33.3kby3w30buw0.jpg)
 
 UDP 为应用程序提供了一种无需建立连接就可以发送封装的 IP 数据包的方法,音频和多媒体应用，UDP是最好的选择
-![http34](https://cdn.staticaly.com/gh/Alan0827/image-house@master/20220907/http34.2yyqvniqyh20.jpg)
-![http35](https://cdn.staticaly.com/gh/Alan0827/image-house@master/20220907/http35.5ln9wi3yf6g0.jpg)
+![http34](https://jsd.cdn.zzko.cn/gh/Alan0827/picx-images-hosting@master/20220907/http34.2yyqvniqyh20.jpg)
+![http35](https://jsd.cdn.zzko.cn/gh/Alan0827/picx-images-hosting@master/20220907/http35.5ln9wi3yf6g0.jpg)
 
 ### WebSocket 
-![http36](https://cdn.staticaly.com/gh/Alan0827/image-house@master/20220907/http36.2jldn3xvyh00.jpg)
+![http36](https://jsd.cdn.zzko.cn/gh/Alan0827/picx-images-hosting@master/20220907/http36.2jldn3xvyh00.jpg)
 
 
 ### QUIC协议
@@ -149,8 +149,8 @@ QUIC协议的主要目的:
 是为了整合TCP协议的可靠性和UDP协议的速度和效率。
 
 QUIC很好地解决了当今传输层和应用层面临的各种需求，包括处理更多的连接，安全性，和低延迟
-![http37](https://cdn.staticaly.com/gh/Alan0827/image-house@master/20220907/http37.5rzezd5yqzo0.jpg)
-![http38](https://cdn.staticaly.com/gh/Alan0827/image-house@master/20220907/http38.1ih0x0oeiirk.jpg)
+![http37](https://jsd.cdn.zzko.cn/gh/Alan0827/picx-images-hosting@master/20220907/http37.5rzezd5yqzo0.jpg)
+![http38](https://jsd.cdn.zzko.cn/gh/Alan0827/picx-images-hosting@master/20220907/http38.1ih0x0oeiirk.jpg)
 虽然目前 QUIC 协议已经运行在一些较大的网站上，但离大范围普及还有较长的一段距离，期待 QUIC 协议规范能够成为终稿，并在除了谷歌浏览器之外的其他浏览器和应用服务器中也能够实现。
 
 ---

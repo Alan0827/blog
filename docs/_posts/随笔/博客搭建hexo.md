@@ -44,7 +44,7 @@ Git是一款免费、开源的分布式版本控制系统，用于敏捷高效�
 
 #### 1)访问Git的官方网站：[http://git-scm.com/downloads](http://git-scm.com/downloads) (下载安装包安装教程自行度娘)
 
-![node](https://cdn.staticaly.com/gh/Alan0827/image-house@master/hexo/20180208110557.49kv9sm1t620.webp)
+![node](https://jsd.cdn.zzko.cn/gh/Alan0827/picx-images-hosting@master/hexo/20180208110557.49kv9sm1t620.webp)
 
 
 #### 2)npm包管理器安装
@@ -52,7 +52,7 @@ Git是一款免费、开源的分布式版本控制系统，用于敏捷高效�
 
 
 安装完成后，git version 验证git版本信息即可，如下：
-![](https://cdn.staticaly.com/gh/Alan0827/image-house@master/hexo/微信图片_20180208111003.1n2u75u5nfuo.webp)
+![](https://jsd.cdn.zzko.cn/gh/Alan0827/picx-images-hosting@master/hexo/微信图片_20180208111003.1n2u75u5nfuo.webp)
 
 
 # 3.安装Hexo
@@ -61,7 +61,7 @@ Git是一款免费、开源的分布式版本控制系统，用于敏捷高效�
 
  ``运行命令 npm i -g hexo-cli 全局安装hexo,安装完成后运行 hexo -v 如下``
 
- ![](https://cdn.staticaly.com/gh/Alan0827/image-house@master/hexo/微信图片_20180208135149.1yzuh3ill5pc.webp)
+ ![](https://jsd.cdn.zzko.cn/gh/Alan0827/picx-images-hosting@master/hexo/微信图片_20180208135149.1yzuh3ill5pc.webp)
 
 
  # 4.本地搭建hexo博客
@@ -82,7 +82,7 @@ Git是一款免费、开源的分布式版本控制系统，用于敏捷高效�
 
 ``$ hexo server``
 
- ![](https://cdn.staticaly.com/gh/Alan0827/image-house@master/hexo/微信图片_20180208140549.693engdaguo0.webp)
+ ![](https://jsd.cdn.zzko.cn/gh/Alan0827/picx-images-hosting@master/hexo/微信图片_20180208140549.693engdaguo0.webp)
 
 5)打开浏览器，访问 http://localhost:4000 就可以访问本地的Hexo博客程序了。
 
@@ -92,18 +92,18 @@ Git是一款免费、开源的分布式版本控制系统，用于敏捷高效�
 
 2）登录后，点击页面右上角的”+”号。在弹出的菜单中，选择【New repository】选项。
 
- ![](https://cdn.staticaly.com/gh/Alan0827/image-house@master/hexo/微信图片_20180208141343.4qx88ogs4kk0.webp)
+ ![](https://jsd.cdn.zzko.cn/gh/Alan0827/picx-images-hosting@master/hexo/微信图片_20180208141343.4qx88ogs4kk0.webp)
 
 
 >Create a new repository 页面的话工程名必须是 **你的用户名.github.io** ,也就是如下图所示，前面箭头指的，初始化README勾选上，然后点击创建即可完成
 
- ![](https://cdn.staticaly.com/gh/Alan0827/image-house@master/hexo/微信图片_20180208145147.1mfi3qv98k5c.webp)
+ ![](https://jsd.cdn.zzko.cn/gh/Alan0827/picx-images-hosting@master/hexo/微信图片_20180208145147.1mfi3qv98k5c.webp)
 
 > 然后点击 Setting 往下拉，看到 **GitHub Pages** ，选择master branch，save之后上方就会出现你本项目的GitHub Pages的地址了
 
- ![](https://cdn.staticaly.com/gh/Alan0827/image-house@master/hexo/微信图片_20180208145325.677yj1t88640.webp)
+ ![](https://jsd.cdn.zzko.cn/gh/Alan0827/picx-images-hosting@master/hexo/微信图片_20180208145325.677yj1t88640.webp)
 
- ![](https://cdn.staticaly.com/gh/Alan0827/image-house@master/hexo/微信图片_20180208145601.4rtpzrjcngu0.webp)
+ ![](https://jsd.cdn.zzko.cn/gh/Alan0827/picx-images-hosting@master/hexo/微信图片_20180208145601.4rtpzrjcngu0.webp)
 
 
  ## 配置Hexo程序
@@ -155,12 +155,12 @@ hexo generate
 // 将hexo本地目录上传至GitCafe
 hexo deploy
 ```
- ![](https://cdn.staticaly.com/gh/Alan0827/image-house@master/hexo/微信图片_20180208144517.j08ql05r2z4.webp)
+ ![](https://jsd.cdn.zzko.cn/gh/Alan0827/picx-images-hosting@master/hexo/微信图片_20180208144517.j08ql05r2z4.webp)
 
 
 hexo deploy 之后就可以直接访问之前的GitHub pages的地址了  
 
- ![](https://cdn.staticaly.com/gh/Alan0827/image-house@master/hexo/微信图片_20180208145601.4rtpzrjcngu0.webp)
+ ![](https://jsd.cdn.zzko.cn/gh/Alan0827/picx-images-hosting@master/hexo/微信图片_20180208145601.4rtpzrjcngu0.webp)
 
 
 >*更多详细内容，可以访问Hexo的官网查看*
