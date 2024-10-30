@@ -1,0 +1,1313 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>argo原理 | 喋喋不休</title>
+    <meta name="generator" content="VuePress 1.9.5">
+    <link rel="icon" href="/blog/img/favicon.ico">
+    <meta name="description" content="web前端技术博客,专注web前端学习与总结。JavaScript,js,ES6,TypeScript,vue,React,python,css3,html5,Node,git,github等技术文章。">
+    <meta name="keywords" content="前端博客,个人技术博客,前端,前端开发,前端框架,web前端,前端面试题,技术文档,学习,面试,JavaScript,js,ES6,TypeScript,vue,python,css3,html5,Node,git,github,markdown">
+    <meta name="theme-color" content="#11a8cd">
+    
+    <link rel="preload" href="/blog/assets/css/0.styles.0ab00a34.css" as="style"><link rel="preload" href="/blog/assets/js/app.c4ef267f.js" as="script"><link rel="preload" href="/blog/assets/js/2.738e1f2a.js" as="script"><link rel="preload" href="/blog/assets/js/44.e3718d8d.js" as="script"><link rel="prefetch" href="/blog/assets/js/10.2c0458cd.js"><link rel="prefetch" href="/blog/assets/js/11.e3a0d22a.js"><link rel="prefetch" href="/blog/assets/js/12.9917dc45.js"><link rel="prefetch" href="/blog/assets/js/13.e22599fd.js"><link rel="prefetch" href="/blog/assets/js/14.0c30111e.js"><link rel="prefetch" href="/blog/assets/js/15.c3f7494e.js"><link rel="prefetch" href="/blog/assets/js/16.3fcb50ee.js"><link rel="prefetch" href="/blog/assets/js/17.b1404766.js"><link rel="prefetch" href="/blog/assets/js/18.8cd6b941.js"><link rel="prefetch" href="/blog/assets/js/19.6b40e37c.js"><link rel="prefetch" href="/blog/assets/js/20.c75bf095.js"><link rel="prefetch" href="/blog/assets/js/21.a9f8582a.js"><link rel="prefetch" href="/blog/assets/js/22.7b573753.js"><link rel="prefetch" href="/blog/assets/js/23.1815712d.js"><link rel="prefetch" href="/blog/assets/js/24.ce7aac26.js"><link rel="prefetch" href="/blog/assets/js/25.49012359.js"><link rel="prefetch" href="/blog/assets/js/26.f19ccc34.js"><link rel="prefetch" href="/blog/assets/js/27.6ad79311.js"><link rel="prefetch" href="/blog/assets/js/28.270b8658.js"><link rel="prefetch" href="/blog/assets/js/29.7668d420.js"><link rel="prefetch" href="/blog/assets/js/3.236be273.js"><link rel="prefetch" href="/blog/assets/js/30.3876f396.js"><link rel="prefetch" href="/blog/assets/js/31.d0bbfa7b.js"><link rel="prefetch" href="/blog/assets/js/32.75da0adf.js"><link rel="prefetch" href="/blog/assets/js/33.f479f660.js"><link rel="prefetch" href="/blog/assets/js/34.82ba7ce0.js"><link rel="prefetch" href="/blog/assets/js/35.c4302df3.js"><link rel="prefetch" href="/blog/assets/js/36.2ff90836.js"><link rel="prefetch" href="/blog/assets/js/37.a06e4fd5.js"><link rel="prefetch" href="/blog/assets/js/38.15e5e07c.js"><link rel="prefetch" href="/blog/assets/js/39.785cfa06.js"><link rel="prefetch" href="/blog/assets/js/4.0cd1bf26.js"><link rel="prefetch" href="/blog/assets/js/40.d4aad722.js"><link rel="prefetch" href="/blog/assets/js/41.a4d199ad.js"><link rel="prefetch" href="/blog/assets/js/42.23a4bf12.js"><link rel="prefetch" href="/blog/assets/js/43.b4945be0.js"><link rel="prefetch" href="/blog/assets/js/45.dec26f0f.js"><link rel="prefetch" href="/blog/assets/js/46.e9db7425.js"><link rel="prefetch" href="/blog/assets/js/47.318560ab.js"><link rel="prefetch" href="/blog/assets/js/48.b6b8edfd.js"><link rel="prefetch" href="/blog/assets/js/49.2f05be73.js"><link rel="prefetch" href="/blog/assets/js/5.a9f82c9e.js"><link rel="prefetch" href="/blog/assets/js/50.3ac3cd68.js"><link rel="prefetch" href="/blog/assets/js/51.c2125575.js"><link rel="prefetch" href="/blog/assets/js/52.20790822.js"><link rel="prefetch" href="/blog/assets/js/53.9934e45c.js"><link rel="prefetch" href="/blog/assets/js/54.2ff72a9e.js"><link rel="prefetch" href="/blog/assets/js/55.02caf8f7.js"><link rel="prefetch" href="/blog/assets/js/56.c4108588.js"><link rel="prefetch" href="/blog/assets/js/57.e636f582.js"><link rel="prefetch" href="/blog/assets/js/58.64aec83b.js"><link rel="prefetch" href="/blog/assets/js/59.dfa4219b.js"><link rel="prefetch" href="/blog/assets/js/6.6796d84f.js"><link rel="prefetch" href="/blog/assets/js/60.a7844f11.js"><link rel="prefetch" href="/blog/assets/js/61.284f83f7.js"><link rel="prefetch" href="/blog/assets/js/62.b590f762.js"><link rel="prefetch" href="/blog/assets/js/63.9cc34cf7.js"><link rel="prefetch" href="/blog/assets/js/64.d0701f7c.js"><link rel="prefetch" href="/blog/assets/js/65.f69ff84f.js"><link rel="prefetch" href="/blog/assets/js/66.fc2f4a94.js"><link rel="prefetch" href="/blog/assets/js/67.8d1e0a10.js"><link rel="prefetch" href="/blog/assets/js/68.71bd7d4a.js"><link rel="prefetch" href="/blog/assets/js/69.55f4e75e.js"><link rel="prefetch" href="/blog/assets/js/7.c682bfe8.js"><link rel="prefetch" href="/blog/assets/js/70.a221c048.js"><link rel="prefetch" href="/blog/assets/js/71.aed9d95a.js"><link rel="prefetch" href="/blog/assets/js/72.00e95be7.js"><link rel="prefetch" href="/blog/assets/js/73.bca16040.js"><link rel="prefetch" href="/blog/assets/js/74.5bfa09de.js"><link rel="prefetch" href="/blog/assets/js/75.71225d47.js"><link rel="prefetch" href="/blog/assets/js/76.d305a829.js"><link rel="prefetch" href="/blog/assets/js/77.5a94f89d.js"><link rel="prefetch" href="/blog/assets/js/78.f6c1bbd7.js"><link rel="prefetch" href="/blog/assets/js/79.50e373af.js"><link rel="prefetch" href="/blog/assets/js/8.771772df.js"><link rel="prefetch" href="/blog/assets/js/80.ceb50170.js"><link rel="prefetch" href="/blog/assets/js/81.b3bfdfb4.js"><link rel="prefetch" href="/blog/assets/js/82.1a4e2c10.js"><link rel="prefetch" href="/blog/assets/js/83.0b087ba9.js"><link rel="prefetch" href="/blog/assets/js/84.3c034cf9.js"><link rel="prefetch" href="/blog/assets/js/85.5826af50.js"><link rel="prefetch" href="/blog/assets/js/86.b38b6a10.js"><link rel="prefetch" href="/blog/assets/js/87.0b21a55d.js"><link rel="prefetch" href="/blog/assets/js/88.7375a4ba.js"><link rel="prefetch" href="/blog/assets/js/9.ce6e67b0.js">
+    <link rel="stylesheet" href="/blog/assets/css/0.styles.0ab00a34.css">
+  </head>
+  <body class="theme-mode-light">
+    <div id="app" data-server-rendered="true"><div class="theme-container sidebar-open have-rightmenu have-body-img"><header class="navbar blur"><div title="目录" class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/blog/" class="home-link router-link-active"><img src="/blog/img/logo.png" alt="喋喋不休" class="logo"> <span class="site-name can-hide">喋喋不休</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="前端" class="dropdown-title"><a href="/blog/web/" class="link-title">前端</a> <span class="title" style="display:none;">前端</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>前端文章</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/blog/pages/8143cc480faf9a11/" class="nav-link">JavaScript</a></li><li class="dropdown-subitem"><a href="/blog/pages/8309a5b876fc95e3/" class="nav-link">HTML</a></li><li class="dropdown-subitem"><a href="/blog/pages/df9e7c7214fa5046/" class="nav-link">CSS</a></li></ul></li><li class="dropdown-item"><h4>三方库</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/blog/pages/2c78e7/" class="nav-link">vue</a></li></ul></li><li class="dropdown-item"><h4>学习笔记</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/blog/note/js/" class="nav-link">《JavaScript高级程序设计》</a></li><li class="dropdown-subitem"><a href="/blog/pages/51afd6/" class="nav-link">TypeScript</a></li><li class="dropdown-subitem"><a href="/blog/pages/4643cd/" class="nav-link">JS设计模式总结</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="技术" class="dropdown-title"><a href="/blog/technology/" class="link-title">技术</a> <span class="title" style="display:none;">技术</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/blog/pages/9a7ee40fc232253e/" class="nav-link">技术文档</a></li><li class="dropdown-item"><!----> <a href="/blog/pages/4c778760be26d8b3/" class="nav-link">GitHub技巧</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="更多" class="dropdown-title"><a href="/blog/more/" class="link-title">更多</a> <span class="title" style="display:none;">更多</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/blog/pages/f2a556/" class="nav-link">学习</a></li><li class="dropdown-item"><!----> <a href="/blog/pages/aea6571b7a8bae86/" class="nav-link">面试</a></li><li class="dropdown-item"><!----> <a href="/blog/pages/2d615df9a36a98ed/" class="nav-link">心情杂货</a></li><li class="dropdown-item"><!----> <a href="/blog/pages/baaa02/" class="nav-link">实用技巧</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="收藏" class="dropdown-title"><a href="/blog/pages/beb6c0bd8a66cea6/" class="link-title">收藏</a> <span class="title" style="display:none;">收藏</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/blog/pages/beb6c0bd8a66cea6/" class="nav-link">网站</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="索引" class="dropdown-title"><a href="/blog/archives/" class="link-title">索引</a> <span class="title" style="display:none;">索引</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/blog/categories/" class="nav-link">分类</a></li><li class="dropdown-item"><!----> <a href="/blog/tags/" class="nav-link">标签</a></li><li class="dropdown-item"><!----> <a href="/blog/archives/" class="nav-link">归档</a></li><li class="dropdown-item"><!----> <a href="/blog/about/" class="nav-link">关于</a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <div class="sidebar-hover-trigger"></div> <aside class="sidebar" style="display:none;"><div class="blogger"><img src="/img/logo.png"> <div class="blogger-info"><h3>Alan0827</h3> <span>扯淡的玩意er。。</span></div></div> <nav class="nav-links"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="前端" class="dropdown-title"><a href="/blog/web/" class="link-title">前端</a> <span class="title" style="display:none;">前端</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>前端文章</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/blog/pages/8143cc480faf9a11/" class="nav-link">JavaScript</a></li><li class="dropdown-subitem"><a href="/blog/pages/8309a5b876fc95e3/" class="nav-link">HTML</a></li><li class="dropdown-subitem"><a href="/blog/pages/df9e7c7214fa5046/" class="nav-link">CSS</a></li></ul></li><li class="dropdown-item"><h4>三方库</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/blog/pages/2c78e7/" class="nav-link">vue</a></li></ul></li><li class="dropdown-item"><h4>学习笔记</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/blog/note/js/" class="nav-link">《JavaScript高级程序设计》</a></li><li class="dropdown-subitem"><a href="/blog/pages/51afd6/" class="nav-link">TypeScript</a></li><li class="dropdown-subitem"><a href="/blog/pages/4643cd/" class="nav-link">JS设计模式总结</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="技术" class="dropdown-title"><a href="/blog/technology/" class="link-title">技术</a> <span class="title" style="display:none;">技术</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/blog/pages/9a7ee40fc232253e/" class="nav-link">技术文档</a></li><li class="dropdown-item"><!----> <a href="/blog/pages/4c778760be26d8b3/" class="nav-link">GitHub技巧</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="更多" class="dropdown-title"><a href="/blog/more/" class="link-title">更多</a> <span class="title" style="display:none;">更多</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/blog/pages/f2a556/" class="nav-link">学习</a></li><li class="dropdown-item"><!----> <a href="/blog/pages/aea6571b7a8bae86/" class="nav-link">面试</a></li><li class="dropdown-item"><!----> <a href="/blog/pages/2d615df9a36a98ed/" class="nav-link">心情杂货</a></li><li class="dropdown-item"><!----> <a href="/blog/pages/baaa02/" class="nav-link">实用技巧</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="收藏" class="dropdown-title"><a href="/blog/pages/beb6c0bd8a66cea6/" class="link-title">收藏</a> <span class="title" style="display:none;">收藏</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/blog/pages/beb6c0bd8a66cea6/" class="nav-link">网站</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="索引" class="dropdown-title"><a href="/blog/archives/" class="link-title">索引</a> <span class="title" style="display:none;">索引</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/blog/categories/" class="nav-link">分类</a></li><li class="dropdown-item"><!----> <a href="/blog/tags/" class="nav-link">标签</a></li><li class="dropdown-item"><!----> <a href="/blog/archives/" class="nav-link">归档</a></li><li class="dropdown-item"><!----> <a href="/blog/about/" class="nav-link">关于</a></li></ul></div></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>HTML</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>CSS</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>JavaScript文章</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>vue学习</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>学习笔记</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/blog/note/js/" class="sidebar-link">《JavaScript高级程序设计》笔记</a></li><li><a href="/blog/pages/51afd6/" class="sidebar-link">TypeScript笔记</a></li><li><a href="/blog/pages/4643cd/" class="sidebar-link">JS设计模式总结笔记</a></li><li><a href="/blog/pages/a0e866/" class="sidebar-link">前端工作流调研</a></li><li><a href="/blog/pages/bc3411/" class="sidebar-link">低代码平台</a></li><li><a href="/blog/pages/aa3906/" class="sidebar-link">高德地图采坑</a></li><li><a href="/blog/pages/175c51/" aria-current="page" class="active sidebar-link">argo原理</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header level2"><a href="/blog/pages/175c51/#安装-argo" class="sidebar-link">安装 argo</a></li><li class="sidebar-sub-header level2"><a href="/blog/pages/175c51/#遇到的问题" class="sidebar-link">遇到的问题</a></li><li class="sidebar-sub-header level2"><a href="/blog/pages/175c51/#hello-world" class="sidebar-link">Hello World</a></li><li class="sidebar-sub-header level2"><a href="/blog/pages/175c51/#步骤操作" class="sidebar-link">步骤操作</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header level3"><a href="/blog/pages/175c51/#container" class="sidebar-link">container</a></li><li class="sidebar-sub-header level3"><a href="/blog/pages/175c51/#script" class="sidebar-link">script</a></li><li class="sidebar-sub-header level3"><a href="/blog/pages/175c51/#steps" class="sidebar-link">steps</a></li><li class="sidebar-sub-header level3"><a href="/blog/pages/175c51/#dag" class="sidebar-link">dag</a></li><li class="sidebar-sub-header level3"><a href="/blog/pages/175c51/#loop" class="sidebar-link">loop</a></li><li class="sidebar-sub-header level3"><a href="/blog/pages/175c51/#条件控制" class="sidebar-link">条件控制</a></li><li class="sidebar-sub-header level3"><a href="/blog/pages/175c51/#重试" class="sidebar-link">重试</a></li><li class="sidebar-sub-header level3"><a href="/blog/pages/175c51/#递归" class="sidebar-link">递归</a></li><li class="sidebar-sub-header level3"><a href="/blog/pages/175c51/#exit-handlers" class="sidebar-link">Exit handlers</a></li><li class="sidebar-sub-header level3"><a href="/blog/pages/175c51/#timeout" class="sidebar-link">timeout</a></li><li class="sidebar-sub-header level3"><a href="/blog/pages/175c51/#suspending" class="sidebar-link">suspending</a></li></ul></li><li class="sidebar-sub-header level2"><a href="/blog/pages/175c51/#参数操作" class="sidebar-link">参数操作</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header level3"><a href="/blog/pages/175c51/#parameters" class="sidebar-link">parameters</a></li><li class="sidebar-sub-header level3"><a href="/blog/pages/175c51/#arguments" class="sidebar-link">arguments</a></li><li class="sidebar-sub-header level3"><a href="/blog/pages/175c51/#step-间的传参" class="sidebar-link">step 间的传参</a></li><li class="sidebar-sub-header level3"><a href="/blog/pages/175c51/#dag-间的传参" class="sidebar-link">dag 间的传参</a></li><li class="sidebar-sub-header level3"><a href="/blog/pages/175c51/#script-result" class="sidebar-link">script result</a></li><li class="sidebar-sub-header level3"><a href="/blog/pages/175c51/#output-parameters" class="sidebar-link">output Parameters</a></li></ul></li><li class="sidebar-sub-header level2"><a href="/blog/pages/175c51/#资源操作" class="sidebar-link">资源操作</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header level3"><a href="/blog/pages/175c51/#secret" class="sidebar-link">Secret</a></li><li class="sidebar-sub-header level3"><a href="/blog/pages/175c51/#daemon" class="sidebar-link">daemon</a></li><li class="sidebar-sub-header level3"><a href="/blog/pages/175c51/#sidecar" class="sidebar-link">sidecar</a></li><li class="sidebar-sub-header level3"><a href="/blog/pages/175c51/#artifacts" class="sidebar-link">Artifacts</a></li><li class="sidebar-sub-header level3"><a href="/blog/pages/175c51/#resource" class="sidebar-link">Resource</a></li><li class="sidebar-sub-header level3"><a href="/blog/pages/175c51/#docker" class="sidebar-link">docker</a></li></ul></li><li class="sidebar-sub-header level2"><a href="/blog/pages/175c51/#volumes" class="sidebar-link">volumes</a></li><li class="sidebar-sub-header level2"><a href="/blog/pages/175c51/#总结" class="sidebar-link">总结</a></li></ul></li></ul></section></li></ul> </aside> <div><main class="page"><div class="theme-vdoing-wrapper bg-style-6"><div class="articleInfo-wrap" data-v-06225672><div class="articleInfo" data-v-06225672><ul class="breadcrumbs" data-v-06225672><li data-v-06225672><a href="/blog/" title="首页" class="iconfont icon-home router-link-active" data-v-06225672></a></li> <li data-v-06225672><a href="/blog/web/#前端" data-v-06225672>前端</a></li><li data-v-06225672><a href="/blog/web/#学习笔记" data-v-06225672>学习笔记</a></li></ul> <div class="info" data-v-06225672><div title="作者" class="author iconfont icon-touxiang" data-v-06225672><a href="javascript:;" data-v-06225672>张涛</a></div> <div title="创建时间" class="date iconfont icon-riqi" data-v-06225672><a href="javascript:;" data-v-06225672>2022-09-21</a></div> <!----></div></div></div> <!----> <div class="content-wrapper"><div class="right-menu-wrapper"><div class="right-menu-margin"><div class="right-menu-title">目录</div> <div class="right-menu-content"></div></div></div> <h1><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAABH1JREFUSA3tVl1oHFUUPmdmd2ltklqbpJDiNnXFmgbFktho7YMPNiJSSZM0+CAYSkUELVhM6YuwIPpgoOKDqOBDC0XE2CQoNtQXBUFTTcCi+Wlh1V2TQExsUzcltd3M9Tt3ZjZzZ2fT+OJTL8yeM+eee757fmeJbq//KQL8X3DUSFOcfr7cRsRtxNQMWueeVzOkaITIGqQHNg5y8+jNW9ldM7A6nTpAjuolUikAwq7CE3WcM2RRDz+XGVgN3FptU/aUSlvq9Pa3iZ1+sgAqJyyAFqkipd9dqiwHF3P65YycLWc/6sqGrvoEoIp6DOFaX5h6+dnfjkWprwqsPk0dUGq5vySwDImC10KxFHgGL1SWoc92O3eVht09qdXNH11I2SsTsJYqMWzihqGMi+A+Garf3BAuuLI5oGlULyNfyB/HYNujwktOfRrMr5t77NmevqaUopx0grnKAyvVpmwUDB4x6FPXuGvYLTDwWsejwgtgkYKPqRJg8SV6xaiZ3ZTppGneS4yfH5/66fZSDHv+QZci/+h5c5UHtpy67JUqGppM0sh0Nc1dW6/N1W5Yoqat8/TU/VnadmdeW2PLLSyh0cvxBs3KbqTmwYPpxN4do/mzE8nEpvX/UMu2Wbp74zUAK5q6WkHns7V0eWkdPbPzd3rxkTGybadYySumVzhcaJFbs5UrEkQ/+CK8gF5dnh/6ciIZ73gwQ927L1IitoxKLXYP3SjYdOrHHfTZhRRlFyrorafPk20B3HPD1y2G3qKZME5Jcf3t/HUC13/8tSd++vqFveMUTwAUxSUFI1QekR1+bIze3D9MF2aq6cPvG72CgnldWCFqyRw3lwH8ZMerjTD9ElRO7Gv44wNpC90aASqGfVlz/Rx17srQ57/UU26hkhQqUB7dBR71WmzQhHUnblGmVOEw0jhbV1n9OlXUDCIRGaNV5Jp43N516fN7JmnTHdfp7Hgy0luO4aMhtkLL8Bi3bUWYvzh5Mn1dTxrL6QmGuRhGL/TiTTxRoEdTszSaq9GR0NGA3KdkOz3hqSV3MIDhQ5IVX/Ivx3umBti2es2h4eZby7x8br1rkf7Mo90AqC8aQ3sJeNzqFRu+vSANAQe3PL7l0HGOAdwDCeZYvNKeoZp1Qfs6Aipndh86HmFRi0LAnEO47wsqM6cdfjh3jBPUzhZy7nvlUfFsamED1VQt6aISHVymXZ/B2aCtIG8AI8xfobj2d3en1wWVhOeHELKmLQ1s211s88comkv4UCwWyF787mJdYXtNfhKAXVqnKTq8QZvGAGGOfaTo5pGZ/PwbUCr5+DPr/1J92JNHr9aOl/F3iI5+O1nfybsGxoimvZ3ViWSluDITw3P37mypheDIPY0tw7+O/5ApbkYw+zpfaUVu32Pi98+defdUhEpZkRFq0aqyNh9FuL9hpYbEm6iwi0z2REd09ZmyENEbuhjDWzKvZXTqKYaBIr3tt5kuPtQBZFvEUwHt60vfCNu41XsksH9Ij1BMMz1Y0OOunHNShFIP5868g5zeXmuLwL9T4b6Q2+KejgAAAABJRU5ErkJggg==">argo原理<span class="title-tag">原创</span></h1> <!----> <div class="theme-vdoing-content content__default"><h1 id="云原生的工作流引擎-argo"><a href="#云原生的工作流引擎-argo" class="header-anchor">#</a> 云原生的工作流引擎 ---argo</h1> <p><img src="https://b3logfile.com/file/2020/11/argo-a22a9405.png?imageView2/2/interlace/1/format/webp" alt="argo.png"></p> <blockquote><p>Argo Workflows 是一个开源的容器本机工作流引擎，用于在 Kubernetes 上协调并行作业。 Argo Workflows 被实现为 Kubernetes CRD（自定义资源定义）。跟其他传统的工作流引擎不同的是，他的<strong>每一个步骤都是一个容器</strong>。将多步骤工作流建模为一系列任务，或者使用有向无环图（DAG）捕获任务之间的依赖关系。
+使用 Kubernetes 上的 Argo Workflow，可以在短时间内轻松运行用于计算机学习或数据处理的计算密集型作业。</p></blockquote> <h2 id="安装-argo"><a href="#安装-argo" class="header-anchor">#</a> 安装 argo</h2> <p>安装 argo 十分容易</p> <p>第一步先创建 namespace</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>kubectl create ns argo
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><p>第二步执行 <code>kubectl -n argo apply -f install.yaml</code></p> <div class="language-yaml line-numbers-mode"><pre class="language-yaml"><code><span class="token comment"># This is an auto-generated file. DO NOT EDIT</span>
+<span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> apiextensions.k8s.io/v1beta1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> CustomResourceDefinition
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> clusterworkflowtemplates.argoproj.io
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">group</span><span class="token punctuation">:</span> argoproj.io
+  <span class="token key atrule">names</span><span class="token punctuation">:</span>
+    <span class="token key atrule">kind</span><span class="token punctuation">:</span> ClusterWorkflowTemplate
+    <span class="token key atrule">listKind</span><span class="token punctuation">:</span> ClusterWorkflowTemplateList
+    <span class="token key atrule">plural</span><span class="token punctuation">:</span> clusterworkflowtemplates
+    <span class="token key atrule">shortNames</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> clusterwftmpl
+    <span class="token punctuation">-</span> cwft
+    <span class="token key atrule">singular</span><span class="token punctuation">:</span> clusterworkflowtemplate
+  <span class="token key atrule">scope</span><span class="token punctuation">:</span> Cluster
+  <span class="token key atrule">version</span><span class="token punctuation">:</span> v1alpha1
+  <span class="token key atrule">versions</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> v1alpha1
+    <span class="token key atrule">served</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+    <span class="token key atrule">storage</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+<span class="token punctuation">---</span>
+<span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> apiextensions.k8s.io/v1beta1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> CustomResourceDefinition
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> cronworkflows.argoproj.io
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">group</span><span class="token punctuation">:</span> argoproj.io
+  <span class="token key atrule">names</span><span class="token punctuation">:</span>
+    <span class="token key atrule">kind</span><span class="token punctuation">:</span> CronWorkflow
+    <span class="token key atrule">listKind</span><span class="token punctuation">:</span> CronWorkflowList
+    <span class="token key atrule">plural</span><span class="token punctuation">:</span> cronworkflows
+    <span class="token key atrule">shortNames</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> cwf
+    <span class="token punctuation">-</span> cronwf
+    <span class="token key atrule">singular</span><span class="token punctuation">:</span> cronworkflow
+  <span class="token key atrule">scope</span><span class="token punctuation">:</span> Namespaced
+  <span class="token key atrule">version</span><span class="token punctuation">:</span> v1alpha1
+  <span class="token key atrule">versions</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> v1alpha1
+    <span class="token key atrule">served</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+    <span class="token key atrule">storage</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+<span class="token punctuation">---</span>
+<span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> apiextensions.k8s.io/v1beta1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> CustomResourceDefinition
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> workfloweventbindings.argoproj.io
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">group</span><span class="token punctuation">:</span> argoproj.io
+  <span class="token key atrule">names</span><span class="token punctuation">:</span>
+    <span class="token key atrule">kind</span><span class="token punctuation">:</span> WorkflowEventBinding
+    <span class="token key atrule">listKind</span><span class="token punctuation">:</span> WorkflowEventBindingList
+    <span class="token key atrule">plural</span><span class="token punctuation">:</span> workfloweventbindings
+    <span class="token key atrule">shortNames</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> wfeb
+    <span class="token key atrule">singular</span><span class="token punctuation">:</span> workfloweventbinding
+  <span class="token key atrule">scope</span><span class="token punctuation">:</span> Namespaced
+  <span class="token key atrule">version</span><span class="token punctuation">:</span> v1alpha1
+  <span class="token key atrule">versions</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> v1alpha1
+    <span class="token key atrule">served</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+    <span class="token key atrule">storage</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+<span class="token punctuation">---</span>
+<span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> apiextensions.k8s.io/v1beta1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> CustomResourceDefinition
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> workflows.argoproj.io
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">additionalPrinterColumns</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">JSONPath</span><span class="token punctuation">:</span> .status.phase
+    <span class="token key atrule">description</span><span class="token punctuation">:</span> Status of the workflow
+    <span class="token key atrule">name</span><span class="token punctuation">:</span> Status
+    <span class="token key atrule">type</span><span class="token punctuation">:</span> string
+  <span class="token punctuation">-</span> <span class="token key atrule">JSONPath</span><span class="token punctuation">:</span> .status.startedAt
+    <span class="token key atrule">description</span><span class="token punctuation">:</span> When the workflow was started
+    <span class="token key atrule">format</span><span class="token punctuation">:</span> date<span class="token punctuation">-</span>time
+    <span class="token key atrule">name</span><span class="token punctuation">:</span> Age
+    <span class="token key atrule">type</span><span class="token punctuation">:</span> date
+  <span class="token key atrule">group</span><span class="token punctuation">:</span> argoproj.io
+  <span class="token key atrule">names</span><span class="token punctuation">:</span>
+    <span class="token key atrule">kind</span><span class="token punctuation">:</span> Workflow
+    <span class="token key atrule">listKind</span><span class="token punctuation">:</span> WorkflowList
+    <span class="token key atrule">plural</span><span class="token punctuation">:</span> workflows
+    <span class="token key atrule">shortNames</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> wf
+    <span class="token key atrule">singular</span><span class="token punctuation">:</span> workflow
+  <span class="token key atrule">scope</span><span class="token punctuation">:</span> Namespaced
+  <span class="token key atrule">subresources</span><span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+  <span class="token key atrule">version</span><span class="token punctuation">:</span> v1alpha1
+  <span class="token key atrule">versions</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> v1alpha1
+    <span class="token key atrule">served</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+    <span class="token key atrule">storage</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+<span class="token punctuation">---</span>
+<span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> apiextensions.k8s.io/v1beta1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> CustomResourceDefinition
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> workflowtemplates.argoproj.io
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">group</span><span class="token punctuation">:</span> argoproj.io
+  <span class="token key atrule">names</span><span class="token punctuation">:</span>
+    <span class="token key atrule">kind</span><span class="token punctuation">:</span> WorkflowTemplate
+    <span class="token key atrule">listKind</span><span class="token punctuation">:</span> WorkflowTemplateList
+    <span class="token key atrule">plural</span><span class="token punctuation">:</span> workflowtemplates
+    <span class="token key atrule">shortNames</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> wftmpl
+    <span class="token key atrule">singular</span><span class="token punctuation">:</span> workflowtemplate
+  <span class="token key atrule">scope</span><span class="token punctuation">:</span> Namespaced
+  <span class="token key atrule">version</span><span class="token punctuation">:</span> v1alpha1
+  <span class="token key atrule">versions</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> v1alpha1
+    <span class="token key atrule">served</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+    <span class="token key atrule">storage</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+<span class="token punctuation">---</span>
+<span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> v1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> ServiceAccount
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> argo
+<span class="token punctuation">---</span>
+<span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> v1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> ServiceAccount
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> argo<span class="token punctuation">-</span>server
+<span class="token punctuation">---</span>
+<span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> rbac.authorization.k8s.io/v1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> Role
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> argo<span class="token punctuation">-</span>role
+<span class="token key atrule">rules</span><span class="token punctuation">:</span>
+<span class="token punctuation">-</span> <span class="token key atrule">apiGroups</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token string">&quot;&quot;</span>
+  <span class="token key atrule">resources</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> secrets
+  <span class="token key atrule">verbs</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> get
+<span class="token punctuation">---</span>
+<span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> rbac.authorization.k8s.io/v1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> ClusterRole
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">labels</span><span class="token punctuation">:</span>
+    <span class="token key atrule">rbac.authorization.k8s.io/aggregate-to-admin</span><span class="token punctuation">:</span> <span class="token string">&quot;true&quot;</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> argo<span class="token punctuation">-</span>aggregate<span class="token punctuation">-</span>to<span class="token punctuation">-</span>admin
+<span class="token key atrule">rules</span><span class="token punctuation">:</span>
+<span class="token punctuation">-</span> <span class="token key atrule">apiGroups</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> argoproj.io
+  <span class="token key atrule">resources</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> workflows
+  <span class="token punctuation">-</span> workflows/finalizers
+  <span class="token punctuation">-</span> workflowtemplates
+  <span class="token punctuation">-</span> workflowtemplates/finalizers
+  <span class="token punctuation">-</span> cronworkflows
+  <span class="token punctuation">-</span> cronworkflows/finalizers
+  <span class="token punctuation">-</span> clusterworkflowtemplates
+  <span class="token punctuation">-</span> clusterworkflowtemplates/finalizers
+  <span class="token key atrule">verbs</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> create
+  <span class="token punctuation">-</span> delete
+  <span class="token punctuation">-</span> deletecollection
+  <span class="token punctuation">-</span> get
+  <span class="token punctuation">-</span> list
+  <span class="token punctuation">-</span> patch
+  <span class="token punctuation">-</span> update
+  <span class="token punctuation">-</span> watch
+<span class="token punctuation">---</span>
+<span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> rbac.authorization.k8s.io/v1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> ClusterRole
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">labels</span><span class="token punctuation">:</span>
+    <span class="token key atrule">rbac.authorization.k8s.io/aggregate-to-edit</span><span class="token punctuation">:</span> <span class="token string">&quot;true&quot;</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> argo<span class="token punctuation">-</span>aggregate<span class="token punctuation">-</span>to<span class="token punctuation">-</span>edit
+<span class="token key atrule">rules</span><span class="token punctuation">:</span>
+<span class="token punctuation">-</span> <span class="token key atrule">apiGroups</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> argoproj.io
+  <span class="token key atrule">resources</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> workflows
+  <span class="token punctuation">-</span> workflows/finalizers
+  <span class="token punctuation">-</span> workflowtemplates
+  <span class="token punctuation">-</span> workflowtemplates/finalizers
+  <span class="token punctuation">-</span> cronworkflows
+  <span class="token punctuation">-</span> cronworkflows/finalizers
+  <span class="token punctuation">-</span> clusterworkflowtemplates
+  <span class="token punctuation">-</span> clusterworkflowtemplates/finalizers
+  <span class="token key atrule">verbs</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> create
+  <span class="token punctuation">-</span> delete
+  <span class="token punctuation">-</span> deletecollection
+  <span class="token punctuation">-</span> get
+  <span class="token punctuation">-</span> list
+  <span class="token punctuation">-</span> patch
+  <span class="token punctuation">-</span> update
+  <span class="token punctuation">-</span> watch
+<span class="token punctuation">---</span>
+<span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> rbac.authorization.k8s.io/v1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> ClusterRole
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">labels</span><span class="token punctuation">:</span>
+    <span class="token key atrule">rbac.authorization.k8s.io/aggregate-to-view</span><span class="token punctuation">:</span> <span class="token string">&quot;true&quot;</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> argo<span class="token punctuation">-</span>aggregate<span class="token punctuation">-</span>to<span class="token punctuation">-</span>view
+<span class="token key atrule">rules</span><span class="token punctuation">:</span>
+<span class="token punctuation">-</span> <span class="token key atrule">apiGroups</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> argoproj.io
+  <span class="token key atrule">resources</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> workflows
+  <span class="token punctuation">-</span> workflows/finalizers
+  <span class="token punctuation">-</span> workflowtemplates
+  <span class="token punctuation">-</span> workflowtemplates/finalizers
+  <span class="token punctuation">-</span> cronworkflows
+  <span class="token punctuation">-</span> cronworkflows/finalizers
+  <span class="token punctuation">-</span> clusterworkflowtemplates
+  <span class="token punctuation">-</span> clusterworkflowtemplates/finalizers
+  <span class="token key atrule">verbs</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> get
+  <span class="token punctuation">-</span> list
+  <span class="token punctuation">-</span> watch
+<span class="token punctuation">---</span>
+<span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> rbac.authorization.k8s.io/v1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> ClusterRole
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> argo<span class="token punctuation">-</span>cluster<span class="token punctuation">-</span>role
+<span class="token key atrule">rules</span><span class="token punctuation">:</span>
+<span class="token punctuation">-</span> <span class="token key atrule">apiGroups</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token string">&quot;&quot;</span>
+  <span class="token key atrule">resources</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> pods
+  <span class="token punctuation">-</span> pods/exec
+  <span class="token key atrule">verbs</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> create
+  <span class="token punctuation">-</span> get
+  <span class="token punctuation">-</span> list
+  <span class="token punctuation">-</span> watch
+  <span class="token punctuation">-</span> update
+  <span class="token punctuation">-</span> patch
+  <span class="token punctuation">-</span> delete
+<span class="token punctuation">-</span> <span class="token key atrule">apiGroups</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token string">&quot;&quot;</span>
+  <span class="token key atrule">resources</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> configmaps
+  <span class="token key atrule">verbs</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> get
+  <span class="token punctuation">-</span> watch
+  <span class="token punctuation">-</span> list
+<span class="token punctuation">-</span> <span class="token key atrule">apiGroups</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token string">&quot;&quot;</span>
+  <span class="token key atrule">resources</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> persistentvolumeclaims
+  <span class="token key atrule">verbs</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> create
+  <span class="token punctuation">-</span> delete
+<span class="token punctuation">-</span> <span class="token key atrule">apiGroups</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> argoproj.io
+  <span class="token key atrule">resources</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> workflows
+  <span class="token punctuation">-</span> workflows/finalizers
+  <span class="token key atrule">verbs</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> get
+  <span class="token punctuation">-</span> list
+  <span class="token punctuation">-</span> watch
+  <span class="token punctuation">-</span> update
+  <span class="token punctuation">-</span> patch
+  <span class="token punctuation">-</span> delete
+  <span class="token punctuation">-</span> create
+<span class="token punctuation">-</span> <span class="token key atrule">apiGroups</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> argoproj.io
+  <span class="token key atrule">resources</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> workflowtemplates
+  <span class="token punctuation">-</span> workflowtemplates/finalizers
+  <span class="token punctuation">-</span> clusterworkflowtemplates
+  <span class="token punctuation">-</span> clusterworkflowtemplates/finalizers
+  <span class="token key atrule">verbs</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> get
+  <span class="token punctuation">-</span> list
+  <span class="token punctuation">-</span> watch
+<span class="token punctuation">-</span> <span class="token key atrule">apiGroups</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token string">&quot;&quot;</span>
+  <span class="token key atrule">resources</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> serviceaccounts
+  <span class="token key atrule">verbs</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> get
+  <span class="token punctuation">-</span> list
+<span class="token punctuation">-</span> <span class="token key atrule">apiGroups</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> argoproj.io
+  <span class="token key atrule">resources</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> cronworkflows
+  <span class="token punctuation">-</span> cronworkflows/finalizers
+  <span class="token key atrule">verbs</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> get
+  <span class="token punctuation">-</span> list
+  <span class="token punctuation">-</span> watch
+  <span class="token punctuation">-</span> update
+  <span class="token punctuation">-</span> patch
+  <span class="token punctuation">-</span> delete
+<span class="token punctuation">-</span> <span class="token key atrule">apiGroups</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token string">&quot;&quot;</span>
+  <span class="token key atrule">resources</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> events
+  <span class="token key atrule">verbs</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> create
+  <span class="token punctuation">-</span> patch
+<span class="token punctuation">-</span> <span class="token key atrule">apiGroups</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> policy
+  <span class="token key atrule">resources</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> poddisruptionbudgets
+  <span class="token key atrule">verbs</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> create
+  <span class="token punctuation">-</span> get
+  <span class="token punctuation">-</span> delete
+<span class="token punctuation">---</span>
+<span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> rbac.authorization.k8s.io/v1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> ClusterRole
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> argo<span class="token punctuation">-</span>server<span class="token punctuation">-</span>cluster<span class="token punctuation">-</span>role
+<span class="token key atrule">rules</span><span class="token punctuation">:</span>
+<span class="token punctuation">-</span> <span class="token key atrule">apiGroups</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token string">&quot;&quot;</span>
+  <span class="token key atrule">resources</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> configmaps
+  <span class="token key atrule">verbs</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> get
+  <span class="token punctuation">-</span> watch
+  <span class="token punctuation">-</span> list
+<span class="token punctuation">-</span> <span class="token key atrule">apiGroups</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token string">&quot;&quot;</span>
+  <span class="token key atrule">resources</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> secrets
+  <span class="token key atrule">verbs</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> get
+<span class="token punctuation">-</span> <span class="token key atrule">apiGroups</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token string">&quot;&quot;</span>
+  <span class="token key atrule">resources</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> pods
+  <span class="token punctuation">-</span> pods/exec
+  <span class="token punctuation">-</span> pods/log
+  <span class="token key atrule">verbs</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> get
+  <span class="token punctuation">-</span> list
+  <span class="token punctuation">-</span> watch
+  <span class="token punctuation">-</span> delete
+<span class="token punctuation">-</span> <span class="token key atrule">apiGroups</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token string">&quot;&quot;</span>
+  <span class="token key atrule">resources</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> events
+  <span class="token key atrule">verbs</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> watch
+  <span class="token punctuation">-</span> create
+  <span class="token punctuation">-</span> patch
+<span class="token punctuation">-</span> <span class="token key atrule">apiGroups</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token string">&quot;&quot;</span>
+  <span class="token key atrule">resources</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> secrets
+  <span class="token punctuation">-</span> serviceaccounts
+  <span class="token key atrule">verbs</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> get
+<span class="token punctuation">-</span> <span class="token key atrule">apiGroups</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> argoproj.io
+  <span class="token key atrule">resources</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> workflows
+  <span class="token punctuation">-</span> workfloweventbindings
+  <span class="token punctuation">-</span> workflowtemplates
+  <span class="token punctuation">-</span> cronworkflows
+  <span class="token punctuation">-</span> clusterworkflowtemplates
+  <span class="token key atrule">verbs</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> create
+  <span class="token punctuation">-</span> get
+  <span class="token punctuation">-</span> list
+  <span class="token punctuation">-</span> watch
+  <span class="token punctuation">-</span> update
+  <span class="token punctuation">-</span> patch
+  <span class="token punctuation">-</span> delete
+<span class="token punctuation">---</span>
+<span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> rbac.authorization.k8s.io/v1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> RoleBinding
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> argo<span class="token punctuation">-</span>binding
+<span class="token key atrule">roleRef</span><span class="token punctuation">:</span>
+  <span class="token key atrule">apiGroup</span><span class="token punctuation">:</span> rbac.authorization.k8s.io
+  <span class="token key atrule">kind</span><span class="token punctuation">:</span> Role
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> argo<span class="token punctuation">-</span>role
+<span class="token key atrule">subjects</span><span class="token punctuation">:</span>
+<span class="token punctuation">-</span> <span class="token key atrule">kind</span><span class="token punctuation">:</span> ServiceAccount
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> argo
+<span class="token punctuation">---</span>
+<span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> rbac.authorization.k8s.io/v1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> ClusterRoleBinding
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> argo<span class="token punctuation">-</span>binding
+<span class="token key atrule">roleRef</span><span class="token punctuation">:</span>
+  <span class="token key atrule">apiGroup</span><span class="token punctuation">:</span> rbac.authorization.k8s.io
+  <span class="token key atrule">kind</span><span class="token punctuation">:</span> ClusterRole
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> argo<span class="token punctuation">-</span>cluster<span class="token punctuation">-</span>role
+<span class="token key atrule">subjects</span><span class="token punctuation">:</span>
+<span class="token punctuation">-</span> <span class="token key atrule">kind</span><span class="token punctuation">:</span> ServiceAccount
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> argo
+  <span class="token key atrule">namespace</span><span class="token punctuation">:</span> argo
+<span class="token punctuation">---</span>
+<span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> rbac.authorization.k8s.io/v1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> ClusterRoleBinding
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> argo<span class="token punctuation">-</span>server<span class="token punctuation">-</span>binding
+<span class="token key atrule">roleRef</span><span class="token punctuation">:</span>
+  <span class="token key atrule">apiGroup</span><span class="token punctuation">:</span> rbac.authorization.k8s.io
+  <span class="token key atrule">kind</span><span class="token punctuation">:</span> ClusterRole
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> argo<span class="token punctuation">-</span>server<span class="token punctuation">-</span>cluster<span class="token punctuation">-</span>role
+<span class="token key atrule">subjects</span><span class="token punctuation">:</span>
+<span class="token punctuation">-</span> <span class="token key atrule">kind</span><span class="token punctuation">:</span> ServiceAccount
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> argo<span class="token punctuation">-</span>server
+  <span class="token key atrule">namespace</span><span class="token punctuation">:</span> argo
+<span class="token punctuation">---</span>
+<span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> v1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> ConfigMap
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> workflow<span class="token punctuation">-</span>controller<span class="token punctuation">-</span>configmap
+<span class="token punctuation">---</span>
+<span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> v1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> Service
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> argo<span class="token punctuation">-</span>server
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">externalIPs</span><span class="token punctuation">:</span>               <span class="token comment"># 暴露Service到外部IP</span>
+  <span class="token punctuation">-</span> 192.168.1.146                <span class="token comment"># IP</span>
+  <span class="token key atrule">ports</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> web
+    <span class="token key atrule">port</span><span class="token punctuation">:</span> <span class="token number">2746</span>
+    <span class="token key atrule">targetPort</span><span class="token punctuation">:</span> <span class="token number">2746</span>
+  <span class="token key atrule">selector</span><span class="token punctuation">:</span>
+    <span class="token key atrule">app</span><span class="token punctuation">:</span> argo<span class="token punctuation">-</span>server
+<span class="token punctuation">---</span>
+<span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> v1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> Service
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> workflow<span class="token punctuation">-</span>controller<span class="token punctuation">-</span>metrics
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">ports</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> metrics
+    <span class="token key atrule">port</span><span class="token punctuation">:</span> <span class="token number">9090</span>
+    <span class="token key atrule">protocol</span><span class="token punctuation">:</span> TCP
+    <span class="token key atrule">targetPort</span><span class="token punctuation">:</span> <span class="token number">9090</span>
+  <span class="token key atrule">selector</span><span class="token punctuation">:</span>
+    <span class="token key atrule">app</span><span class="token punctuation">:</span> workflow<span class="token punctuation">-</span>controller
+<span class="token punctuation">---</span>
+<span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> apps/v1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> Deployment
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> argo<span class="token punctuation">-</span>server
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">selector</span><span class="token punctuation">:</span>
+    <span class="token key atrule">matchLabels</span><span class="token punctuation">:</span>
+      <span class="token key atrule">app</span><span class="token punctuation">:</span> argo<span class="token punctuation">-</span>server
+  <span class="token key atrule">template</span><span class="token punctuation">:</span>
+    <span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+      <span class="token key atrule">labels</span><span class="token punctuation">:</span>
+        <span class="token key atrule">app</span><span class="token punctuation">:</span> argo<span class="token punctuation">-</span>server
+    <span class="token key atrule">spec</span><span class="token punctuation">:</span>
+      <span class="token key atrule">containers</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> <span class="token key atrule">args</span><span class="token punctuation">:</span>
+        <span class="token punctuation">-</span> server
+        <span class="token key atrule">image</span><span class="token punctuation">:</span> argoproj/argocli<span class="token punctuation">:</span>v2.11.7
+        <span class="token key atrule">name</span><span class="token punctuation">:</span> argo<span class="token punctuation">-</span>server
+        <span class="token key atrule">ports</span><span class="token punctuation">:</span>
+        <span class="token punctuation">-</span> <span class="token key atrule">containerPort</span><span class="token punctuation">:</span> <span class="token number">2746</span>
+          <span class="token key atrule">name</span><span class="token punctuation">:</span> web
+        <span class="token key atrule">readinessProbe</span><span class="token punctuation">:</span>
+          <span class="token key atrule">httpGet</span><span class="token punctuation">:</span>
+            <span class="token key atrule">path</span><span class="token punctuation">:</span> /
+            <span class="token key atrule">port</span><span class="token punctuation">:</span> <span class="token number">2746</span>
+            <span class="token key atrule">scheme</span><span class="token punctuation">:</span> HTTP
+          <span class="token key atrule">initialDelaySeconds</span><span class="token punctuation">:</span> <span class="token number">10</span>
+          <span class="token key atrule">periodSeconds</span><span class="token punctuation">:</span> <span class="token number">20</span>
+        <span class="token key atrule">volumeMounts</span><span class="token punctuation">:</span>
+        <span class="token punctuation">-</span> <span class="token key atrule">mountPath</span><span class="token punctuation">:</span> /tmp
+          <span class="token key atrule">name</span><span class="token punctuation">:</span> tmp
+      <span class="token key atrule">nodeSelector</span><span class="token punctuation">:</span>
+        <span class="token key atrule">kubernetes.io/os</span><span class="token punctuation">:</span> linux
+      <span class="token key atrule">serviceAccountName</span><span class="token punctuation">:</span> argo<span class="token punctuation">-</span>server
+      <span class="token key atrule">volumes</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> <span class="token key atrule">emptyDir</span><span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+        <span class="token key atrule">name</span><span class="token punctuation">:</span> tmp
+<span class="token punctuation">---</span>
+<span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> apps/v1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> Deployment
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> workflow<span class="token punctuation">-</span>controller
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">selector</span><span class="token punctuation">:</span>
+    <span class="token key atrule">matchLabels</span><span class="token punctuation">:</span>
+      <span class="token key atrule">app</span><span class="token punctuation">:</span> workflow<span class="token punctuation">-</span>controller
+  <span class="token key atrule">template</span><span class="token punctuation">:</span>
+    <span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+      <span class="token key atrule">labels</span><span class="token punctuation">:</span>
+        <span class="token key atrule">app</span><span class="token punctuation">:</span> workflow<span class="token punctuation">-</span>controller
+    <span class="token key atrule">spec</span><span class="token punctuation">:</span>
+      <span class="token key atrule">containers</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> <span class="token key atrule">args</span><span class="token punctuation">:</span>
+        <span class="token punctuation">-</span> <span class="token punctuation">-</span><span class="token punctuation">-</span>configmap
+        <span class="token punctuation">-</span> workflow<span class="token punctuation">-</span>controller<span class="token punctuation">-</span>configmap
+        <span class="token punctuation">-</span> <span class="token punctuation">-</span><span class="token punctuation">-</span>executor<span class="token punctuation">-</span>image
+        <span class="token punctuation">-</span> argoproj/argoexec<span class="token punctuation">:</span>v2.11.7
+        <span class="token key atrule">command</span><span class="token punctuation">:</span>
+        <span class="token punctuation">-</span> workflow<span class="token punctuation">-</span>controller
+        <span class="token key atrule">image</span><span class="token punctuation">:</span> argoproj/workflow<span class="token punctuation">-</span>controller<span class="token punctuation">:</span>v2.11.7
+        <span class="token key atrule">name</span><span class="token punctuation">:</span> workflow<span class="token punctuation">-</span>controller
+      <span class="token key atrule">nodeSelector</span><span class="token punctuation">:</span>
+        <span class="token key atrule">kubernetes.io/os</span><span class="token punctuation">:</span> linux
+      <span class="token key atrule">serviceAccountName</span><span class="token punctuation">:</span> argo
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br><span class="line-number">55</span><br><span class="line-number">56</span><br><span class="line-number">57</span><br><span class="line-number">58</span><br><span class="line-number">59</span><br><span class="line-number">60</span><br><span class="line-number">61</span><br><span class="line-number">62</span><br><span class="line-number">63</span><br><span class="line-number">64</span><br><span class="line-number">65</span><br><span class="line-number">66</span><br><span class="line-number">67</span><br><span class="line-number">68</span><br><span class="line-number">69</span><br><span class="line-number">70</span><br><span class="line-number">71</span><br><span class="line-number">72</span><br><span class="line-number">73</span><br><span class="line-number">74</span><br><span class="line-number">75</span><br><span class="line-number">76</span><br><span class="line-number">77</span><br><span class="line-number">78</span><br><span class="line-number">79</span><br><span class="line-number">80</span><br><span class="line-number">81</span><br><span class="line-number">82</span><br><span class="line-number">83</span><br><span class="line-number">84</span><br><span class="line-number">85</span><br><span class="line-number">86</span><br><span class="line-number">87</span><br><span class="line-number">88</span><br><span class="line-number">89</span><br><span class="line-number">90</span><br><span class="line-number">91</span><br><span class="line-number">92</span><br><span class="line-number">93</span><br><span class="line-number">94</span><br><span class="line-number">95</span><br><span class="line-number">96</span><br><span class="line-number">97</span><br><span class="line-number">98</span><br><span class="line-number">99</span><br><span class="line-number">100</span><br><span class="line-number">101</span><br><span class="line-number">102</span><br><span class="line-number">103</span><br><span class="line-number">104</span><br><span class="line-number">105</span><br><span class="line-number">106</span><br><span class="line-number">107</span><br><span class="line-number">108</span><br><span class="line-number">109</span><br><span class="line-number">110</span><br><span class="line-number">111</span><br><span class="line-number">112</span><br><span class="line-number">113</span><br><span class="line-number">114</span><br><span class="line-number">115</span><br><span class="line-number">116</span><br><span class="line-number">117</span><br><span class="line-number">118</span><br><span class="line-number">119</span><br><span class="line-number">120</span><br><span class="line-number">121</span><br><span class="line-number">122</span><br><span class="line-number">123</span><br><span class="line-number">124</span><br><span class="line-number">125</span><br><span class="line-number">126</span><br><span class="line-number">127</span><br><span class="line-number">128</span><br><span class="line-number">129</span><br><span class="line-number">130</span><br><span class="line-number">131</span><br><span class="line-number">132</span><br><span class="line-number">133</span><br><span class="line-number">134</span><br><span class="line-number">135</span><br><span class="line-number">136</span><br><span class="line-number">137</span><br><span class="line-number">138</span><br><span class="line-number">139</span><br><span class="line-number">140</span><br><span class="line-number">141</span><br><span class="line-number">142</span><br><span class="line-number">143</span><br><span class="line-number">144</span><br><span class="line-number">145</span><br><span class="line-number">146</span><br><span class="line-number">147</span><br><span class="line-number">148</span><br><span class="line-number">149</span><br><span class="line-number">150</span><br><span class="line-number">151</span><br><span class="line-number">152</span><br><span class="line-number">153</span><br><span class="line-number">154</span><br><span class="line-number">155</span><br><span class="line-number">156</span><br><span class="line-number">157</span><br><span class="line-number">158</span><br><span class="line-number">159</span><br><span class="line-number">160</span><br><span class="line-number">161</span><br><span class="line-number">162</span><br><span class="line-number">163</span><br><span class="line-number">164</span><br><span class="line-number">165</span><br><span class="line-number">166</span><br><span class="line-number">167</span><br><span class="line-number">168</span><br><span class="line-number">169</span><br><span class="line-number">170</span><br><span class="line-number">171</span><br><span class="line-number">172</span><br><span class="line-number">173</span><br><span class="line-number">174</span><br><span class="line-number">175</span><br><span class="line-number">176</span><br><span class="line-number">177</span><br><span class="line-number">178</span><br><span class="line-number">179</span><br><span class="line-number">180</span><br><span class="line-number">181</span><br><span class="line-number">182</span><br><span class="line-number">183</span><br><span class="line-number">184</span><br><span class="line-number">185</span><br><span class="line-number">186</span><br><span class="line-number">187</span><br><span class="line-number">188</span><br><span class="line-number">189</span><br><span class="line-number">190</span><br><span class="line-number">191</span><br><span class="line-number">192</span><br><span class="line-number">193</span><br><span class="line-number">194</span><br><span class="line-number">195</span><br><span class="line-number">196</span><br><span class="line-number">197</span><br><span class="line-number">198</span><br><span class="line-number">199</span><br><span class="line-number">200</span><br><span class="line-number">201</span><br><span class="line-number">202</span><br><span class="line-number">203</span><br><span class="line-number">204</span><br><span class="line-number">205</span><br><span class="line-number">206</span><br><span class="line-number">207</span><br><span class="line-number">208</span><br><span class="line-number">209</span><br><span class="line-number">210</span><br><span class="line-number">211</span><br><span class="line-number">212</span><br><span class="line-number">213</span><br><span class="line-number">214</span><br><span class="line-number">215</span><br><span class="line-number">216</span><br><span class="line-number">217</span><br><span class="line-number">218</span><br><span class="line-number">219</span><br><span class="line-number">220</span><br><span class="line-number">221</span><br><span class="line-number">222</span><br><span class="line-number">223</span><br><span class="line-number">224</span><br><span class="line-number">225</span><br><span class="line-number">226</span><br><span class="line-number">227</span><br><span class="line-number">228</span><br><span class="line-number">229</span><br><span class="line-number">230</span><br><span class="line-number">231</span><br><span class="line-number">232</span><br><span class="line-number">233</span><br><span class="line-number">234</span><br><span class="line-number">235</span><br><span class="line-number">236</span><br><span class="line-number">237</span><br><span class="line-number">238</span><br><span class="line-number">239</span><br><span class="line-number">240</span><br><span class="line-number">241</span><br><span class="line-number">242</span><br><span class="line-number">243</span><br><span class="line-number">244</span><br><span class="line-number">245</span><br><span class="line-number">246</span><br><span class="line-number">247</span><br><span class="line-number">248</span><br><span class="line-number">249</span><br><span class="line-number">250</span><br><span class="line-number">251</span><br><span class="line-number">252</span><br><span class="line-number">253</span><br><span class="line-number">254</span><br><span class="line-number">255</span><br><span class="line-number">256</span><br><span class="line-number">257</span><br><span class="line-number">258</span><br><span class="line-number">259</span><br><span class="line-number">260</span><br><span class="line-number">261</span><br><span class="line-number">262</span><br><span class="line-number">263</span><br><span class="line-number">264</span><br><span class="line-number">265</span><br><span class="line-number">266</span><br><span class="line-number">267</span><br><span class="line-number">268</span><br><span class="line-number">269</span><br><span class="line-number">270</span><br><span class="line-number">271</span><br><span class="line-number">272</span><br><span class="line-number">273</span><br><span class="line-number">274</span><br><span class="line-number">275</span><br><span class="line-number">276</span><br><span class="line-number">277</span><br><span class="line-number">278</span><br><span class="line-number">279</span><br><span class="line-number">280</span><br><span class="line-number">281</span><br><span class="line-number">282</span><br><span class="line-number">283</span><br><span class="line-number">284</span><br><span class="line-number">285</span><br><span class="line-number">286</span><br><span class="line-number">287</span><br><span class="line-number">288</span><br><span class="line-number">289</span><br><span class="line-number">290</span><br><span class="line-number">291</span><br><span class="line-number">292</span><br><span class="line-number">293</span><br><span class="line-number">294</span><br><span class="line-number">295</span><br><span class="line-number">296</span><br><span class="line-number">297</span><br><span class="line-number">298</span><br><span class="line-number">299</span><br><span class="line-number">300</span><br><span class="line-number">301</span><br><span class="line-number">302</span><br><span class="line-number">303</span><br><span class="line-number">304</span><br><span class="line-number">305</span><br><span class="line-number">306</span><br><span class="line-number">307</span><br><span class="line-number">308</span><br><span class="line-number">309</span><br><span class="line-number">310</span><br><span class="line-number">311</span><br><span class="line-number">312</span><br><span class="line-number">313</span><br><span class="line-number">314</span><br><span class="line-number">315</span><br><span class="line-number">316</span><br><span class="line-number">317</span><br><span class="line-number">318</span><br><span class="line-number">319</span><br><span class="line-number">320</span><br><span class="line-number">321</span><br><span class="line-number">322</span><br><span class="line-number">323</span><br><span class="line-number">324</span><br><span class="line-number">325</span><br><span class="line-number">326</span><br><span class="line-number">327</span><br><span class="line-number">328</span><br><span class="line-number">329</span><br><span class="line-number">330</span><br><span class="line-number">331</span><br><span class="line-number">332</span><br><span class="line-number">333</span><br><span class="line-number">334</span><br><span class="line-number">335</span><br><span class="line-number">336</span><br><span class="line-number">337</span><br><span class="line-number">338</span><br><span class="line-number">339</span><br><span class="line-number">340</span><br><span class="line-number">341</span><br><span class="line-number">342</span><br><span class="line-number">343</span><br><span class="line-number">344</span><br><span class="line-number">345</span><br><span class="line-number">346</span><br><span class="line-number">347</span><br><span class="line-number">348</span><br><span class="line-number">349</span><br><span class="line-number">350</span><br><span class="line-number">351</span><br><span class="line-number">352</span><br><span class="line-number">353</span><br><span class="line-number">354</span><br><span class="line-number">355</span><br><span class="line-number">356</span><br><span class="line-number">357</span><br><span class="line-number">358</span><br><span class="line-number">359</span><br><span class="line-number">360</span><br><span class="line-number">361</span><br><span class="line-number">362</span><br><span class="line-number">363</span><br><span class="line-number">364</span><br><span class="line-number">365</span><br><span class="line-number">366</span><br><span class="line-number">367</span><br><span class="line-number">368</span><br><span class="line-number">369</span><br><span class="line-number">370</span><br><span class="line-number">371</span><br><span class="line-number">372</span><br><span class="line-number">373</span><br><span class="line-number">374</span><br><span class="line-number">375</span><br><span class="line-number">376</span><br><span class="line-number">377</span><br><span class="line-number">378</span><br><span class="line-number">379</span><br><span class="line-number">380</span><br><span class="line-number">381</span><br><span class="line-number">382</span><br><span class="line-number">383</span><br><span class="line-number">384</span><br><span class="line-number">385</span><br><span class="line-number">386</span><br><span class="line-number">387</span><br><span class="line-number">388</span><br><span class="line-number">389</span><br><span class="line-number">390</span><br><span class="line-number">391</span><br><span class="line-number">392</span><br><span class="line-number">393</span><br><span class="line-number">394</span><br><span class="line-number">395</span><br><span class="line-number">396</span><br><span class="line-number">397</span><br><span class="line-number">398</span><br><span class="line-number">399</span><br><span class="line-number">400</span><br><span class="line-number">401</span><br><span class="line-number">402</span><br><span class="line-number">403</span><br><span class="line-number">404</span><br><span class="line-number">405</span><br><span class="line-number">406</span><br><span class="line-number">407</span><br><span class="line-number">408</span><br><span class="line-number">409</span><br><span class="line-number">410</span><br><span class="line-number">411</span><br><span class="line-number">412</span><br><span class="line-number">413</span><br><span class="line-number">414</span><br><span class="line-number">415</span><br><span class="line-number">416</span><br><span class="line-number">417</span><br><span class="line-number">418</span><br><span class="line-number">419</span><br><span class="line-number">420</span><br><span class="line-number">421</span><br><span class="line-number">422</span><br><span class="line-number">423</span><br><span class="line-number">424</span><br><span class="line-number">425</span><br><span class="line-number">426</span><br><span class="line-number">427</span><br><span class="line-number">428</span><br><span class="line-number">429</span><br><span class="line-number">430</span><br><span class="line-number">431</span><br><span class="line-number">432</span><br><span class="line-number">433</span><br><span class="line-number">434</span><br><span class="line-number">435</span><br><span class="line-number">436</span><br><span class="line-number">437</span><br><span class="line-number">438</span><br><span class="line-number">439</span><br><span class="line-number">440</span><br><span class="line-number">441</span><br><span class="line-number">442</span><br><span class="line-number">443</span><br><span class="line-number">444</span><br><span class="line-number">445</span><br><span class="line-number">446</span><br><span class="line-number">447</span><br><span class="line-number">448</span><br><span class="line-number">449</span><br><span class="line-number">450</span><br><span class="line-number">451</span><br><span class="line-number">452</span><br><span class="line-number">453</span><br><span class="line-number">454</span><br><span class="line-number">455</span><br><span class="line-number">456</span><br><span class="line-number">457</span><br><span class="line-number">458</span><br><span class="line-number">459</span><br><span class="line-number">460</span><br><span class="line-number">461</span><br><span class="line-number">462</span><br><span class="line-number">463</span><br><span class="line-number">464</span><br><span class="line-number">465</span><br><span class="line-number">466</span><br><span class="line-number">467</span><br><span class="line-number">468</span><br><span class="line-number">469</span><br><span class="line-number">470</span><br><span class="line-number">471</span><br><span class="line-number">472</span><br><span class="line-number">473</span><br><span class="line-number">474</span><br><span class="line-number">475</span><br><span class="line-number">476</span><br><span class="line-number">477</span><br><span class="line-number">478</span><br><span class="line-number">479</span><br><span class="line-number">480</span><br><span class="line-number">481</span><br><span class="line-number">482</span><br><span class="line-number">483</span><br><span class="line-number">484</span><br><span class="line-number">485</span><br><span class="line-number">486</span><br><span class="line-number">487</span><br><span class="line-number">488</span><br><span class="line-number">489</span><br><span class="line-number">490</span><br><span class="line-number">491</span><br><span class="line-number">492</span><br><span class="line-number">493</span><br><span class="line-number">494</span><br><span class="line-number">495</span><br><span class="line-number">496</span><br><span class="line-number">497</span><br><span class="line-number">498</span><br><span class="line-number">499</span><br><span class="line-number">500</span><br><span class="line-number">501</span><br><span class="line-number">502</span><br><span class="line-number">503</span><br></div></div><p>第三步 安装 argo-cli</p> <div class="language-sh line-numbers-mode"><pre class="language-sh"><code><span class="token comment"># Download the binary</span>
+<span class="token function">curl</span> <span class="token parameter variable">-sLO</span> https://github.com/argoproj/argo/releases/download/v2.11.7/argo-darwin-amd64.gz
+
+<span class="token comment"># Unzip</span>
+gunzip argo-darwin-amd64.gz
+
+<span class="token comment"># Make binary executable</span>
+<span class="token function">chmod</span> +x argo-darwin-amd64
+
+<span class="token comment"># Move binary to path</span>
+<span class="token function">mv</span> ./argo-darwin-amd64 /usr/local/bin/argo
+
+<span class="token comment"># Test installation</span>
+argo version
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br></div></div><p>如出现已下输出则 argo-cli 安装成功 我安装的是老版本 不用担心 是向下兼容的</p> <p><img src="https://b3logfile.com/file/2020/11/image-f1838b93.png?imageView2/2/interlace/1/format/webp" alt="img"></p> <p>然后使用 <code>kubectl get all -n argo</code> 查看 argo-server 的启动情况</p> <p><img src="https://b3logfile.com/file/2020/11/image-b713dc11.png?imageView2/2/interlace/1/format/webp" alt="img"></p> <p>启动完毕后，我们可以访问暴露出来的 argo-server-ui 界面访问 argo-dashboard 默认端口 <strong>2746</strong></p> <p><img src="https://b3logfile.com/file/2020/11/image-ae5e3fea.png?imageView2/2/interlace/1/format/webp" alt="img"></p> <h2 id="遇到的问题"><a href="#遇到的问题" class="header-anchor">#</a> 遇到的问题</h2> <p>安装完 argo 并且提交工作流后，发现工作流执行不成功，查看日志发现</p> <p><img src="https://b3logfile.com/file/2020/11/image-4e2edad7.png?imageView2/2/interlace/1/format/webp" alt="img"></p> <p>这是因为默认的工作流 pod 是在默认的 namespace 也就是 default 下执行的，而这个 namespace 下名为 default 的默认的 serviceAccount 不具备操作资源的权限，则我们可以给他绑定权限</p> <div class="language-yaml line-numbers-mode"><pre class="language-yaml"><code><span class="token key atrule">kind</span><span class="token punctuation">:</span> ClusterRole
+<span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> rbac.authorization.k8s.io/v1
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">namespace</span><span class="token punctuation">:</span> default
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> pod<span class="token punctuation">-</span>reader
+<span class="token key atrule">rules</span><span class="token punctuation">:</span>
+<span class="token punctuation">-</span> <span class="token key atrule">apiGroups</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token string">&quot;&quot;</span>
+  <span class="token key atrule">resources</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> configmaps
+  <span class="token key atrule">verbs</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> get
+  <span class="token punctuation">-</span> watch
+  <span class="token punctuation">-</span> list
+<span class="token punctuation">-</span> <span class="token key atrule">apiGroups</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token string">&quot;batch&quot;</span>
+  <span class="token key atrule">resources</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> jobs
+  <span class="token key atrule">verbs</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> get
+  <span class="token punctuation">-</span> watch
+  <span class="token punctuation">-</span> list
+  <span class="token punctuation">-</span> create
+<span class="token punctuation">-</span> <span class="token key atrule">apiGroups</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token string">&quot;&quot;</span>
+  <span class="token key atrule">resources</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> secrets
+  <span class="token key atrule">verbs</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> get
+<span class="token punctuation">-</span> <span class="token key atrule">apiGroups</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token string">&quot;&quot;</span>
+  <span class="token key atrule">resources</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> pods
+  <span class="token punctuation">-</span> pods/exec
+  <span class="token punctuation">-</span> pods/log
+  <span class="token key atrule">verbs</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> get
+  <span class="token punctuation">-</span> list
+  <span class="token punctuation">-</span> watch
+  <span class="token punctuation">-</span> delete
+  <span class="token punctuation">-</span> patch
+<span class="token punctuation">-</span> <span class="token key atrule">apiGroups</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token string">&quot;&quot;</span>
+  <span class="token key atrule">resources</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> events
+  <span class="token key atrule">verbs</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> watch
+  <span class="token punctuation">-</span> create
+  <span class="token punctuation">-</span> patch
+<span class="token punctuation">-</span> <span class="token key atrule">apiGroups</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token string">&quot;&quot;</span>
+  <span class="token key atrule">resources</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> secrets
+  <span class="token punctuation">-</span> serviceaccounts
+  <span class="token key atrule">verbs</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> get
+<span class="token punctuation">-</span> <span class="token key atrule">apiGroups</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> argoproj.io
+  <span class="token key atrule">resources</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> workflows
+  <span class="token punctuation">-</span> workfloweventbindings
+  <span class="token punctuation">-</span> workflowtemplates
+  <span class="token punctuation">-</span> cronworkflows
+  <span class="token punctuation">-</span> clusterworkflowtemplates
+  <span class="token key atrule">verbs</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> create
+  <span class="token punctuation">-</span> get
+  <span class="token punctuation">-</span> list
+  <span class="token punctuation">-</span> watch
+  <span class="token punctuation">-</span> update
+  <span class="token punctuation">-</span> patch
+  <span class="token punctuation">-</span> delete
+<span class="token punctuation">---</span>
+<span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> rbac.authorization.k8s.io/v1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> ClusterRoleBinding
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> pod<span class="token punctuation">-</span>reader<span class="token punctuation">-</span>pod
+  <span class="token key atrule">namespace</span><span class="token punctuation">:</span> default
+<span class="token key atrule">roleRef</span><span class="token punctuation">:</span>
+  <span class="token key atrule">apiGroup</span><span class="token punctuation">:</span> rbac.authorization.k8s.io
+  <span class="token key atrule">kind</span><span class="token punctuation">:</span> ClusterRole
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> pod<span class="token punctuation">-</span>reader
+<span class="token key atrule">subjects</span><span class="token punctuation">:</span>
+<span class="token punctuation">-</span> <span class="token key atrule">kind</span><span class="token punctuation">:</span> ServiceAccount
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> default
+  <span class="token key atrule">namespace</span><span class="token punctuation">:</span> default
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br><span class="line-number">55</span><br><span class="line-number">56</span><br><span class="line-number">57</span><br><span class="line-number">58</span><br><span class="line-number">59</span><br><span class="line-number">60</span><br><span class="line-number">61</span><br><span class="line-number">62</span><br><span class="line-number">63</span><br><span class="line-number">64</span><br><span class="line-number">65</span><br><span class="line-number">66</span><br><span class="line-number">67</span><br><span class="line-number">68</span><br><span class="line-number">69</span><br><span class="line-number">70</span><br><span class="line-number">71</span><br><span class="line-number">72</span><br><span class="line-number">73</span><br><span class="line-number">74</span><br><span class="line-number">75</span><br><span class="line-number">76</span><br><span class="line-number">77</span><br><span class="line-number">78</span><br><span class="line-number">79</span><br><span class="line-number">80</span><br><span class="line-number">81</span><br><span class="line-number">82</span><br><span class="line-number">83</span><br><span class="line-number">84</span><br><span class="line-number">85</span><br><span class="line-number">86</span><br></div></div><p>然后执行 <code>kubectl apply -f role.yaml</code> 就可以解决这个问题</p> <p>我们也可以在创建工作流的 yaml 指定我们创建好的有权限的 serviceAccount</p> <h2 id="hello-world"><a href="#hello-world" class="header-anchor">#</a> Hello World</h2> <p>我们可以使用官网的例子简单的开始第一个 Workflow，一个 Workflow 基本也是这样的构造</p> <ul><li><strong>generateName</strong>： workflow 会在 k8s 环境内产生一个 job 来执行 workflow(job 指的是 k8s 中一定会结束的任务)，然后 job 则会产生以 generateName 规定的字符为前缀的 pod(比如上面的例子，它会产生如 whalesay-abcde 字样的 pod)</li> <li><strong>entrypoint</strong>：这里规定了一个入口，即我们的 workflow 会以哪一个模板作为第一个模板来启动</li> <li><strong>templates</strong>：定义了 templates，templates 是 Argo 中比较重要的一块，我们的 Workflow 运行都是基于各种 template</li></ul> <p><strong>argo-helloworld</strong></p> <div class="language-yaml line-numbers-mode"><pre class="language-yaml"><code><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> argoproj.io/v1alpha1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> Workflow
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">generateName</span><span class="token punctuation">:</span> whalesay<span class="token punctuation">-</span>
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">entrypoint</span><span class="token punctuation">:</span> whalesay
+ 
+  <span class="token key atrule">templates</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> whalesay              <span class="token comment"># name of the template</span>
+    <span class="token key atrule">container</span><span class="token punctuation">:</span>
+      <span class="token key atrule">image</span><span class="token punctuation">:</span> docker/whalesay
+      <span class="token key atrule">command</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>cowsay<span class="token punctuation">]</span>
+      <span class="token key atrule">args</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">&quot;hello world&quot;</span><span class="token punctuation">]</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br></div></div><p>以上是一个官网给出的 helloworld 样例。它规定了 workflow 会调用一个 docker/whalesay 的容器来打印 helloworld。使用以下命令可以启动这个 Workflow</p> <div class="language-sh line-numbers-mode"><pre class="language-sh"><code>argo submit helloworld.yaml
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><p>就可以看到 workflow 的启动，登录 ui 也可以看到此时有 workflow 的执行，打印 helloworld</p> <p>查看执行结果</p> <p>使用 argo watch 持续监控工作流状态</p> <p>使用 argo logs 查看日志输出</p> <p><img src="https://b3logfile.com/file/2020/11/image-c2be8767.png?imageView2/2/interlace/1/format/webp" alt="img"></p> <h2 id="步骤操作"><a href="#步骤操作" class="header-anchor">#</a> 步骤操作</h2> <p>步骤操作包含了比较多的模块类型，它提供了各种常见的对于步骤之间的操作，基本满足了我们对于步骤间操作的需求</p> <h3 id="container"><a href="#container" class="header-anchor">#</a> container</h3> <p>这也是一个最常见的 templates 类型，它会创建一个容器，然后使用容器来完成我们的任务</p> <div class="language-yaml line-numbers-mode"><pre class="language-yaml"><code><span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> whalesay              <span class="token comment"># name of the template</span>
+  <span class="token key atrule">container</span><span class="token punctuation">:</span>
+    <span class="token key atrule">image</span><span class="token punctuation">:</span> docker/whalesay
+    <span class="token key atrule">command</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>cowsay<span class="token punctuation">]</span>
+    <span class="token key atrule">args</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">&quot;hello world&quot;</span><span class="token punctuation">]</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br></div></div><h3 id="script"><a href="#script" class="header-anchor">#</a> script</h3> <p>有时我们只希望我们的模板来运行一个脚本，那么 Argo 提供了 <strong>Scripts</strong> 来让我们运行脚本。</p> <p>Script 允许我们使用 <strong>source</strong> 标签来创建一个脚本(临时文件)，然后这个临时文件的名称将会作为参数传递给 command 来执行。</p> <p>使用 script，会将运行脚本的标准输出分配给输出参数 result，让其他的步骤来调用</p> <p>针对不同的开发着，我们可以用不同的镜像来支持不同的执行方式</p> <div class="language-yaml line-numbers-mode"><pre class="language-yaml"><code><span class="token comment"># shell脚本</span>
+<span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> gen<span class="token punctuation">-</span>random<span class="token punctuation">-</span>int<span class="token punctuation">-</span>bash
+  <span class="token key atrule">script</span><span class="token punctuation">:</span>
+    <span class="token key atrule">image</span><span class="token punctuation">:</span> debian<span class="token punctuation">:</span><span class="token number">9.4</span>
+    <span class="token key atrule">command</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>bash<span class="token punctuation">]</span>
+    <span class="token key atrule">source</span><span class="token punctuation">:</span> <span class="token punctuation">|</span>                                         <span class="token comment"># Contents of the here-script</span>
+      cat /dev/urandom <span class="token punctuation">|</span> od <span class="token punctuation">-</span>N2 <span class="token punctuation">-</span>An <span class="token punctuation">-</span>i <span class="token punctuation">|</span> awk <span class="token punctuation">-</span>v f=1 <span class="token punctuation">-</span>v r=100 '<span class="token punctuation">{</span>printf &quot;%i\n&quot;<span class="token punctuation">,</span> f + r * $1 / 65536<span class="token punctuation">}</span>'
+ 
+<span class="token comment"># python脚本</span>
+<span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> gen<span class="token punctuation">-</span>random<span class="token punctuation">-</span>int<span class="token punctuation">-</span>python
+  <span class="token key atrule">script</span><span class="token punctuation">:</span>
+    <span class="token key atrule">image</span><span class="token punctuation">:</span> python<span class="token punctuation">:</span>alpine3.6
+    <span class="token key atrule">command</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>python<span class="token punctuation">]</span>
+    <span class="token key atrule">source</span><span class="token punctuation">:</span> <span class="token punctuation">|</span><span class="token scalar string">
+      import random
+      i = random.randint(1, 100)
+      print(i)</span>
+ 
+<span class="token comment"># js脚本</span>
+<span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> gen<span class="token punctuation">-</span>random<span class="token punctuation">-</span>int<span class="token punctuation">-</span>javascript
+  <span class="token key atrule">script</span><span class="token punctuation">:</span>
+    <span class="token key atrule">image</span><span class="token punctuation">:</span> node<span class="token punctuation">:</span>9.1<span class="token punctuation">-</span>alpine
+    <span class="token key atrule">command</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>node<span class="token punctuation">]</span>
+    <span class="token key atrule">source</span><span class="token punctuation">:</span> <span class="token punctuation">|</span><span class="token scalar string">
+      var rand = Math.floor(Math.random() * 100);
+      console.log(rand);</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br></div></div><h3 id="steps"><a href="#steps" class="header-anchor">#</a> steps</h3> <p>steps 规定了执行的步骤，有并行也有串行模式，它以双横杠(- -)的形式来定义串行，然后以单横杠的形式来定义并行</p> <div class="language-yaml line-numbers-mode"><pre class="language-yaml"><code><span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> hello<span class="token punctuation">-</span>hello<span class="token punctuation">-</span>hello
+  <span class="token key atrule">steps</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> hello1            <span class="token comment"># hello1 is run before the following steps</span>
+      <span class="token key atrule">template</span><span class="token punctuation">:</span> whalesay
+      <span class="token key atrule">arguments</span><span class="token punctuation">:</span>
+        <span class="token key atrule">parameters</span><span class="token punctuation">:</span>
+        <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> message
+          <span class="token key atrule">value</span><span class="token punctuation">:</span> <span class="token string">&quot;hello1&quot;</span>
+  <span class="token punctuation">-</span> <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> hello2a           <span class="token comment"># double dash =&gt; run after previous step</span>
+      <span class="token key atrule">template</span><span class="token punctuation">:</span> whalesay
+      <span class="token key atrule">arguments</span><span class="token punctuation">:</span>
+        <span class="token key atrule">parameters</span><span class="token punctuation">:</span>
+        <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> message
+          <span class="token key atrule">value</span><span class="token punctuation">:</span> <span class="token string">&quot;hello2a&quot;</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> hello2b           <span class="token comment"># single dash =&gt; run in parallel with previous step</span>
+      <span class="token key atrule">template</span><span class="token punctuation">:</span> whalesay
+      <span class="token key atrule">arguments</span><span class="token punctuation">:</span>
+        <span class="token key atrule">parameters</span><span class="token punctuation">:</span>
+        <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> message
+          <span class="token key atrule">value</span><span class="token punctuation">:</span> <span class="token string">&quot;hello2b&quot;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br></div></div><h3 id="dag"><a href="#dag" class="header-anchor">#</a> dag</h3> <p>DAG 是一个有向无环图，Argo 使用 DAG 来定义一些比较复杂的 workflow 关系</p> <div class="language-yaml line-numbers-mode"><pre class="language-yaml"><code><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> argoproj.io/v1alpha1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> Workflow
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">generateName</span><span class="token punctuation">:</span> dag<span class="token punctuation">-</span>diamond<span class="token punctuation">-</span>
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">entrypoint</span><span class="token punctuation">:</span> diamond
+  <span class="token key atrule">templates</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> echo
+    <span class="token key atrule">inputs</span><span class="token punctuation">:</span>
+      <span class="token key atrule">parameters</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> message
+    <span class="token key atrule">container</span><span class="token punctuation">:</span>
+      <span class="token key atrule">image</span><span class="token punctuation">:</span> alpine<span class="token punctuation">:</span><span class="token number">3.7</span>
+      <span class="token key atrule">command</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>echo<span class="token punctuation">,</span> <span class="token string">&quot;{{inputs.parameters.message}}&quot;</span><span class="token punctuation">]</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> diamond
+    <span class="token key atrule">dag</span><span class="token punctuation">:</span>
+      <span class="token key atrule">tasks</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> A
+        <span class="token key atrule">template</span><span class="token punctuation">:</span> echo
+        <span class="token key atrule">arguments</span><span class="token punctuation">:</span>
+          <span class="token key atrule">parameters</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">{</span><span class="token key atrule">name</span><span class="token punctuation">:</span> message<span class="token punctuation">,</span> <span class="token key atrule">value</span><span class="token punctuation">:</span> A<span class="token punctuation">}</span><span class="token punctuation">]</span>
+      <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> B
+        <span class="token key atrule">dependencies</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>A<span class="token punctuation">]</span>
+        <span class="token key atrule">template</span><span class="token punctuation">:</span> echo
+        <span class="token key atrule">arguments</span><span class="token punctuation">:</span>
+          <span class="token key atrule">parameters</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">{</span><span class="token key atrule">name</span><span class="token punctuation">:</span> message<span class="token punctuation">,</span> <span class="token key atrule">value</span><span class="token punctuation">:</span> B<span class="token punctuation">}</span><span class="token punctuation">]</span>
+      <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> C
+        <span class="token key atrule">dependencies</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>A<span class="token punctuation">]</span>
+        <span class="token key atrule">template</span><span class="token punctuation">:</span> echo
+        <span class="token key atrule">arguments</span><span class="token punctuation">:</span>
+          <span class="token key atrule">parameters</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">{</span><span class="token key atrule">name</span><span class="token punctuation">:</span> message<span class="token punctuation">,</span> <span class="token key atrule">value</span><span class="token punctuation">:</span> C<span class="token punctuation">}</span><span class="token punctuation">]</span>
+      <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> D
+        <span class="token key atrule">dependencies</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>B<span class="token punctuation">,</span> C<span class="token punctuation">]</span>
+        <span class="token key atrule">template</span><span class="token punctuation">:</span> echo
+        <span class="token key atrule">arguments</span><span class="token punctuation">:</span>
+          <span class="token key atrule">parameters</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">{</span><span class="token key atrule">name</span><span class="token punctuation">:</span> message<span class="token punctuation">,</span> <span class="token key atrule">value</span><span class="token punctuation">:</span> D<span class="token punctuation">}</span><span class="token punctuation">]</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br></div></div><p>如上所示，上面的 dag 定义了一个钻石类型的图 A -&gt; (B C) -&gt; D</p> <p><img src="https://b3logfile.com/file/2020/11/image-ca7b7c6e.png?imageView2/2/interlace/1/format/webp" alt="img"></p> <h3 id="loop"><a href="#loop" class="header-anchor">#</a> loop</h3> <p>使用 loop 我们可以定义循环</p> <div class="language-yaml line-numbers-mode"><pre class="language-yaml"><code><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> argoproj.io/v1alpha1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> Workflow
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">generateName</span><span class="token punctuation">:</span> loops<span class="token punctuation">-</span>
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">entrypoint</span><span class="token punctuation">:</span> loop<span class="token punctuation">-</span>example
+  <span class="token key atrule">templates</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> loop<span class="token punctuation">-</span>example
+    <span class="token key atrule">steps</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> print<span class="token punctuation">-</span>message
+        <span class="token key atrule">template</span><span class="token punctuation">:</span> whalesay
+        <span class="token key atrule">arguments</span><span class="token punctuation">:</span>
+          <span class="token key atrule">parameters</span><span class="token punctuation">:</span>
+          <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> message
+            <span class="token key atrule">value</span><span class="token punctuation">:</span> <span class="token string">&quot;{{item}}&quot;</span>
+        <span class="token key atrule">withItems</span><span class="token punctuation">:</span>              <span class="token comment"># invoke whalesay once for each item in parallel</span>
+        <span class="token punctuation">-</span> hello world           <span class="token comment"># item 1</span>
+        <span class="token punctuation">-</span> goodbye world         <span class="token comment"># item 2</span>
+
+  <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> whalesay
+    <span class="token key atrule">inputs</span><span class="token punctuation">:</span>
+      <span class="token key atrule">parameters</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> message
+    <span class="token key atrule">container</span><span class="token punctuation">:</span>
+      <span class="token key atrule">image</span><span class="token punctuation">:</span> docker/whalesay<span class="token punctuation">:</span>latest
+      <span class="token key atrule">command</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>cowsay<span class="token punctuation">]</span>
+      <span class="token key atrule">args</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">&quot;{{inputs.parameters.message}}&quot;</span><span class="token punctuation">]</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br></div></div><p>这个例子中，我们通过 withItems 传入了两个参数，然后 Workflow 就会并行执行这个 templates 两次，依次使用我们给出的参数</p> <p>当然我们也可以动态的使用循环，循环的参数基于其他模板来控制</p> <div class="language-yaml line-numbers-mode"><pre class="language-yaml"><code><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> argoproj.io/v1alpha1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> Workflow
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">generateName</span><span class="token punctuation">:</span> loops<span class="token punctuation">-</span>param<span class="token punctuation">-</span>result<span class="token punctuation">-</span>
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">entrypoint</span><span class="token punctuation">:</span> loop<span class="token punctuation">-</span>param<span class="token punctuation">-</span>result<span class="token punctuation">-</span>example
+  <span class="token key atrule">templates</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> loop<span class="token punctuation">-</span>param<span class="token punctuation">-</span>result<span class="token punctuation">-</span>example
+    <span class="token key atrule">steps</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> generate
+        <span class="token key atrule">template</span><span class="token punctuation">:</span> gen<span class="token punctuation">-</span>number<span class="token punctuation">-</span>list
+    <span class="token comment"># Iterate over the list of numbers generated by the generate step above</span>
+    <span class="token punctuation">-</span> <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> sleep
+        <span class="token key atrule">template</span><span class="token punctuation">:</span> sleep<span class="token punctuation">-</span>n<span class="token punctuation">-</span>sec
+        <span class="token key atrule">arguments</span><span class="token punctuation">:</span>
+          <span class="token key atrule">parameters</span><span class="token punctuation">:</span>
+          <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> seconds
+            <span class="token key atrule">value</span><span class="token punctuation">:</span> <span class="token string">&quot;{{item}}&quot;</span>
+        <span class="token key atrule">withParam</span><span class="token punctuation">:</span> <span class="token string">&quot;{{steps.generate.outputs.result}}&quot;</span>
+
+  <span class="token comment"># Generate a list of numbers in JSON format</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> gen<span class="token punctuation">-</span>number<span class="token punctuation">-</span>list
+    <span class="token key atrule">script</span><span class="token punctuation">:</span>
+      <span class="token key atrule">image</span><span class="token punctuation">:</span> python<span class="token punctuation">:</span>alpine3.6
+      <span class="token key atrule">command</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>python<span class="token punctuation">]</span>
+      <span class="token key atrule">source</span><span class="token punctuation">:</span> <span class="token punctuation">|</span><span class="token scalar string">
+        import json
+        import sys
+        json.dump([i for i in range(20, 31)], sys.stdout)</span>
+
+  <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> sleep<span class="token punctuation">-</span>n<span class="token punctuation">-</span>sec
+    <span class="token key atrule">inputs</span><span class="token punctuation">:</span>
+      <span class="token key atrule">parameters</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> seconds
+    <span class="token key atrule">container</span><span class="token punctuation">:</span>
+      <span class="token key atrule">image</span><span class="token punctuation">:</span> alpine<span class="token punctuation">:</span>latest
+      <span class="token key atrule">command</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>sh<span class="token punctuation">,</span> <span class="token punctuation">-</span>c<span class="token punctuation">]</span>
+      <span class="token key atrule">args</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">&quot;echo sleeping for {{inputs.parameters.seconds}} seconds; sleep {{inputs.parameters.seconds}}; echo done&quot;</span><span class="token punctuation">]</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br></div></div><h3 id="条件控制"><a href="#条件控制" class="header-anchor">#</a> 条件控制</h3> <p>条件的控制需要用到 when 的关键字</p> <div class="language-yaml line-numbers-mode"><pre class="language-yaml"><code><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> argoproj.io/v1alpha1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> Workflow
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">generateName</span><span class="token punctuation">:</span> coinflip<span class="token punctuation">-</span>
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">entrypoint</span><span class="token punctuation">:</span> coinflip
+  <span class="token key atrule">templates</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> coinflip
+    <span class="token key atrule">steps</span><span class="token punctuation">:</span>
+    <span class="token comment"># flip a coin</span>
+    <span class="token punctuation">-</span> <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> flip<span class="token punctuation">-</span>coin
+        <span class="token key atrule">template</span><span class="token punctuation">:</span> flip<span class="token punctuation">-</span>coin
+    <span class="token comment"># evaluate the result in parallel</span>
+    <span class="token punctuation">-</span> <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> heads
+        <span class="token key atrule">template</span><span class="token punctuation">:</span> heads                 <span class="token comment"># call heads template if &quot;heads&quot;</span>
+        <span class="token key atrule">when</span><span class="token punctuation">:</span> <span class="token string">&quot;{{steps.flip-coin.outputs.result}} == heads&quot;</span>
+      <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> tails
+        <span class="token key atrule">template</span><span class="token punctuation">:</span> tails                 <span class="token comment"># call tails template if &quot;tails&quot;</span>
+        <span class="token key atrule">when</span><span class="token punctuation">:</span> <span class="token string">&quot;{{steps.flip-coin.outputs.result}} == tails&quot;</span>
+
+  <span class="token comment"># Return heads or tails based on a random number</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> flip<span class="token punctuation">-</span>coin
+    <span class="token key atrule">script</span><span class="token punctuation">:</span>
+      <span class="token key atrule">image</span><span class="token punctuation">:</span> python<span class="token punctuation">:</span>alpine3.6
+      <span class="token key atrule">command</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>python<span class="token punctuation">]</span>
+      <span class="token key atrule">source</span><span class="token punctuation">:</span> <span class="token punctuation">|</span><span class="token scalar string">
+        import random
+        result = &quot;heads&quot; if random.randint(0,1) == 0 else &quot;tails&quot;
+        print(result)</span>
+
+  <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> heads
+    <span class="token key atrule">container</span><span class="token punctuation">:</span>
+      <span class="token key atrule">image</span><span class="token punctuation">:</span> alpine<span class="token punctuation">:</span><span class="token number">3.6</span>
+      <span class="token key atrule">command</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>sh<span class="token punctuation">,</span> <span class="token punctuation">-</span>c<span class="token punctuation">]</span>
+      <span class="token key atrule">args</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">&quot;echo \&quot;it was heads\&quot;&quot;</span><span class="token punctuation">]</span>
+
+  <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> tails
+    <span class="token key atrule">container</span><span class="token punctuation">:</span>
+      <span class="token key atrule">image</span><span class="token punctuation">:</span> alpine<span class="token punctuation">:</span><span class="token number">3.6</span>
+      <span class="token key atrule">command</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>sh<span class="token punctuation">,</span> <span class="token punctuation">-</span>c<span class="token punctuation">]</span>
+      <span class="token key atrule">args</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">&quot;echo \&quot;it was tails\&quot;&quot;</span><span class="token punctuation">]</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br></div></div><p>在这个例子中，Workflow 通过 when 来判断第一步获取的值是 head 还是 tails，根据获取的值来条件判断下一步会执行的步骤</p> <h3 id="重试"><a href="#重试" class="header-anchor">#</a> 重试</h3> <p>重试模块会定义如果 Job 执行出现 failures 或 errors 时的情况，</p> <ul><li>limit:指重试的最大次数</li> <li>retryOn:指定重启策略
+<ul><li>Always: errors 和 failures 时重启</li> <li>OnFailure: failures 时重启，默认采用</li> <li>OnError： error 时重启</li></ul></li> <li>backoff:定义重启的一些参数</li></ul> <div class="language-yaml line-numbers-mode"><pre class="language-yaml"><code><span class="token comment"># This example demonstrates the use of retry back offs</span>
+<span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> argoproj.io/v1alpha1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> Workflow
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">generateName</span><span class="token punctuation">:</span> retry<span class="token punctuation">-</span>backoff<span class="token punctuation">-</span>
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">entrypoint</span><span class="token punctuation">:</span> retry<span class="token punctuation">-</span>backoff
+  <span class="token key atrule">templates</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> retry<span class="token punctuation">-</span>backoff
+    <span class="token key atrule">retryStrategy</span><span class="token punctuation">:</span>
+      <span class="token key atrule">limit</span><span class="token punctuation">:</span> <span class="token number">10</span>
+      <span class="token key atrule">retryPolicy</span><span class="token punctuation">:</span> <span class="token string">&quot;Always&quot;</span>
+      <span class="token key atrule">backoff</span><span class="token punctuation">:</span>
+        <span class="token key atrule">duration</span><span class="token punctuation">:</span> <span class="token string">&quot;1&quot;</span>      <span class="token comment"># Must be a string. Default unit is seconds. Could also be a Duration, e.g.: &quot;2m&quot;, &quot;6h&quot;, &quot;1d&quot;</span>
+        <span class="token key atrule">factor</span><span class="token punctuation">:</span> <span class="token number">2</span>
+        <span class="token key atrule">maxDuration</span><span class="token punctuation">:</span> <span class="token string">&quot;1m&quot;</span>  <span class="token comment"># Must be a string. Default unit is seconds. Could also be a Duration, e.g.: &quot;2m&quot;, &quot;6h&quot;, &quot;1d&quot;</span>
+    <span class="token key atrule">container</span><span class="token punctuation">:</span>
+      <span class="token key atrule">image</span><span class="token punctuation">:</span> python<span class="token punctuation">:</span>alpine3.6
+      <span class="token key atrule">command</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">&quot;python&quot;</span><span class="token punctuation">,</span> <span class="token punctuation">-</span>c<span class="token punctuation">]</span>
+      <span class="token comment"># fail with a 66% probability</span>
+      <span class="token key atrule">args</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">&quot;import random; import sys; exit_code = random.choice([0, 1, 1]); sys.exit(exit_code)&quot;</span><span class="token punctuation">]</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br></div></div><p>以上的例子定义了一个会重启的任务</p> <p><img src="https://b3logfile.com/file/2020/11/image-25167a8f.png?imageView2/2/interlace/1/format/webp" alt="img"></p> <h3 id="递归"><a href="#递归" class="header-anchor">#</a> 递归</h3> <p>argo 也是支持递归的,我们只要将步骤的下一步指定为本步骤即可</p> <div class="language-yaml line-numbers-mode"><pre class="language-yaml"><code><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> argoproj.io/v1alpha1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> Workflow
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">generateName</span><span class="token punctuation">:</span> coinflip<span class="token punctuation">-</span>recursive<span class="token punctuation">-</span>
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">entrypoint</span><span class="token punctuation">:</span> coinflip
+  <span class="token key atrule">templates</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> coinflip
+    <span class="token key atrule">steps</span><span class="token punctuation">:</span>
+    <span class="token comment"># flip a coin</span>
+    <span class="token punctuation">-</span> <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> flip<span class="token punctuation">-</span>coin
+        <span class="token key atrule">template</span><span class="token punctuation">:</span> flip<span class="token punctuation">-</span>coin
+    <span class="token comment"># evaluate the result in parallel</span>
+    <span class="token punctuation">-</span> <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> heads
+        <span class="token key atrule">template</span><span class="token punctuation">:</span> heads                 <span class="token comment"># call heads template if &quot;heads&quot;</span>
+        <span class="token key atrule">when</span><span class="token punctuation">:</span> <span class="token string">&quot;{{steps.flip-coin.outputs.result}} == heads&quot;</span>
+      <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> tails                     <span class="token comment"># keep flipping coins if &quot;tails&quot;</span>
+        <span class="token key atrule">template</span><span class="token punctuation">:</span> coinflip
+        <span class="token key atrule">when</span><span class="token punctuation">:</span> <span class="token string">&quot;{{steps.flip-coin.outputs.result}} == tails&quot;</span>
+
+  <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> flip<span class="token punctuation">-</span>coin
+    <span class="token key atrule">script</span><span class="token punctuation">:</span>
+      <span class="token key atrule">image</span><span class="token punctuation">:</span> python<span class="token punctuation">:</span>alpine3.6
+      <span class="token key atrule">command</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>python<span class="token punctuation">]</span>
+      <span class="token key atrule">source</span><span class="token punctuation">:</span> <span class="token punctuation">|</span><span class="token scalar string">
+        import random
+        result = &quot;heads&quot; if random.randint(0,1) == 0 else &quot;tails&quot;
+        print(result)</span>
+
+  <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> heads
+    <span class="token key atrule">container</span><span class="token punctuation">:</span>
+      <span class="token key atrule">image</span><span class="token punctuation">:</span> alpine<span class="token punctuation">:</span><span class="token number">3.6</span>
+      <span class="token key atrule">command</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>sh<span class="token punctuation">,</span> <span class="token punctuation">-</span>c<span class="token punctuation">]</span>
+      <span class="token key atrule">args</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">&quot;echo \&quot;it was heads\&quot;&quot;</span><span class="token punctuation">]</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br></div></div><p>在以上的步骤中，step 执行会做一个判断，如果一直是反面，会递归执行直到为正面</p> <p><img src="https://b3logfile.com/file/2020/11/image-10785485.png?imageView2/2/interlace/1/format/webp" alt="img"></p> <h3 id="exit-handlers"><a href="#exit-handlers" class="header-anchor">#</a> Exit handlers</h3> <p>Argo 可以定义一个出口，它会直接退出工作流，无论成功与否。</p> <p>常见于:</p> <ul><li>工作流运行后清理</li> <li>发送工作流状态的通知（例如，电子邮件/ Slack）</li> <li>将通过/失败状态发布到 webhook 结果（例如 GitHub 构建结果）</li> <li>重新提交或提交另一个工作流程</li></ul> <div class="language- line-numbers-mode"><pre class="language-text"><code>spec:
+  entrypoint: intentional-fail
+  onExit: exit-handler                  # invoke exit-hander template at end of the workflow
+  templates:
+  - name: exit-handler
+    steps:
+    - - name: notify
+        template: send-email
+      - name: celebrate
+        template: celebrate
+        when: &quot;{{workflow.status}} == Succeeded&quot;
+      - name: cry
+        template: cry
+        when: &quot;{{workflow.status}} != Succeeded&quot;
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br></div></div><p>在这里使用 Onexit 参数指定了结束模板，则执行 exit-handler 这个模板时，无论是否成功，都会直接结束</p> <h3 id="timeout"><a href="#timeout" class="header-anchor">#</a> timeout</h3> <p>Argo 定义了一个超时的限定，如果容器超时了，则直接结束 Job</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>- name: sleep
+  container:
+    image: alpine:latest
+    command: [sh, -c]
+    args: [&quot;echo sleeping for 1m; sleep 60; echo done&quot;]
+  activeDeadlineSeconds: 10
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br></div></div><h3 id="suspending"><a href="#suspending" class="header-anchor">#</a> suspending</h3> <div class="language- line-numbers-mode"><pre class="language-text"><code>- name: approve
+  suspend: {}
+ 
+- name: delay
+  suspend:
+    duration: 20
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br></div></div><p>如果我们使用了 duration 关键字，它会等待 20 秒后才唤醒执行</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>argo resume WORKFLOW    # 这里的Workflow是指workflow的pod容器名
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><h2 id="参数操作"><a href="#参数操作" class="header-anchor">#</a> 参数操作</h2> <p>参数传递对于工作流也是一个比较关键的问题。对于工作流来说，不同 tempaltes 之间的传递，是通过 jinja 来定义。目前 Argo 只接受以下几种前缀</p> <ul><li>item</li> <li>steps</li> <li>inputs</li> <li>outputs</li> <li>workflow</li> <li>tasks</li></ul> <h3 id="parameters"><a href="#parameters" class="header-anchor">#</a> parameters</h3> <p>通常的参数传递是通过 parameters 关键字来定义的</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>- name: whalesay
+  inputs:
+    parameters:
+    - name: message       # parameter declaration
+  container:
+    # run cowsay with that message input parameter as args
+    image: docker/whalesay
+    command: [cowsay]
+    args: [&quot;{{inputs.parameters.message}}&quot;]
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br></div></div><h3 id="arguments"><a href="#arguments" class="header-anchor">#</a> arguments</h3> <p>我们可以通过 arguments 关键字来定义一个全局参数</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>entrypoint: whalesay
+arguments:
+  parameters:
+  - name: message
+    value: hello world
+  - name: os-list                                     # a list of items
+    value: |
+      [
+        { &quot;image&quot;: &quot;debian&quot;, &quot;tag&quot;: &quot;9.1&quot; },
+        { &quot;image&quot;: &quot;debian&quot;, &quot;tag&quot;: &quot;8.9&quot; },
+        { &quot;image&quot;: &quot;alpine&quot;, &quot;tag&quot;: &quot;3.6&quot; },
+        { &quot;image&quot;: &quot;ubuntu&quot;, &quot;tag&quot;: &quot;17.10&quot; }
+      ]
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br></div></div><p>在启动任务时，我们可以通过-p 的参数来做实际参数，如果没有指定，则会使用默认参数（argument 中定义）</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>argo submit arguments.yaml -p messgae=&quot;helloworld&quot; -p oslist=[{ &quot;image&quot;: &quot;ubuntu&quot;, &quot;tag&quot;: &quot;17.10&quot; }]
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><h3 id="step-间的传参"><a href="#step-间的传参" class="header-anchor">#</a> step 间的传参</h3> <p>对于 step 间的传参，是通过 step 关键字来定义的</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>- name: test
+  steps:
+  - - name: A
+      template: A
+  - - name: B
+      template: B
+      when: &quot;\&quot;{{steps.A.outputs.result}}\&quot; == \&quot;B\&quot;&quot;
+    - name: C
+      template: C
+      when: &quot;\&quot;{{steps.A.outputs.result}}\&quot; == \&quot;C\&quot;&quot;
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br></div></div><p>在以上例子中，定义了一个 step，它会首先执行 A 步骤，然后根据启动结果，如果输出是 B，则执行 B 步骤，否则执行 C 步骤</p> <h3 id="dag-间的传参"><a href="#dag-间的传参" class="header-anchor">#</a> dag 间的传参</h3> <p>对于 Dag，其实它与 step 是十分相似的</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>dag:
+  tasks:
+  - name: ip
+    template: param
+    arguments:
+      parameters: [{name: request, value: &quot;ip&quot;}, {name: ip, value: &quot;{{inputs.parameters.ip}}&quot;}]
+  - name: port
+    template: param
+    arguments:
+      parameters: [{name: request, value: &quot;port&quot;}, {name: ip, value: &quot;{{inputs.parameters.ip}}&quot;}]
+  - name: username
+    template: param
+    arguments:
+      parameters: [{name: request, value: &quot;username&quot;}, {name: ip, value: &quot;{{inputs.parameters.ip}}&quot;}]
+  - name: password
+    template: param
+    arguments:
+      parameters: [{name: request, value: &quot;password&quot;}, {name: ip, value: &quot;{{inputs.parameters.ip}}&quot;}]
+  - name: server
+    template: server
+    dependencies: [ip, port, username, password]
+    arguments:
+      parameters:
+      - name: ip
+        value: &quot;{{tasks.ip.outputs.result}}&quot;
+      - name: password
+        value: &quot;{{tasks.password.outputs.result}}&quot;
+      - name: username
+        value: &quot;{{tasks.username.outputs.result}}&quot;
+      - name: port
+        value: &quot;{{tasks.port.outputs.result}}&quot;
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br></div></div><p>在上面的例子中，dag 并行执行(ip, port, username, password)四个步骤，然后将执行的结果传递给 server 模块，然后 server 模块会以这四个参数来完成工作。</p> <h3 id="script-result"><a href="#script-result" class="header-anchor">#</a> script result</h3> <p>当我们运行一个 script 时，运行的标准输出会以 result 的方式来传递</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>apiVersion: argoproj.io/v1alpha1
+kind: Workflow
+metadata:
+  generateName: scripts-bash-
+spec:
+  entrypoint: bash-script-example
+  templates:
+  - name: bash-script-example
+    steps:
+    - - name: generate
+        template: gen-random-int-bash
+    - - name: print
+        template: print-message
+        arguments:
+          parameters:
+          - name: message
+            value: &quot;{{steps.generate.outputs.result}}&quot;  # The result of the here-script
+
+  - name: gen-random-int-bash
+    script:
+      image: debian:9.4
+      command: [bash]
+      source: |                                         # Contents of the here-script
+        cat /dev/urandom | od -N2 -An -i | awk -v f=1 -v r=100 '{printf &quot;%i\n&quot;, f + r * $1 / 65536}'
+
+  - name: gen-random-int-python
+    script:
+      image: python:alpine3.6
+      command: [python]
+      source: |
+        import random
+        i = random.randint(1, 100)
+        print(i)
+
+  - name: gen-random-int-javascript
+    script:
+      image: node:9.1-alpine
+      command: [node]
+      source: |
+        var rand = Math.floor(Math.random() * 100);
+        console.log(rand);
+
+  - name: print-message
+    inputs:
+      parameters:
+      - name: message
+    container:
+      image: alpine:latest
+      command: [sh, -c]
+      args: [&quot;echo result was: {{inputs.parameters.message}}&quot;]
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br></div></div><p>比如上面的例子，generate 这个模块执行完成之后，print 模块会获取 generate 模块的输出结果作为参数来执行</p> <p><img src="https://b3logfile.com/file/2020/11/image-e4d1cfe7.png?imageView2/2/interlace/1/format/webp" alt="img"></p> <p>733 x 278990 x 375</p> <h3 id="output-parameters"><a href="#output-parameters" class="header-anchor">#</a> output Parameters</h3> <p>我们可以使用步骤的输出作为参数传递</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>apiVersion: argoproj.io/v1alpha1
+kind: Workflow
+metadata:
+  generateName: output-parameter-
+spec:
+  entrypoint: output-parameter
+  templates:
+  - name: output-parameter
+    steps:
+    - - name: generate-parameter
+        template: whalesay
+    - - name: consume-parameter
+        template: print-message
+        arguments:
+          parameters:
+          # Pass the hello-param output from the generate-parameter step as the message input to print-message
+          - name: message
+            value: &quot;{{steps.generate-parameter.outputs.parameters.hello-param}}&quot;
+
+  - name: whalesay
+    container:
+      image: docker/whalesay:latest
+      command: [sh, -c]
+      args: [&quot;echo -n hello world &gt; /tmp/hello_world.txt&quot;]  # generate the content of hello_world.txt
+    outputs:
+      parameters:
+      - name: hello-param       # name of output parameter
+        valueFrom:
+          path: /tmp/hello_world.txt    # set the value of hello-param to the contents of this hello-world.txt
+
+  - name: print-message
+    inputs:
+      parameters:
+      - name: message
+    container:
+      image: docker/whalesay:latest
+      command: [cowsay]
+      args: [&quot;{{inputs.parameters.message}}&quot;]
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br></div></div><p>在上面的例子中，whalesay 模块会将执行结果打印到 hello-world.txt 文本，然后将这个文本的内容定为输出结果然后 consume-parameter 模块会去获取 whalesay 模块的输出结果做为输入参数</p> <h2 id="资源操作"><a href="#资源操作" class="header-anchor">#</a> 资源操作</h2> <p>Argo 可以操作的资源也有很多，它不仅仅是能操作容器，kubernetes 的资源、容器资源、计算资源等也均可调配</p> <h3 id="secret"><a href="#secret" class="header-anchor">#</a> Secret</h3> <div class="language- line-numbers-mode"><pre class="language-text"><code>volumes:
+  - name: my-secret-vol
+    secret:
+      secretName: my-secret     # name of an existing k8s secret
+templates:
+  - name: whalesay
+    container:
+      image: alpine:3.7
+      command: [sh, -c]
+      args: ['
+        echo &quot;secret from env: $MYSECRETPASSWORD&quot;;
+        echo &quot;secret from file: `cat /secret/mountpath/mypassword`&quot;
+      ']
+      env:
+      - name: MYSECRETPASSWORD  # name of env var
+        valueFrom:
+          secretKeyRef:
+            name: my-secret     # name of an existing k8s secret
+            key: mypassword     # 'key' subcomponent of the secret
+      volumeMounts:
+      - name: my-secret-vol     # mount file containing secret at /secret/mountpath
+        mountPath: &quot;/secret/mountpath&quot;
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br></div></div><p>在这里，我们使用了 Secret 作为一个 volume 供模板调用</p> <h3 id="daemon"><a href="#daemon" class="header-anchor">#</a> daemon</h3> <p>使用守护进程可以使得作业在后台运行，他们的存在使得有的工作可以跨工作流运行</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>- name: influxdb
+  daemon: true                        # start influxdb as a daemon
+  retryStrategy:
+    limit: 10                         # retry container if it fails
+  container:
+    image: influxdb:1.2
+    readinessProbe:                   # wait for readinessProbe to succeed
+      httpGet:
+        path: /ping
+        port: 8086
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br></div></div><p>在这里使用了 daemon: true 来开启 daemon，以保护 influxdb 持续运行</p> <h3 id="sidecar"><a href="#sidecar" class="header-anchor">#</a> sidecar</h3> <p>边车模式，指著容器在同一容器中同时执行另一个容器来支持主容器的工作。Argo 也支持边车模式，可以启动一个辅助容器来协助作业的进行</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>apiVersion: argoproj.io/v1alpha1
+kind: Workflow
+metadata:
+  generateName: sidecar-nginx-
+spec:
+  entrypoint: sidecar-nginx-example
+  templates:
+  - name: sidecar-nginx-example
+    container:
+      image: appropriate/curl
+      command: [sh, -c]
+      # Try to read from nginx web server until it comes up
+      args: [&quot;until `curl -G 'http://127.0.0.1/' &gt;&amp; /tmp/out`; do echo sleep &amp;&amp; sleep 1; done &amp;&amp; cat /tmp/out&quot;]
+    # Create a simple nginx web server
+    sidecars:
+    - name: nginx
+      image: nginx:1.13
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br></div></div><p><img src="https://b3logfile.com/file/2020/11/image-1ca70e57.png?imageView2/2/interlace/1/format/webp" alt="img"></p> <p>733 x 595918 x 745</p> <h3 id="artifacts"><a href="#artifacts" class="header-anchor">#</a> Artifacts</h3> <p>在 Argo 中也有集成一些比较常用的库，比如 http 和 git</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>templates:
+- name: hardwired-artifact
+  inputs:
+    artifacts:
+    # Check out the master branch of the argo repo and place it at /src
+    # revision can be anything that git checkout accepts: branch, commit, tag, etc.
+    - name: argo-source
+      path: /src
+      git:
+        repo: https://github.com/argoproj/argo.git
+        revision: &quot;master&quot;
+    # Download kubectl 1.8.0 and place it at /bin/kubectl
+    - name: kubectl
+      path: /bin/kubectl
+      mode: 0755
+      http:
+        url: https://storage.googleapis.com/kubernetes-release/release/v1.8.0/bin/linux/amd64/kubectl
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br></div></div><h3 id="resource"><a href="#resource" class="header-anchor">#</a> Resource</h3> <p>Argo 可以操作 k8s 资源 创建一个 job</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>apiVersion: argoproj.io/v1alpha1
+kind: Workflow
+metadata:
+  generateName: k8s-jobs-
+spec:
+  entrypoint: pi-tmpl
+  templates:
+  - name: pi-tmpl
+    resource:                   # indicates that this is a resource template
+      action: create            # can be any kubectl action (e.g. create, delete, apply, patch)
+      successCondition: status.succeeded &gt; 0
+      failureCondition: status.failed &gt; 3
+      manifest: |               #put your kubernetes spec here
+        apiVersion: batch/v1
+        kind: Job
+        metadata:
+          generateName: pi-job-
+        spec:
+          template:
+            metadata:
+              name: pi
+            spec:
+              containers:
+              - name: pi
+                image: perl
+                command: [&quot;perl&quot;,  &quot;-Mbignum=bpi&quot;, &quot;-wle&quot;, &quot;print bpi(2000)&quot;]
+              restartPolicy: Never
+          backoffLimit: 4
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br></div></div><p>可以使用以下 Argo Workflow 修改此 Crontab：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>apiVersion: &quot;stable.example.com/v1&quot;
+kind: CronTab
+spec:
+  cronSpec: &quot;* * * * */5&quot;
+  image: my-awesome-cron-image
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow
+metadata:
+  generateName: k8s-patch-
+spec:
+  entrypoint: cront-tmpl
+  templates:
+  - name: cront-tmpl
+    resource:
+      action: patch
+      mergeStrategy: merge                 # Must be one of [strategic merge json]
+      manifest: |
+        apiVersion: &quot;stable.example.com/v1&quot;
+        kind: CronTab
+        spec:
+          cronSpec: &quot;* * * * */10&quot;
+          image: my-awesome-cron-image
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br></div></div><h3 id="docker"><a href="#docker" class="header-anchor">#</a> docker</h3> <p>Argo 实现了 Docker in Docker 的形式</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>- name: dind-sidecar-example
+  container:
+    image: docker:17.10
+    command: [sh, -c]
+    args: [&quot;until docker ps; do sleep 3; done; docker run --rm debian:latest cat /etc/os-release&quot;]
+    env:
+    - name: DOCKER_HOST               # the docker daemon can be access on the standard port on localhost
+      value: 127.0.0.1
+  sidecars:
+  - name: dind
+    image: docker:17.10-dind          # Docker already provides an image for running a Docker daemon
+    securityContext:
+      privileged: true                # the Docker daemon can only run in a privileged container
+    # mirrorVolumeMounts will mount the same volumes specified in the main container
+    # to the sidecar (including artifacts), at the same mountPaths. This enables
+    # dind daemon to (partially) see the same filesystem as the main container in
+    # order to use features such as docker volume binding.
+    mirrorVolumeMounts: true
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br></div></div><p>以上工作流实现了主容器运行等待容器创建，边车容器启动一个容器并将这个容器镜像交给主容器资源</p> <h2 id="volumes"><a href="#volumes" class="header-anchor">#</a> volumes</h2> <p>在 Argo 中，我们也可以直接传递容器卷，方便处理大量数据</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>apiVersion: argoproj.io/v1alpha1
+kind: Workflow
+metadata:
+  generateName: volumes-pvc-
+spec:
+  entrypoint: volumes-pvc-example
+  volumeClaimTemplates:                 # define volume, same syntax as k8s Pod spec
+  - metadata:
+      name: workdir                     # name of volume claim
+    spec:
+      accessModes: [ &quot;ReadWriteOnce&quot; ]
+      resources:
+        requests:
+          storage: 1Gi                  # Gi =&gt; 1024 * 1024 * 1024
+
+  templates:
+  - name: volumes-pvc-example
+    steps:
+    - - name: generate
+        template: whalesay
+    - - name: print
+        template: print-message
+
+  - name: whalesay
+    container:
+      image: docker/whalesay:latest
+      command: [sh, -c]
+      args: [&quot;echo generating message in volume; cowsay hello world | tee /mnt/vol/hello_world.txt&quot;]
+      # Mount workdir volume at /mnt/vol before invoking docker/whalesay
+      volumeMounts:                     # same syntax as k8s Pod spec
+      - name: workdir
+        mountPath: /mnt/vol
+
+  - name: print-message
+    container:
+      image: alpine:latest
+      command: [sh, -c]
+      args: [&quot;echo getting message from volume; find /mnt/vol; cat /mnt/vol/hello_world.txt&quot;]
+      # Mount workdir volume at /mnt/vol before invoking docker/whalesay
+      volumeMounts:                     # same syntax as k8s Pod spec
+      - name: workdir
+        mountPath: /mnt/vol
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br></div></div><p>在上面的例子中，workflow 初始化了一个容器卷，然后下面的 whalesay 和 print-message 模块都调用了这个容器卷</p> <p>不过大多数情况下，我们会去调用一个已存在的卷</p> <div class="language- line-numbers-mode"><pre class="language-text"><code># Define Kubernetes PVC
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: my-existing-volume
+spec:
+  accessModes: [ &quot;ReadWriteOnce&quot; ]
+  resources:
+    requests:
+      storage: 1Gi
+ 
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow
+metadata:
+  generateName: volumes-existing-
+spec:
+  entrypoint: volumes-existing-example
+  volumes:
+  # Pass my-existing-volume as an argument to the volumes-existing-example template
+  # Same syntax as k8s Pod spec
+  - name: workdir
+    persistentVolumeClaim:
+      claimName: my-existing-volume
+ 
+  templates:
+  - name: volumes-existing-example
+    steps:
+    - - name: generate
+        template: whalesay
+    - - name: print
+        template: print-message
+ 
+  - name: whalesay
+    container:
+      image: docker/whalesay:latest
+      command: [sh, -c]
+      args: [&quot;echo generating message in volume; cowsay hello world | tee /mnt/vol/hello_world.txt&quot;]
+      volumeMounts:
+      - name: workdir
+        mountPath: /mnt/vol
+ 
+  - name: print-message
+    container:
+      image: alpine:latest
+      command: [sh, -c]
+      args: [&quot;echo getting message from volume; find /mnt/vol; cat /mnt/vol/hello_world.txt&quot;]
+      volumeMounts:
+      - name: workdir
+        mountPath: /mnt/vol
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br></div></div><p>在上面的例子中，我们外部已经定义了一个 pvc，然后在 workflow 中,我们通过声明一个 pvc 为卷来调用它</p> <h2 id="总结"><a href="#总结" class="header-anchor">#</a> 总结</h2> <p>argo 是一个云原生的基于 k8s 的工作流引擎，如果基础环境是 k8s 的话，不管是 ci/cd 还是其他工作流用途，argo 都是非常好的选择，上手非常简单，使用 yaml 作为模板语法 与 k8s 几乎一模一样。</p></div></div> <!----> <div class="page-edit"><!----> <!----> <div class="last-updated"><span class="prefix">上次更新:</span> <span class="time">2022/09/21, 09:29:36</span></div></div> <div class="page-nav-wapper"><div class="page-nav-centre-wrap"><a href="/blog/pages/aa3906/" class="page-nav-centre page-nav-centre-prev"><div class="tooltip">高德地图采坑</div></a> <!----></div> <div class="page-nav"><p class="inner"><span class="prev">
+        ←
+        <a href="/blog/pages/aa3906/" class="prev">高德地图采坑</a></span> <!----></p></div></div></div> <div class="article-list"><div class="article-title"><a href="/blog/archives/" class="iconfont icon-bi">最近更新</a></div> <div class="article-wrapper"><dl><dd>01</dd> <dt><a href="/blog/pages/53eff0/"><div>
+            typescript基本使用
+            <!----></div></a> <span class="date">03-10</span></dt></dl><dl><dd>02</dd> <dt><a href="/blog/pages/1678441859170/"><div>
+            vue2 升级vue3 路线
+            <!----></div></a> <span class="date">02-20</span></dt></dl><dl><dd>03</dd> <dt><a href="/blog/pages/bc3411/"><div>
+            低代码平台
+            <!----></div></a> <span class="date">09-01</span></dt></dl> <dl><dd></dd> <dt><a href="/blog/archives/" class="more">更多文章&gt;</a></dt></dl></div></div></main></div> <div class="footer"><div class="icons"><a href="mailto:990235922@qq.com" title="发邮件" target="_blank" class="iconfont icon-youjian"></a><a href="https://github.com/Alan0827" title="GitHub" target="_blank" class="iconfont icon-github"></a><a href="https://music.163.com/#/playlist?id=755597173" title="听音乐" target="_blank" class="iconfont icon-erji"></a></div> 
+  Theme by
+  <a href="https://github.com/xugaoyi/vuepress-theme-vdoing" target="_blank" title="本站主题">Vdoing</a> 
+    | Copyright © 2016-2024
+    <span>Alan0827</span></div> <div class="buttons"><div title="返回顶部" class="button blur go-to-top iconfont icon-fanhuidingbu" style="display:none;"></div> <div title="去评论" class="button blur go-to-comment iconfont icon-pinglun" style="display:none;"></div> <div title="主题模式" class="button blur theme-mode-but iconfont icon-zhuti"><ul class="select-box" style="display:none;"><li class="iconfont icon-zidong">
+          跟随系统
+        </li><li class="iconfont icon-rijianmoshi">
+          浅色模式
+        </li><li class="iconfont icon-yejianmoshi">
+          深色模式
+        </li><li class="iconfont icon-yuedu">
+          阅读模式
+        </li></ul></div></div> <div class="body-bg" style="background:url() center center / cover no-repeat;opacity:0.5;"></div> <!----> <!----></div><div class="global-ui"><div></div></div></div>
+    <script src="/blog/assets/js/app.c4ef267f.js" defer></script><script src="/blog/assets/js/2.738e1f2a.js" defer></script><script src="/blog/assets/js/44.e3718d8d.js" defer></script>
+  </body>
+</html>

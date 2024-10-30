@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>css常见布局总结 | 喋喋不休</title>
+    <meta name="generator" content="VuePress 1.9.5">
+    <link rel="icon" href="/blog/img/favicon.ico">
+    <meta name="description" content="web前端技术博客,专注web前端学习与总结。JavaScript,js,ES6,TypeScript,vue,React,python,css3,html5,Node,git,github等技术文章。">
+    <meta name="keywords" content="前端博客,个人技术博客,前端,前端开发,前端框架,web前端,前端面试题,技术文档,学习,面试,JavaScript,js,ES6,TypeScript,vue,python,css3,html5,Node,git,github,markdown">
+    <meta name="theme-color" content="#11a8cd">
+    
+    <link rel="preload" href="/blog/assets/css/0.styles.0ab00a34.css" as="style"><link rel="preload" href="/blog/assets/js/app.c4ef267f.js" as="script"><link rel="preload" href="/blog/assets/js/2.738e1f2a.js" as="script"><link rel="preload" href="/blog/assets/js/15.c3f7494e.js" as="script"><link rel="prefetch" href="/blog/assets/js/10.2c0458cd.js"><link rel="prefetch" href="/blog/assets/js/11.e3a0d22a.js"><link rel="prefetch" href="/blog/assets/js/12.9917dc45.js"><link rel="prefetch" href="/blog/assets/js/13.e22599fd.js"><link rel="prefetch" href="/blog/assets/js/14.0c30111e.js"><link rel="prefetch" href="/blog/assets/js/16.3fcb50ee.js"><link rel="prefetch" href="/blog/assets/js/17.b1404766.js"><link rel="prefetch" href="/blog/assets/js/18.8cd6b941.js"><link rel="prefetch" href="/blog/assets/js/19.6b40e37c.js"><link rel="prefetch" href="/blog/assets/js/20.c75bf095.js"><link rel="prefetch" href="/blog/assets/js/21.a9f8582a.js"><link rel="prefetch" href="/blog/assets/js/22.7b573753.js"><link rel="prefetch" href="/blog/assets/js/23.1815712d.js"><link rel="prefetch" href="/blog/assets/js/24.ce7aac26.js"><link rel="prefetch" href="/blog/assets/js/25.49012359.js"><link rel="prefetch" href="/blog/assets/js/26.f19ccc34.js"><link rel="prefetch" href="/blog/assets/js/27.6ad79311.js"><link rel="prefetch" href="/blog/assets/js/28.270b8658.js"><link rel="prefetch" href="/blog/assets/js/29.7668d420.js"><link rel="prefetch" href="/blog/assets/js/3.236be273.js"><link rel="prefetch" href="/blog/assets/js/30.3876f396.js"><link rel="prefetch" href="/blog/assets/js/31.d0bbfa7b.js"><link rel="prefetch" href="/blog/assets/js/32.75da0adf.js"><link rel="prefetch" href="/blog/assets/js/33.f479f660.js"><link rel="prefetch" href="/blog/assets/js/34.82ba7ce0.js"><link rel="prefetch" href="/blog/assets/js/35.c4302df3.js"><link rel="prefetch" href="/blog/assets/js/36.2ff90836.js"><link rel="prefetch" href="/blog/assets/js/37.a06e4fd5.js"><link rel="prefetch" href="/blog/assets/js/38.15e5e07c.js"><link rel="prefetch" href="/blog/assets/js/39.785cfa06.js"><link rel="prefetch" href="/blog/assets/js/4.0cd1bf26.js"><link rel="prefetch" href="/blog/assets/js/40.d4aad722.js"><link rel="prefetch" href="/blog/assets/js/41.a4d199ad.js"><link rel="prefetch" href="/blog/assets/js/42.23a4bf12.js"><link rel="prefetch" href="/blog/assets/js/43.b4945be0.js"><link rel="prefetch" href="/blog/assets/js/44.e3718d8d.js"><link rel="prefetch" href="/blog/assets/js/45.dec26f0f.js"><link rel="prefetch" href="/blog/assets/js/46.e9db7425.js"><link rel="prefetch" href="/blog/assets/js/47.318560ab.js"><link rel="prefetch" href="/blog/assets/js/48.b6b8edfd.js"><link rel="prefetch" href="/blog/assets/js/49.2f05be73.js"><link rel="prefetch" href="/blog/assets/js/5.a9f82c9e.js"><link rel="prefetch" href="/blog/assets/js/50.3ac3cd68.js"><link rel="prefetch" href="/blog/assets/js/51.c2125575.js"><link rel="prefetch" href="/blog/assets/js/52.20790822.js"><link rel="prefetch" href="/blog/assets/js/53.9934e45c.js"><link rel="prefetch" href="/blog/assets/js/54.2ff72a9e.js"><link rel="prefetch" href="/blog/assets/js/55.02caf8f7.js"><link rel="prefetch" href="/blog/assets/js/56.c4108588.js"><link rel="prefetch" href="/blog/assets/js/57.e636f582.js"><link rel="prefetch" href="/blog/assets/js/58.64aec83b.js"><link rel="prefetch" href="/blog/assets/js/59.dfa4219b.js"><link rel="prefetch" href="/blog/assets/js/6.6796d84f.js"><link rel="prefetch" href="/blog/assets/js/60.a7844f11.js"><link rel="prefetch" href="/blog/assets/js/61.284f83f7.js"><link rel="prefetch" href="/blog/assets/js/62.b590f762.js"><link rel="prefetch" href="/blog/assets/js/63.9cc34cf7.js"><link rel="prefetch" href="/blog/assets/js/64.d0701f7c.js"><link rel="prefetch" href="/blog/assets/js/65.f69ff84f.js"><link rel="prefetch" href="/blog/assets/js/66.fc2f4a94.js"><link rel="prefetch" href="/blog/assets/js/67.8d1e0a10.js"><link rel="prefetch" href="/blog/assets/js/68.71bd7d4a.js"><link rel="prefetch" href="/blog/assets/js/69.55f4e75e.js"><link rel="prefetch" href="/blog/assets/js/7.c682bfe8.js"><link rel="prefetch" href="/blog/assets/js/70.a221c048.js"><link rel="prefetch" href="/blog/assets/js/71.aed9d95a.js"><link rel="prefetch" href="/blog/assets/js/72.00e95be7.js"><link rel="prefetch" href="/blog/assets/js/73.bca16040.js"><link rel="prefetch" href="/blog/assets/js/74.5bfa09de.js"><link rel="prefetch" href="/blog/assets/js/75.71225d47.js"><link rel="prefetch" href="/blog/assets/js/76.d305a829.js"><link rel="prefetch" href="/blog/assets/js/77.5a94f89d.js"><link rel="prefetch" href="/blog/assets/js/78.f6c1bbd7.js"><link rel="prefetch" href="/blog/assets/js/79.50e373af.js"><link rel="prefetch" href="/blog/assets/js/8.771772df.js"><link rel="prefetch" href="/blog/assets/js/80.ceb50170.js"><link rel="prefetch" href="/blog/assets/js/81.b3bfdfb4.js"><link rel="prefetch" href="/blog/assets/js/82.1a4e2c10.js"><link rel="prefetch" href="/blog/assets/js/83.0b087ba9.js"><link rel="prefetch" href="/blog/assets/js/84.3c034cf9.js"><link rel="prefetch" href="/blog/assets/js/85.5826af50.js"><link rel="prefetch" href="/blog/assets/js/86.b38b6a10.js"><link rel="prefetch" href="/blog/assets/js/87.0b21a55d.js"><link rel="prefetch" href="/blog/assets/js/88.7375a4ba.js"><link rel="prefetch" href="/blog/assets/js/9.ce6e67b0.js">
+    <link rel="stylesheet" href="/blog/assets/css/0.styles.0ab00a34.css">
+  </head>
+  <body class="theme-mode-light">
+    <div id="app" data-server-rendered="true"><div class="theme-container sidebar-open have-rightmenu have-body-img"><header class="navbar blur"><div title="目录" class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/blog/" class="home-link router-link-active"><img src="/blog/img/logo.png" alt="喋喋不休" class="logo"> <span class="site-name can-hide">喋喋不休</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="前端" class="dropdown-title"><a href="/blog/web/" class="link-title">前端</a> <span class="title" style="display:none;">前端</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>前端文章</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/blog/pages/8143cc480faf9a11/" class="nav-link">JavaScript</a></li><li class="dropdown-subitem"><a href="/blog/pages/8309a5b876fc95e3/" class="nav-link">HTML</a></li><li class="dropdown-subitem"><a href="/blog/pages/df9e7c7214fa5046/" class="nav-link">CSS</a></li></ul></li><li class="dropdown-item"><h4>三方库</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/blog/pages/2c78e7/" class="nav-link">vue</a></li></ul></li><li class="dropdown-item"><h4>学习笔记</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/blog/note/js/" class="nav-link">《JavaScript高级程序设计》</a></li><li class="dropdown-subitem"><a href="/blog/pages/51afd6/" class="nav-link">TypeScript</a></li><li class="dropdown-subitem"><a href="/blog/pages/4643cd/" class="nav-link">JS设计模式总结</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="技术" class="dropdown-title"><a href="/blog/technology/" class="link-title">技术</a> <span class="title" style="display:none;">技术</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/blog/pages/9a7ee40fc232253e/" class="nav-link">技术文档</a></li><li class="dropdown-item"><!----> <a href="/blog/pages/4c778760be26d8b3/" class="nav-link">GitHub技巧</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="更多" class="dropdown-title"><a href="/blog/more/" class="link-title">更多</a> <span class="title" style="display:none;">更多</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/blog/pages/f2a556/" class="nav-link">学习</a></li><li class="dropdown-item"><!----> <a href="/blog/pages/aea6571b7a8bae86/" class="nav-link">面试</a></li><li class="dropdown-item"><!----> <a href="/blog/pages/2d615df9a36a98ed/" class="nav-link">心情杂货</a></li><li class="dropdown-item"><!----> <a href="/blog/pages/baaa02/" class="nav-link">实用技巧</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="收藏" class="dropdown-title"><a href="/blog/pages/beb6c0bd8a66cea6/" class="link-title">收藏</a> <span class="title" style="display:none;">收藏</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/blog/pages/beb6c0bd8a66cea6/" class="nav-link">网站</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="索引" class="dropdown-title"><a href="/blog/archives/" class="link-title">索引</a> <span class="title" style="display:none;">索引</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/blog/categories/" class="nav-link">分类</a></li><li class="dropdown-item"><!----> <a href="/blog/tags/" class="nav-link">标签</a></li><li class="dropdown-item"><!----> <a href="/blog/archives/" class="nav-link">归档</a></li><li class="dropdown-item"><!----> <a href="/blog/about/" class="nav-link">关于</a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <div class="sidebar-hover-trigger"></div> <aside class="sidebar" style="display:none;"><div class="blogger"><img src="/img/logo.png"> <div class="blogger-info"><h3>Alan0827</h3> <span>扯淡的玩意er。。</span></div></div> <nav class="nav-links"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="前端" class="dropdown-title"><a href="/blog/web/" class="link-title">前端</a> <span class="title" style="display:none;">前端</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>前端文章</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/blog/pages/8143cc480faf9a11/" class="nav-link">JavaScript</a></li><li class="dropdown-subitem"><a href="/blog/pages/8309a5b876fc95e3/" class="nav-link">HTML</a></li><li class="dropdown-subitem"><a href="/blog/pages/df9e7c7214fa5046/" class="nav-link">CSS</a></li></ul></li><li class="dropdown-item"><h4>三方库</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/blog/pages/2c78e7/" class="nav-link">vue</a></li></ul></li><li class="dropdown-item"><h4>学习笔记</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/blog/note/js/" class="nav-link">《JavaScript高级程序设计》</a></li><li class="dropdown-subitem"><a href="/blog/pages/51afd6/" class="nav-link">TypeScript</a></li><li class="dropdown-subitem"><a href="/blog/pages/4643cd/" class="nav-link">JS设计模式总结</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="技术" class="dropdown-title"><a href="/blog/technology/" class="link-title">技术</a> <span class="title" style="display:none;">技术</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/blog/pages/9a7ee40fc232253e/" class="nav-link">技术文档</a></li><li class="dropdown-item"><!----> <a href="/blog/pages/4c778760be26d8b3/" class="nav-link">GitHub技巧</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="更多" class="dropdown-title"><a href="/blog/more/" class="link-title">更多</a> <span class="title" style="display:none;">更多</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/blog/pages/f2a556/" class="nav-link">学习</a></li><li class="dropdown-item"><!----> <a href="/blog/pages/aea6571b7a8bae86/" class="nav-link">面试</a></li><li class="dropdown-item"><!----> <a href="/blog/pages/2d615df9a36a98ed/" class="nav-link">心情杂货</a></li><li class="dropdown-item"><!----> <a href="/blog/pages/baaa02/" class="nav-link">实用技巧</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="收藏" class="dropdown-title"><a href="/blog/pages/beb6c0bd8a66cea6/" class="link-title">收藏</a> <span class="title" style="display:none;">收藏</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/blog/pages/beb6c0bd8a66cea6/" class="nav-link">网站</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="索引" class="dropdown-title"><a href="/blog/archives/" class="link-title">索引</a> <span class="title" style="display:none;">索引</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/blog/categories/" class="nav-link">分类</a></li><li class="dropdown-item"><!----> <a href="/blog/tags/" class="nav-link">标签</a></li><li class="dropdown-item"><!----> <a href="/blog/archives/" class="nav-link">归档</a></li><li class="dropdown-item"><!----> <a href="/blog/about/" class="nav-link">关于</a></li></ul></div></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>HTML</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>CSS</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/blog/pages/df9e7c7214fa5046/" class="sidebar-link">flex布局案例-圣杯布局</a></li><li><a href="/blog/pages/02d7f59d98d87409/" class="sidebar-link">CSS3之transition过渡</a></li><li><a href="/blog/pages/c2c0432138f6e042/" class="sidebar-link">CSS3之animation动画</a></li><li><a href="/blog/pages/3d52574260725aea/" class="sidebar-link">「布局技巧」图片未加载前自动撑开元素高度</a></li><li><a href="/blog/pages/941581927b4a38f8/" class="sidebar-link">「css技巧」使用hover和attr()定制悬浮提示</a></li><li><a href="/blog/pages/5019f7/" aria-current="page" class="active sidebar-link">css常见布局总结</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header level2"><a href="/blog/pages/5019f7/#垂直水平居中" class="sidebar-link">垂直水平居中</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header level3"><a href="/blog/pages/5019f7/#display-table-cell" class="sidebar-link">display:table-cell</a></li><li class="sidebar-sub-header level3"><a href="/blog/pages/5019f7/#绝对定位" class="sidebar-link">绝对定位</a></li><li class="sidebar-sub-header level3"><a href="/blog/pages/5019f7/#flex布局" class="sidebar-link">flex布局</a></li><li class="sidebar-sub-header level3"><a href="/blog/pages/5019f7/#文本水平垂直居中" class="sidebar-link">文本水平垂直居中</a></li><li class="sidebar-sub-header level3"><a href="/blog/pages/5019f7/#垂直居中图片" class="sidebar-link">垂直居中图片</a></li><li class="sidebar-sub-header level3"><a href="/blog/pages/5019f7/#grid网格布局" class="sidebar-link">grid网格布局</a></li></ul></li><li class="sidebar-sub-header level2"><a href="/blog/pages/5019f7/#两列布局" class="sidebar-link">两列布局</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header level3"><a href="/blog/pages/5019f7/#左测定宽浮动-右侧宽100" class="sidebar-link">左测定宽浮动，右侧宽100%；</a></li><li class="sidebar-sub-header level3"><a href="/blog/pages/5019f7/#flex布局-flex布局出现了之后-很多问题就很好处理了" class="sidebar-link">flex布局（flex布局出现了之后，很多问题就很好处理了）</a></li><li class="sidebar-sub-header level3"><a href="/blog/pages/5019f7/#负margin" class="sidebar-link">负margin</a></li><li class="sidebar-sub-header level3"><a href="/blog/pages/5019f7/#定位" class="sidebar-link">定位</a></li><li class="sidebar-sub-header level3"><a href="/blog/pages/5019f7/#table-布局" class="sidebar-link">table 布局</a></li></ul></li><li class="sidebar-sub-header level2"><a href="/blog/pages/5019f7/#圣杯布局" class="sidebar-link">圣杯布局</a></li></ul></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>JavaScript文章</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>vue学习</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>学习笔记</span> <span class="arrow right"></span></p> <!----></section></li></ul> </aside> <div><main class="page"><div class="theme-vdoing-wrapper bg-style-6"><div class="articleInfo-wrap" data-v-06225672><div class="articleInfo" data-v-06225672><ul class="breadcrumbs" data-v-06225672><li data-v-06225672><a href="/blog/" title="首页" class="iconfont icon-home router-link-active" data-v-06225672></a></li> <li data-v-06225672><a href="/blog/web/#前端" data-v-06225672>前端</a></li><li data-v-06225672><a href="/blog/web/#CSS" data-v-06225672>CSS</a></li></ul> <div class="info" data-v-06225672><div title="作者" class="author iconfont icon-touxiang" data-v-06225672><a href="https://github.com/Alan0827" target="_blank" title="作者" class="beLink" data-v-06225672>Alan0827</a></div> <div title="创建时间" class="date iconfont icon-riqi" data-v-06225672><a href="javascript:;" data-v-06225672>2018-12-20</a></div> <!----></div></div></div> <!----> <div class="content-wrapper"><div class="right-menu-wrapper"><div class="right-menu-margin"><div class="right-menu-title">目录</div> <div class="right-menu-content"></div></div></div> <h1><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAABH1JREFUSA3tVl1oHFUUPmdmd2ltklqbpJDiNnXFmgbFktho7YMPNiJSSZM0+CAYSkUELVhM6YuwIPpgoOKDqOBDC0XE2CQoNtQXBUFTTcCi+Wlh1V2TQExsUzcltd3M9Tt3ZjZzZ2fT+OJTL8yeM+eee757fmeJbq//KQL8X3DUSFOcfr7cRsRtxNQMWueeVzOkaITIGqQHNg5y8+jNW9ldM7A6nTpAjuolUikAwq7CE3WcM2RRDz+XGVgN3FptU/aUSlvq9Pa3iZ1+sgAqJyyAFqkipd9dqiwHF3P65YycLWc/6sqGrvoEoIp6DOFaX5h6+dnfjkWprwqsPk0dUGq5vySwDImC10KxFHgGL1SWoc92O3eVht09qdXNH11I2SsTsJYqMWzihqGMi+A+Garf3BAuuLI5oGlULyNfyB/HYNujwktOfRrMr5t77NmevqaUopx0grnKAyvVpmwUDB4x6FPXuGvYLTDwWsejwgtgkYKPqRJg8SV6xaiZ3ZTppGneS4yfH5/66fZSDHv+QZci/+h5c5UHtpy67JUqGppM0sh0Nc1dW6/N1W5Yoqat8/TU/VnadmdeW2PLLSyh0cvxBs3KbqTmwYPpxN4do/mzE8nEpvX/UMu2Wbp74zUAK5q6WkHns7V0eWkdPbPzd3rxkTGybadYySumVzhcaJFbs5UrEkQ/+CK8gF5dnh/6ciIZ73gwQ927L1IitoxKLXYP3SjYdOrHHfTZhRRlFyrorafPk20B3HPD1y2G3qKZME5Jcf3t/HUC13/8tSd++vqFveMUTwAUxSUFI1QekR1+bIze3D9MF2aq6cPvG72CgnldWCFqyRw3lwH8ZMerjTD9ElRO7Gv44wNpC90aASqGfVlz/Rx17srQ57/UU26hkhQqUB7dBR71WmzQhHUnblGmVOEw0jhbV1n9OlXUDCIRGaNV5Jp43N516fN7JmnTHdfp7Hgy0luO4aMhtkLL8Bi3bUWYvzh5Mn1dTxrL6QmGuRhGL/TiTTxRoEdTszSaq9GR0NGA3KdkOz3hqSV3MIDhQ5IVX/Ivx3umBti2es2h4eZby7x8br1rkf7Mo90AqC8aQ3sJeNzqFRu+vSANAQe3PL7l0HGOAdwDCeZYvNKeoZp1Qfs6Aipndh86HmFRi0LAnEO47wsqM6cdfjh3jBPUzhZy7nvlUfFsamED1VQt6aISHVymXZ/B2aCtIG8AI8xfobj2d3en1wWVhOeHELKmLQ1s211s88comkv4UCwWyF787mJdYXtNfhKAXVqnKTq8QZvGAGGOfaTo5pGZ/PwbUCr5+DPr/1J92JNHr9aOl/F3iI5+O1nfybsGxoimvZ3ViWSluDITw3P37mypheDIPY0tw7+O/5ApbkYw+zpfaUVu32Pi98+defdUhEpZkRFq0aqyNh9FuL9hpYbEm6iwi0z2REd09ZmyENEbuhjDWzKvZXTqKYaBIr3tt5kuPtQBZFvEUwHt60vfCNu41XsksH9Ij1BMMz1Y0OOunHNShFIP5868g5zeXmuLwL9T4b6Q2+KejgAAAABJRU5ErkJggg==">css常见布局总结<!----></h1> <!----> <div class="theme-vdoing-content content__default"><p>css对于我们前端来说，非常重要，使我们开发静态页面的利器，虽然一些颜色、大小都是很容易调整，基本上没有什么难度，记忆力好点也就OK了，
+我感觉布局这块对于我们尤其重要，我平时自己使用的时候，忘记总结了，这里总结一下。</p> <h2 id="垂直水平居中"><a href="#垂直水平居中" class="header-anchor">#</a> 垂直水平居中</h2> <p>我们经常用到的就是水平居中，垂直居中一旦遇到的话，有哪些方法可以解决呢？</p> <h3 id="display-table-cell"><a href="#display-table-cell" class="header-anchor">#</a> display:table-cell</h3> <ul><li>父级元素display:table-cell;vertical-align:midde;</li></ul> <div class="language- line-numbers-mode"><pre class="language-text"><code>
+.parent{
+	display: table-cell;
+	vertical-align: middle;
+}
+.child{
+	margin:0 auto;
+}
+&lt;div class=&quot;parent&quot;&gt;
+	&lt;div class=&quot;child&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br></div></div><h3 id="绝对定位"><a href="#绝对定位" class="header-anchor">#</a> 绝对定位</h3> <ul><li>父元素相对定位，子元素绝对定位。</li> <li>若子元素定宽高，写margin-left:-50px;margin-top:-50px也行，不定的话，transform: translate(-50%,-50%)即可</li></ul> <div class="language- line-numbers-mode"><pre class="language-text"><code>.parent{
+	position: relative;
+}
+.child{
+	position: absolute;
+	left: 50%;
+	top:50%;
+	transform: translate(-50%,-50%);
+}
+&lt;div class=&quot;parent&quot;&gt;
+	&lt;div class=&quot;child&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br></div></div><p>也可以</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>.parent{
+	position: relative;
+}
+.child{
+	position: absolute;
+	left: 0;
+	top:0;
+	bottom:0;
+	right:0;
+	margin:auto;
+}
+&lt;div class=&quot;parent&quot;&gt;
+	&lt;div class=&quot;child&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br></div></div><h3 id="flex布局"><a href="#flex布局" class="header-anchor">#</a> flex布局</h3> <ul><li>直接设置父元素 display:flex(设置为flex布局)，justify-content:center(主轴对齐方式)，align-items:center(垂直轴上的对齐方式)</li></ul> <div class="language- line-numbers-mode"><pre class="language-text"><code>	.parent{
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	.child{
+	}
+&lt;div class=&quot;parent&quot;&gt;
+	&lt;div class=&quot;child&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br></div></div><h3 id="文本水平垂直居中"><a href="#文本水平垂直居中" class="header-anchor">#</a> 文本水平垂直居中</h3> <ul><li>父元素设置height，line-height相等</li></ul> <div class="language- line-numbers-mode"><pre class="language-text"><code>height:400px;
+line-height:400px;
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><h3 id="垂直居中图片"><a href="#垂直居中图片" class="header-anchor">#</a> 垂直居中图片</h3> <div class="language- line-numbers-mode"><pre class="language-text"><code>.parent {
+	line-height: 200px;
+}
+.parent img {
+	vertical-align: middle;
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br></div></div><h3 id="grid网格布局"><a href="#grid网格布局" class="header-anchor">#</a> grid网格布局</h3> <ul><li>网格布局代码量比flex布局还要少，但是兼容性不好</li></ul> <div class="language- line-numbers-mode"><pre class="language-text"><code>.parent {
+    display: grid;
+}
+.child {
+	align-self: center;
+	justify-self: center;
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br></div></div><h2 id="两列布局"><a href="#两列布局" class="header-anchor">#</a> 两列布局</h2> <h3 id="左测定宽浮动-右侧宽100"><a href="#左测定宽浮动-右侧宽100" class="header-anchor">#</a> 左测定宽浮动，右侧宽100%；</h3> <div class="language- line-numbers-mode"><pre class="language-text"><code>.left{
+	width:200px
+	float: left;
+}
+.right{
+	width: 100%;
+	margin-left: 200px;
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br></div></div><h3 id="flex布局-flex布局出现了之后-很多问题就很好处理了"><a href="#flex布局-flex布局出现了之后-很多问题就很好处理了" class="header-anchor">#</a> flex布局（flex布局出现了之后，很多问题就很好处理了）</h3> <div class="language- line-numbers-mode"><pre class="language-text"><code>body{
+	display: flex;
+}
+.right{
+	flex:1
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br></div></div><h3 id="负margin"><a href="#负margin" class="header-anchor">#</a> 负margin</h3> <ul><li>首先修改页面结构，为自适应部分添加容器 .container, 同时改变左右部分的位置，如下：</li></ul> <div class="language- line-numbers-mode"><pre class="language-text"><code>&lt;div class=&quot;container&quot;&gt;
+    &lt;section class=&quot;right&quot;&gt;Right&lt;/section&gt;
+&lt;/div&gt;
+&lt;aside class=&quot;left&quot;&gt;Left&lt;/aside&gt;
+
+.left{
+		float:left;
+		margin-left: -100%;
+}
+.right{
+		margin-left: 200px;
+}
+.container{
+		float:left;
+		width:100%
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br></div></div><h3 id="定位"><a href="#定位" class="header-anchor">#</a> 定位</h3> <div class="language- line-numbers-mode"><pre class="language-text"><code>.left{
+		position: absolute;
+		left:0;
+}
+.right{
+		position: absolute;
+		left:200px;
+		width:100%
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br></div></div><h3 id="table-布局"><a href="#table-布局" class="header-anchor">#</a> table 布局</h3> <div class="language- line-numbers-mode"><pre class="language-text"><code>body{
+		display: table;
+		width:100%;
+}
+.left{
+		display: table-cell;
+}
+.right{
+		display: table-cell;
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br></div></div><h2 id="圣杯布局"><a href="#圣杯布局" class="header-anchor">#</a> 圣杯布局</h2> <blockquote><p>圣杯布局就是两侧宽度固定，中间宽度自适应的三列布局</p></blockquote> <div class="language- line-numbers-mode"><pre class="language-text"><code>&lt;div class=&quot;header&quot;&gt;头&lt;/div&gt;
+	&lt;div class=&quot;content&quot;&gt;
+		&lt;div class=&quot;center&quot;&gt;中&lt;/div&gt;
+		&lt;div class=&quot;left&quot;&gt;左&lt;/div&gt;
+		&lt;div class=&quot;right&quot;&gt;右&lt;/div&gt;
+	&lt;/div&gt;
+&lt;div class=&quot;footer&quot;&gt;脚&lt;/div&gt;
+
+.header,.footer{
+	width: 100%;
+	height: 50px;
+	background: #ddd;
+	clear: both;
+}
+.left,.right,.center{
+	height: 80vh;
+}
+.content{
+	padding: 0 200px;
+}
+.center{
+	width: 100%;
+	background: #00f;
+	float: left;
+}
+.left {
+	background: #0f0;
+	width: 200px;
+	float: left;
+	margin-left: -100%;
+	position: relative;
+	right:200px;
+}
+
+.right {
+	width: 200px;
+	background: #f00;
+	float:left;
+	margin-right: -200px;
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br></div></div><p>圣杯布局其实就是三列都浮动，中间列在元素最前面，width为100%，左侧部分margin-left:-100%,相对定位，right:左侧元素宽度；
+右侧margin-right：右侧元素宽度;</p> <p>这个布局也是我们最常用的布局，前端工程师面试的时候经常会被问到，双飞翼布局的话，原理和圣杯布局类似；还有就是flex布局和grid盒子可以实现，这里不做讲解了，
+简单但是有兼容性问题。</p> <p>css常见的两列、三列布局和垂直居中对齐大概就是这么多了，有没有总结到的地方以后继续。</p> <p>有好的见解，欢迎留言，留下联系方式，大家互相沟通！</p> <p>不喜勿喷，谢谢！</p></div></div> <!----> <div class="page-edit"><!----> <div class="tags"><a href="/blog/tags/?tag=css3" title="标签">#css3</a><a href="/blog/tags/?tag=js" title="标签">#js</a></div> <div class="last-updated"><span class="prefix">上次更新:</span> <span class="time">2022/09/08, 15:49:00</span></div></div> <div class="page-nav-wapper"><div class="page-nav-centre-wrap"><a href="/blog/pages/941581927b4a38f8/" class="page-nav-centre page-nav-centre-prev"><div class="tooltip">「css技巧」使用hover和attr()定制悬浮提示</div></a> <a href="/blog/pages/a61298/" class="page-nav-centre page-nav-centre-next"><div class="tooltip">33个非常实用的JavaScript一行代码</div></a></div> <div class="page-nav"><p class="inner"><span class="prev">
+        ←
+        <a href="/blog/pages/941581927b4a38f8/" class="prev">「css技巧」使用hover和attr()定制悬浮提示</a></span> <span class="next"><a href="/blog/pages/a61298/">33个非常实用的JavaScript一行代码</a>→
+      </span></p></div></div></div> <div class="article-list"><div class="article-title"><a href="/blog/archives/" class="iconfont icon-bi">最近更新</a></div> <div class="article-wrapper"><dl><dd>01</dd> <dt><a href="/blog/pages/53eff0/"><div>
+            typescript基本使用
+            <!----></div></a> <span class="date">03-10</span></dt></dl><dl><dd>02</dd> <dt><a href="/blog/pages/1678441859170/"><div>
+            vue2 升级vue3 路线
+            <!----></div></a> <span class="date">02-20</span></dt></dl><dl><dd>03</dd> <dt><a href="/blog/pages/175c51/"><div>
+            argo原理
+            <span class="title-tag">
+              原创
+            </span></div></a> <span class="date">09-21</span></dt></dl> <dl><dd></dd> <dt><a href="/blog/archives/" class="more">更多文章&gt;</a></dt></dl></div></div></main></div> <div class="footer"><div class="icons"><a href="mailto:990235922@qq.com" title="发邮件" target="_blank" class="iconfont icon-youjian"></a><a href="https://github.com/Alan0827" title="GitHub" target="_blank" class="iconfont icon-github"></a><a href="https://music.163.com/#/playlist?id=755597173" title="听音乐" target="_blank" class="iconfont icon-erji"></a></div> 
+  Theme by
+  <a href="https://github.com/xugaoyi/vuepress-theme-vdoing" target="_blank" title="本站主题">Vdoing</a> 
+    | Copyright © 2016-2024
+    <span>Alan0827</span></div> <div class="buttons"><div title="返回顶部" class="button blur go-to-top iconfont icon-fanhuidingbu" style="display:none;"></div> <div title="去评论" class="button blur go-to-comment iconfont icon-pinglun" style="display:none;"></div> <div title="主题模式" class="button blur theme-mode-but iconfont icon-zhuti"><ul class="select-box" style="display:none;"><li class="iconfont icon-zidong">
+          跟随系统
+        </li><li class="iconfont icon-rijianmoshi">
+          浅色模式
+        </li><li class="iconfont icon-yejianmoshi">
+          深色模式
+        </li><li class="iconfont icon-yuedu">
+          阅读模式
+        </li></ul></div></div> <div class="body-bg" style="background:url() center center / cover no-repeat;opacity:0.5;"></div> <!----> <!----></div><div class="global-ui"><div></div></div></div>
+    <script src="/blog/assets/js/app.c4ef267f.js" defer></script><script src="/blog/assets/js/2.738e1f2a.js" defer></script><script src="/blog/assets/js/15.c3f7494e.js" defer></script>
+  </body>
+</html>

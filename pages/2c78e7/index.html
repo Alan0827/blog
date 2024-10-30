@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>vue双向绑定原理1 | 喋喋不休</title>
+    <meta name="generator" content="VuePress 1.9.5">
+    <link rel="icon" href="/blog/img/favicon.ico">
+    <meta name="description" content="web前端技术博客,专注web前端学习与总结。JavaScript,js,ES6,TypeScript,vue,React,python,css3,html5,Node,git,github等技术文章。">
+    <meta name="keywords" content="前端博客,个人技术博客,前端,前端开发,前端框架,web前端,前端面试题,技术文档,学习,面试,JavaScript,js,ES6,TypeScript,vue,python,css3,html5,Node,git,github,markdown">
+    <meta name="theme-color" content="#11a8cd">
+    
+    <link rel="preload" href="/blog/assets/css/0.styles.0ab00a34.css" as="style"><link rel="preload" href="/blog/assets/js/app.c4ef267f.js" as="script"><link rel="preload" href="/blog/assets/js/2.738e1f2a.js" as="script"><link rel="preload" href="/blog/assets/js/31.d0bbfa7b.js" as="script"><link rel="prefetch" href="/blog/assets/js/10.2c0458cd.js"><link rel="prefetch" href="/blog/assets/js/11.e3a0d22a.js"><link rel="prefetch" href="/blog/assets/js/12.9917dc45.js"><link rel="prefetch" href="/blog/assets/js/13.e22599fd.js"><link rel="prefetch" href="/blog/assets/js/14.0c30111e.js"><link rel="prefetch" href="/blog/assets/js/15.c3f7494e.js"><link rel="prefetch" href="/blog/assets/js/16.3fcb50ee.js"><link rel="prefetch" href="/blog/assets/js/17.b1404766.js"><link rel="prefetch" href="/blog/assets/js/18.8cd6b941.js"><link rel="prefetch" href="/blog/assets/js/19.6b40e37c.js"><link rel="prefetch" href="/blog/assets/js/20.c75bf095.js"><link rel="prefetch" href="/blog/assets/js/21.a9f8582a.js"><link rel="prefetch" href="/blog/assets/js/22.7b573753.js"><link rel="prefetch" href="/blog/assets/js/23.1815712d.js"><link rel="prefetch" href="/blog/assets/js/24.ce7aac26.js"><link rel="prefetch" href="/blog/assets/js/25.49012359.js"><link rel="prefetch" href="/blog/assets/js/26.f19ccc34.js"><link rel="prefetch" href="/blog/assets/js/27.6ad79311.js"><link rel="prefetch" href="/blog/assets/js/28.270b8658.js"><link rel="prefetch" href="/blog/assets/js/29.7668d420.js"><link rel="prefetch" href="/blog/assets/js/3.236be273.js"><link rel="prefetch" href="/blog/assets/js/30.3876f396.js"><link rel="prefetch" href="/blog/assets/js/32.75da0adf.js"><link rel="prefetch" href="/blog/assets/js/33.f479f660.js"><link rel="prefetch" href="/blog/assets/js/34.82ba7ce0.js"><link rel="prefetch" href="/blog/assets/js/35.c4302df3.js"><link rel="prefetch" href="/blog/assets/js/36.2ff90836.js"><link rel="prefetch" href="/blog/assets/js/37.a06e4fd5.js"><link rel="prefetch" href="/blog/assets/js/38.15e5e07c.js"><link rel="prefetch" href="/blog/assets/js/39.785cfa06.js"><link rel="prefetch" href="/blog/assets/js/4.0cd1bf26.js"><link rel="prefetch" href="/blog/assets/js/40.d4aad722.js"><link rel="prefetch" href="/blog/assets/js/41.a4d199ad.js"><link rel="prefetch" href="/blog/assets/js/42.23a4bf12.js"><link rel="prefetch" href="/blog/assets/js/43.b4945be0.js"><link rel="prefetch" href="/blog/assets/js/44.e3718d8d.js"><link rel="prefetch" href="/blog/assets/js/45.dec26f0f.js"><link rel="prefetch" href="/blog/assets/js/46.e9db7425.js"><link rel="prefetch" href="/blog/assets/js/47.318560ab.js"><link rel="prefetch" href="/blog/assets/js/48.b6b8edfd.js"><link rel="prefetch" href="/blog/assets/js/49.2f05be73.js"><link rel="prefetch" href="/blog/assets/js/5.a9f82c9e.js"><link rel="prefetch" href="/blog/assets/js/50.3ac3cd68.js"><link rel="prefetch" href="/blog/assets/js/51.c2125575.js"><link rel="prefetch" href="/blog/assets/js/52.20790822.js"><link rel="prefetch" href="/blog/assets/js/53.9934e45c.js"><link rel="prefetch" href="/blog/assets/js/54.2ff72a9e.js"><link rel="prefetch" href="/blog/assets/js/55.02caf8f7.js"><link rel="prefetch" href="/blog/assets/js/56.c4108588.js"><link rel="prefetch" href="/blog/assets/js/57.e636f582.js"><link rel="prefetch" href="/blog/assets/js/58.64aec83b.js"><link rel="prefetch" href="/blog/assets/js/59.dfa4219b.js"><link rel="prefetch" href="/blog/assets/js/6.6796d84f.js"><link rel="prefetch" href="/blog/assets/js/60.a7844f11.js"><link rel="prefetch" href="/blog/assets/js/61.284f83f7.js"><link rel="prefetch" href="/blog/assets/js/62.b590f762.js"><link rel="prefetch" href="/blog/assets/js/63.9cc34cf7.js"><link rel="prefetch" href="/blog/assets/js/64.d0701f7c.js"><link rel="prefetch" href="/blog/assets/js/65.f69ff84f.js"><link rel="prefetch" href="/blog/assets/js/66.fc2f4a94.js"><link rel="prefetch" href="/blog/assets/js/67.8d1e0a10.js"><link rel="prefetch" href="/blog/assets/js/68.71bd7d4a.js"><link rel="prefetch" href="/blog/assets/js/69.55f4e75e.js"><link rel="prefetch" href="/blog/assets/js/7.c682bfe8.js"><link rel="prefetch" href="/blog/assets/js/70.a221c048.js"><link rel="prefetch" href="/blog/assets/js/71.aed9d95a.js"><link rel="prefetch" href="/blog/assets/js/72.00e95be7.js"><link rel="prefetch" href="/blog/assets/js/73.bca16040.js"><link rel="prefetch" href="/blog/assets/js/74.5bfa09de.js"><link rel="prefetch" href="/blog/assets/js/75.71225d47.js"><link rel="prefetch" href="/blog/assets/js/76.d305a829.js"><link rel="prefetch" href="/blog/assets/js/77.5a94f89d.js"><link rel="prefetch" href="/blog/assets/js/78.f6c1bbd7.js"><link rel="prefetch" href="/blog/assets/js/79.50e373af.js"><link rel="prefetch" href="/blog/assets/js/8.771772df.js"><link rel="prefetch" href="/blog/assets/js/80.ceb50170.js"><link rel="prefetch" href="/blog/assets/js/81.b3bfdfb4.js"><link rel="prefetch" href="/blog/assets/js/82.1a4e2c10.js"><link rel="prefetch" href="/blog/assets/js/83.0b087ba9.js"><link rel="prefetch" href="/blog/assets/js/84.3c034cf9.js"><link rel="prefetch" href="/blog/assets/js/85.5826af50.js"><link rel="prefetch" href="/blog/assets/js/86.b38b6a10.js"><link rel="prefetch" href="/blog/assets/js/87.0b21a55d.js"><link rel="prefetch" href="/blog/assets/js/88.7375a4ba.js"><link rel="prefetch" href="/blog/assets/js/9.ce6e67b0.js">
+    <link rel="stylesheet" href="/blog/assets/css/0.styles.0ab00a34.css">
+  </head>
+  <body class="theme-mode-light">
+    <div id="app" data-server-rendered="true"><div class="theme-container sidebar-open have-rightmenu have-body-img"><header class="navbar blur"><div title="目录" class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/blog/" class="home-link router-link-active"><img src="/blog/img/logo.png" alt="喋喋不休" class="logo"> <span class="site-name can-hide">喋喋不休</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="前端" class="dropdown-title"><a href="/blog/web/" class="link-title">前端</a> <span class="title" style="display:none;">前端</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>前端文章</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/blog/pages/8143cc480faf9a11/" class="nav-link">JavaScript</a></li><li class="dropdown-subitem"><a href="/blog/pages/8309a5b876fc95e3/" class="nav-link">HTML</a></li><li class="dropdown-subitem"><a href="/blog/pages/df9e7c7214fa5046/" class="nav-link">CSS</a></li></ul></li><li class="dropdown-item"><h4>三方库</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/blog/pages/2c78e7/" aria-current="page" class="nav-link router-link-exact-active router-link-active">vue</a></li></ul></li><li class="dropdown-item"><h4>学习笔记</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/blog/note/js/" class="nav-link">《JavaScript高级程序设计》</a></li><li class="dropdown-subitem"><a href="/blog/pages/51afd6/" class="nav-link">TypeScript</a></li><li class="dropdown-subitem"><a href="/blog/pages/4643cd/" class="nav-link">JS设计模式总结</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="技术" class="dropdown-title"><a href="/blog/technology/" class="link-title">技术</a> <span class="title" style="display:none;">技术</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/blog/pages/9a7ee40fc232253e/" class="nav-link">技术文档</a></li><li class="dropdown-item"><!----> <a href="/blog/pages/4c778760be26d8b3/" class="nav-link">GitHub技巧</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="更多" class="dropdown-title"><a href="/blog/more/" class="link-title">更多</a> <span class="title" style="display:none;">更多</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/blog/pages/f2a556/" class="nav-link">学习</a></li><li class="dropdown-item"><!----> <a href="/blog/pages/aea6571b7a8bae86/" class="nav-link">面试</a></li><li class="dropdown-item"><!----> <a href="/blog/pages/2d615df9a36a98ed/" class="nav-link">心情杂货</a></li><li class="dropdown-item"><!----> <a href="/blog/pages/baaa02/" class="nav-link">实用技巧</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="收藏" class="dropdown-title"><a href="/blog/pages/beb6c0bd8a66cea6/" class="link-title">收藏</a> <span class="title" style="display:none;">收藏</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/blog/pages/beb6c0bd8a66cea6/" class="nav-link">网站</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="索引" class="dropdown-title"><a href="/blog/archives/" class="link-title">索引</a> <span class="title" style="display:none;">索引</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/blog/categories/" class="nav-link">分类</a></li><li class="dropdown-item"><!----> <a href="/blog/tags/" class="nav-link">标签</a></li><li class="dropdown-item"><!----> <a href="/blog/archives/" class="nav-link">归档</a></li><li class="dropdown-item"><!----> <a href="/blog/about/" class="nav-link">关于</a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <div class="sidebar-hover-trigger"></div> <aside class="sidebar" style="display:none;"><div class="blogger"><img src="/img/logo.png"> <div class="blogger-info"><h3>Alan0827</h3> <span>扯淡的玩意er。。</span></div></div> <nav class="nav-links"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="前端" class="dropdown-title"><a href="/blog/web/" class="link-title">前端</a> <span class="title" style="display:none;">前端</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>前端文章</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/blog/pages/8143cc480faf9a11/" class="nav-link">JavaScript</a></li><li class="dropdown-subitem"><a href="/blog/pages/8309a5b876fc95e3/" class="nav-link">HTML</a></li><li class="dropdown-subitem"><a href="/blog/pages/df9e7c7214fa5046/" class="nav-link">CSS</a></li></ul></li><li class="dropdown-item"><h4>三方库</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/blog/pages/2c78e7/" aria-current="page" class="nav-link router-link-exact-active router-link-active">vue</a></li></ul></li><li class="dropdown-item"><h4>学习笔记</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/blog/note/js/" class="nav-link">《JavaScript高级程序设计》</a></li><li class="dropdown-subitem"><a href="/blog/pages/51afd6/" class="nav-link">TypeScript</a></li><li class="dropdown-subitem"><a href="/blog/pages/4643cd/" class="nav-link">JS设计模式总结</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="技术" class="dropdown-title"><a href="/blog/technology/" class="link-title">技术</a> <span class="title" style="display:none;">技术</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/blog/pages/9a7ee40fc232253e/" class="nav-link">技术文档</a></li><li class="dropdown-item"><!----> <a href="/blog/pages/4c778760be26d8b3/" class="nav-link">GitHub技巧</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="更多" class="dropdown-title"><a href="/blog/more/" class="link-title">更多</a> <span class="title" style="display:none;">更多</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/blog/pages/f2a556/" class="nav-link">学习</a></li><li class="dropdown-item"><!----> <a href="/blog/pages/aea6571b7a8bae86/" class="nav-link">面试</a></li><li class="dropdown-item"><!----> <a href="/blog/pages/2d615df9a36a98ed/" class="nav-link">心情杂货</a></li><li class="dropdown-item"><!----> <a href="/blog/pages/baaa02/" class="nav-link">实用技巧</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="收藏" class="dropdown-title"><a href="/blog/pages/beb6c0bd8a66cea6/" class="link-title">收藏</a> <span class="title" style="display:none;">收藏</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/blog/pages/beb6c0bd8a66cea6/" class="nav-link">网站</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="索引" class="dropdown-title"><a href="/blog/archives/" class="link-title">索引</a> <span class="title" style="display:none;">索引</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/blog/categories/" class="nav-link">分类</a></li><li class="dropdown-item"><!----> <a href="/blog/tags/" class="nav-link">标签</a></li><li class="dropdown-item"><!----> <a href="/blog/archives/" class="nav-link">归档</a></li><li class="dropdown-item"><!----> <a href="/blog/about/" class="nav-link">关于</a></li></ul></div></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>HTML</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>CSS</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>JavaScript文章</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>vue学习</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/blog/pages/2c78e7/" aria-current="page" class="active sidebar-link">vue双向绑定原理1</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/blog/pages/7dfbc0/" class="sidebar-link">vue双向绑定原理2</a></li><li><a href="/blog/pages/74de51/" class="sidebar-link">vue 虚拟DOM</a></li><li><a href="/blog/pages/e11567/" class="sidebar-link">vue diff算法详解</a></li><li><a href="/blog/pages/6e93c4/" class="sidebar-link">Vue 后台管理系统权限菜单控制</a></li><li><a href="/blog/pages/9b8cd8/" class="sidebar-link">vue组件缓存之keep-alive</a></li><li><a href="/blog/pages/1678441859170/" class="sidebar-link">vue2 升级vue3 路线</a></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>学习笔记</span> <span class="arrow right"></span></p> <!----></section></li></ul> </aside> <div><main class="page"><div class="theme-vdoing-wrapper bg-style-6"><div class="articleInfo-wrap" data-v-06225672><div class="articleInfo" data-v-06225672><ul class="breadcrumbs" data-v-06225672><li data-v-06225672><a href="/blog/" title="首页" class="iconfont icon-home router-link-active" data-v-06225672></a></li> <li data-v-06225672><a href="/blog/web/#前端" data-v-06225672>前端</a></li><li data-v-06225672><a href="/blog/web/#vue学习" data-v-06225672>vue学习</a></li></ul> <div class="info" data-v-06225672><div title="作者" class="author iconfont icon-touxiang" data-v-06225672><a href="https://github.com/Alan0827" target="_blank" title="作者" class="beLink" data-v-06225672>Alan0827</a></div> <div title="创建时间" class="date iconfont icon-riqi" data-v-06225672><a href="javascript:;" data-v-06225672>2018-05-20</a></div> <!----></div></div></div> <!----> <div class="content-wrapper"><div class="right-menu-wrapper"><div class="right-menu-margin"><div class="right-menu-title">目录</div> <div class="right-menu-content"></div></div></div> <h1><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAABH1JREFUSA3tVl1oHFUUPmdmd2ltklqbpJDiNnXFmgbFktho7YMPNiJSSZM0+CAYSkUELVhM6YuwIPpgoOKDqOBDC0XE2CQoNtQXBUFTTcCi+Wlh1V2TQExsUzcltd3M9Tt3ZjZzZ2fT+OJTL8yeM+eee757fmeJbq//KQL8X3DUSFOcfr7cRsRtxNQMWueeVzOkaITIGqQHNg5y8+jNW9ldM7A6nTpAjuolUikAwq7CE3WcM2RRDz+XGVgN3FptU/aUSlvq9Pa3iZ1+sgAqJyyAFqkipd9dqiwHF3P65YycLWc/6sqGrvoEoIp6DOFaX5h6+dnfjkWprwqsPk0dUGq5vySwDImC10KxFHgGL1SWoc92O3eVht09qdXNH11I2SsTsJYqMWzihqGMi+A+Garf3BAuuLI5oGlULyNfyB/HYNujwktOfRrMr5t77NmevqaUopx0grnKAyvVpmwUDB4x6FPXuGvYLTDwWsejwgtgkYKPqRJg8SV6xaiZ3ZTppGneS4yfH5/66fZSDHv+QZci/+h5c5UHtpy67JUqGppM0sh0Nc1dW6/N1W5Yoqat8/TU/VnadmdeW2PLLSyh0cvxBs3KbqTmwYPpxN4do/mzE8nEpvX/UMu2Wbp74zUAK5q6WkHns7V0eWkdPbPzd3rxkTGybadYySumVzhcaJFbs5UrEkQ/+CK8gF5dnh/6ciIZ73gwQ927L1IitoxKLXYP3SjYdOrHHfTZhRRlFyrorafPk20B3HPD1y2G3qKZME5Jcf3t/HUC13/8tSd++vqFveMUTwAUxSUFI1QekR1+bIze3D9MF2aq6cPvG72CgnldWCFqyRw3lwH8ZMerjTD9ElRO7Gv44wNpC90aASqGfVlz/Rx17srQ57/UU26hkhQqUB7dBR71WmzQhHUnblGmVOEw0jhbV1n9OlXUDCIRGaNV5Jp43N516fN7JmnTHdfp7Hgy0luO4aMhtkLL8Bi3bUWYvzh5Mn1dTxrL6QmGuRhGL/TiTTxRoEdTszSaq9GR0NGA3KdkOz3hqSV3MIDhQ5IVX/Ivx3umBti2es2h4eZby7x8br1rkf7Mo90AqC8aQ3sJeNzqFRu+vSANAQe3PL7l0HGOAdwDCeZYvNKeoZp1Qfs6Aipndh86HmFRi0LAnEO47wsqM6cdfjh3jBPUzhZy7nvlUfFsamED1VQt6aISHVymXZ/B2aCtIG8AI8xfobj2d3en1wWVhOeHELKmLQ1s211s88comkv4UCwWyF787mJdYXtNfhKAXVqnKTq8QZvGAGGOfaTo5pGZ/PwbUCr5+DPr/1J92JNHr9aOl/F3iI5+O1nfybsGxoimvZ3ViWSluDITw3P37mypheDIPY0tw7+O/5ApbkYw+zpfaUVu32Pi98+defdUhEpZkRFq0aqyNh9FuL9hpYbEm6iwi0z2REd09ZmyENEbuhjDWzKvZXTqKYaBIr3tt5kuPtQBZFvEUwHt60vfCNu41XsksH9Ij1BMMz1Y0OOunHNShFIP5868g5zeXmuLwL9T4b6Q2+KejgAAAABJRU5ErkJggg==">vue双向绑定原理1<!----></h1> <!----> <div class="theme-vdoing-content content__default"><h3 id="vue的定义"><a href="#vue的定义" class="header-anchor">#</a> vue的定义：</h3> <ul><li>vue是一套用于构建用户界面的渐进式框架</li> <li>vue是一款基于MVVM方式的轻量级的框架</li> <li>vue是一款基于数据驱动、组件化思想的框架</li> <li>vue被设计为可以自底向上、逐层应用的框架</li> <li>vue的核心库只关注视图层，易于上手，还便于与第三方库或既有项目整合</li> <li>当与现代化的工具链以及各种支持类库结合使用时，vue也完全能够为复杂的单页应用提供驱动</li></ul> <blockquote><p>数据驱动：</p></blockquote> <p>Vue.js 一个核心思想是数据驱动。所谓数据驱动是指视图是由数据驱动生成的，对视图的修改，不会直接操作 DOM，而是通过修改数据。相比传统的前端开发，如使用 jQuery 等前端库直接修改 DOM，大大简化了代码量，特别是当交互复杂的时候，只关心数据的修改会让代码的逻辑变的非常清晰，因为 DOM 变成了数据的映射，我们所有的逻辑都是对数据的修改，而不用碰触 DOM，这样的代码非常利于维护</p> <p>在MVVM中，M(model)---代表JavaScript  Objects，V(view)---DOM也就是UI，VM(ViewModel)----代表Vue实例对象（在该对象中有Directives和DOM Listeners）</p> <p>在vue.js里面只需要改变数据，Vue.js通过Directives指令去对DOM做封装，当数据发生变化，会通知指令去修改对应的DOM，数据驱动DOM的变化，DOM是数据的一种自然的映射。vue.js还会对View操作做一些监听（DOM Listener），当我们修改视图的时候，vue.js监听到这些变化，从而改变数据。这样就形成了数据的双向绑定。</p> <blockquote><p>vue实现双向绑定原理</p></blockquote> <p><img src="https://jsd.cdn.zzko.cn/gh/Alan0827/picx-images-hosting@master/20220907/vue.4pumptd94360.jpg" alt="vue"></p> <h3 id="变化侦测-observer"><a href="#变化侦测-observer" class="header-anchor">#</a> 变化侦测 --- Observer</h3> <p>那Vue是怎么知道state变化了呢？换句话说，数据变化了是怎么通知给Vue呢？</p> <p>变化侦测就是追踪状态，一旦发生了变化，就要去更新视图。</p> <p>变化侦测，前端三大框架中均有涉及。在Angular中是通过脏值检查流程来实现变化侦测；在React是通过对比虚拟DOM来实现变化侦测，而在Vue中也有自己的一套变化侦测实现机制。</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>// 数据可侦测
+
+let man = {
+  age:18
+}
+let val = 18
+Object.defineProperty(man, 'age', {
+  enumerable: true,
+  configurable: true,
+  get(){
+    console.log('age属性被读取了')
+    return val
+  },
+  set(newVal){
+    console.log('age属性被修改了')
+    val = newVal
+  }
+})
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br></div></div><p>通过Object.defineProperty()方法把这个属性的读和写分别使用get()和set()进行拦截，每当该属性进行读或写操作的时候就会触发get()和set()。</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>// 对应源码位置：src/core/observer/index.js
+
+/**
+ * Observer类会通过递归的方式把一个对象的所有属性都转化成可观测对象
+ */
+export class Observer {
+  constructor (value) {
+    this.value = value
+    // 给value新增一个__ob__属性，值为该value的Observer实例
+    // 相当于为value打上标记，表示它已经被转化成响应式了，避免重复操作
+    def(value,'__ob__',this)
+    if (Array.isArray(value)) {
+      // 当value为数组时的逻辑
+      // ...
+    } else {
+      this.walk(value)
+    }
+  }
+
+  walk (obj: Object) {
+    const keys = Object.keys(obj)
+    for (let i = 0; i &lt; keys.length; i++) {
+      defineReactive(obj, keys[i])
+    }
+  }
+}
+/**
+ * 使一个对象转化成可观测对象
+ * @param { Object } obj 对象
+ * @param { String } key 对象的key
+ * @param { Any } val 对象的某个key的值
+ */
+function defineReactive (obj,key,val) {
+  // 如果只传了obj和key，那么val = obj[key]
+  if (arguments.length === 2) {
+    val = obj[key]
+  }
+  if(typeof val === 'object'){
+      new Observer(val)
+  }
+  Object.defineProperty(obj, key, {
+    enumerable: true,
+    configurable: true,
+    get(){
+      console.log(`${key}属性被读取了`);
+      return val;
+    },
+    set(newVal){
+      if(val === newVal){
+          return
+      }
+      console.log(`${key}属性被修改了`);
+      val = newVal;
+    }
+  })
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br><span class="line-number">55</span><br><span class="line-number">56</span><br></div></div><p>上述代码省略大部分源码，只看核心逻辑。
+只要我们将一个object传到observer中，那么这个object就会变成可观测的、响应式的object。
+observer类位于源码的src/core/observer/index.js中。</p> <h3 id="依赖收集-dep"><a href="#依赖收集-dep" class="header-anchor">#</a> 依赖收集 Dep</h3> <p>1.什么是依赖收集?</p> <blockquote><p>数据的变化需要反映到视图上去，这个过程我们需要收集数据。
+我们把&quot;谁用到了这个数据&quot;称为&quot;谁依赖了这个数据&quot;,我们给每个数据都建一个依赖数组(因为一个数据可能被多处使用)，谁依赖了这个数据(即谁用到了这个数据)我们就把谁放入这个依赖数组中，那么当这个数据发生变化的时候，我们就去它对应的依赖数组中，把每个依赖都通知一遍，告诉他们：&quot;你们依赖的数据变啦，你们该更新啦！&quot;。这个过程就是依赖收集。</p></blockquote> <p>2.何时收集依赖？何时通知依赖更新？</p> <blockquote><p>在getter中收集依赖，在setter中通知依赖更新。</p></blockquote> <p>3.把依赖收集到哪里</p> <blockquote><p>为每一个数据都建立一个依赖管理器，把这个数据所有的依赖都管理起来。</p></blockquote> <div class="language- line-numbers-mode"><pre class="language-text"><code>// 源码位置：src/core/observer/dep.js
+export default class Dep {
+  constructor () {
+    this.subs = []
+  }
+
+  addSub (sub) {
+    this.subs.push(sub)
+  }
+  // 删除一个依赖
+  removeSub (sub) {
+    remove(this.subs, sub)
+  }
+  // 添加一个依赖
+  depend () {
+    if (window.target) {
+      this.addSub(window.target)
+    }
+  }
+  // 通知所有依赖更新
+  notify () {
+    const subs = this.subs.slice()
+    for (let i = 0, l = subs.length; i &lt; l; i++) {
+      subs[i].update()
+    }
+  }
+}
+
+/**
+ * Remove an item from an array
+ */
+export function remove (arr, item) {
+  if (arr.length) {
+    const index = arr.indexOf(item)
+    if (index &gt; -1) {
+      return arr.splice(index, 1)
+    }
+  }
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br></div></div><p>然后，在getter中收集，在setter中通知依赖更新</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>function defineReactive (obj,key,val) {
+  if (arguments.length === 2) {
+    val = obj[key]
+  }
+  if(typeof val === 'object'){
+    new Observer(val)
+  }
+  const dep = new Dep()  //实例化一个依赖管理器，生成一个依赖管理数组dep
+  Object.defineProperty(obj, key, {
+    enumerable: true,
+    configurable: true,
+    get(){
+      dep.depend()    // 在getter中收集依赖,调用depend方法
+      return val;
+    },
+    set(newVal){
+      if(val === newVal){
+          return
+      }
+      val = newVal;
+      dep.notify()   // 在setter中通知依赖更新，调用notify方法
+    }
+  })
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br></div></div><h3 id="watcher类"><a href="#watcher类" class="header-anchor">#</a> Watcher类</h3> <p>谁用到了数据，谁就是依赖，我们就为谁创建一个Watcher实例。在之后数据变化时，我们不直接去通知依赖更新，而是通知依赖对应的Watch实例，由Watcher实例update方法去通知真正的视图。</p> <p>实现方法如下：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>export default class Watcher {
+  constructor (vm,expOrFn,cb) {
+    this.vm = vm;
+    this.cb = cb;
+    this.getter = parsePath(expOrFn)
+    this.value = this.get()
+  }
+  get () {
+    window.target = this;
+    const vm = this.vm
+    let value = this.getter.call(vm, vm)
+    window.target = undefined;
+    return value
+  }
+  update () {
+    const oldValue = this.value
+    this.value = this.get()
+    this.cb.call(this.vm, this.value, oldValue)
+  }
+}
+
+/**
+ * Parse simple path.
+ * 把一个形如'data.a.b.c'的字符串路径所表示的值，从真实的data对象中取出来
+ * 例如：
+ * data = {a:{b:{c:2}}}
+ * parsePath('a.b.c')(data)  // 2
+ */
+const bailRE = /[^\w.$]/
+export function parsePath (path) {
+  if (bailRE.test(path)) {
+    return
+  }
+  const segments = path.split('.')
+  return function (obj) {
+    for (let i = 0; i &lt; segments.length; i++) {
+      if (!obj) return
+      obj = obj[segments[i]]
+    }
+    return obj
+  }
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br></div></div><p>以上，就彻底完成了对Object数据的侦测，依赖收集，依赖的更新等所有操作。</p> <p>大致流程：</p> <ol><li>Data通过observer转换成了getter/setter的形式来追踪变化。</li> <li>当外界通过Watcher读取数据时，会触发getter从而将Watcher添加到依赖中。</li> <li>当数据发生了变化时，会触发setter，从而向Dep中的依赖（即Watcher）发送通知。</li> <li>Watcher接收到通知后，会向外界发送通知，变化通知到外界后可能会触发视图更新，也有可能触发用户的某个回调函数等。</li></ol> <p><font color="red"><strong>注意事项：</strong></font></p> <p>Object.defineProperty只能对属性值的变化进行拦截，但是不能拦截对象，比如属性的新增、删除等。这就导致了我们没法收集依赖，通知视图。
+为了解决这一问题，Vue增加了两个全局API:Vue.set和Vue.delete。</p> <hr> <p>参考文档：</p> <ul><li><a href="https://github.com/vuejs/vue/tree/dev/src/core" target="_blank" rel="noopener noreferrer">https://github.com/vuejs/vue/tree/dev/src/core<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li> <li><a href="https://cn.vuejs.org/v2/guide/reactivity.html" target="_blank" rel="noopener noreferrer">https://cn.vuejs.org/v2/guide/reactivity.html<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li> <li><a href="https://vue-js.com/learn-vue/start/" target="_blank" rel="noopener noreferrer">https://vue-js.com/learn-vue/start/<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div> <!----> <div class="page-edit"><!----> <div class="tags"><a href="/blog/tags/?tag=vue" title="标签">#vue</a><a href="/blog/tags/?tag=js" title="标签">#js</a></div> <div class="last-updated"><span class="prefix">上次更新:</span> <span class="time">2024/09/29, 18:35:30</span></div></div> <div class="page-nav-wapper"><div class="page-nav-centre-wrap"><a href="/blog/pages/60f536/" class="page-nav-centre page-nav-centre-prev"><div class="tooltip">重学js正则表达式（1）</div></a> <a href="/blog/pages/7dfbc0/" class="page-nav-centre page-nav-centre-next"><div class="tooltip">vue双向绑定原理2</div></a></div> <div class="page-nav"><p class="inner"><span class="prev">
+        ←
+        <a href="/blog/pages/60f536/" class="prev">重学js正则表达式（1）</a></span> <span class="next"><a href="/blog/pages/7dfbc0/">vue双向绑定原理2</a>→
+      </span></p></div></div></div> <div class="article-list"><div class="article-title"><a href="/blog/archives/" class="iconfont icon-bi">最近更新</a></div> <div class="article-wrapper"><dl><dd>01</dd> <dt><a href="/blog/pages/53eff0/"><div>
+            typescript基本使用
+            <!----></div></a> <span class="date">03-10</span></dt></dl><dl><dd>02</dd> <dt><a href="/blog/pages/1678441859170/"><div>
+            vue2 升级vue3 路线
+            <!----></div></a> <span class="date">02-20</span></dt></dl><dl><dd>03</dd> <dt><a href="/blog/pages/175c51/"><div>
+            argo原理
+            <span class="title-tag">
+              原创
+            </span></div></a> <span class="date">09-21</span></dt></dl> <dl><dd></dd> <dt><a href="/blog/archives/" class="more">更多文章&gt;</a></dt></dl></div></div></main></div> <div class="footer"><div class="icons"><a href="mailto:990235922@qq.com" title="发邮件" target="_blank" class="iconfont icon-youjian"></a><a href="https://github.com/Alan0827" title="GitHub" target="_blank" class="iconfont icon-github"></a><a href="https://music.163.com/#/playlist?id=755597173" title="听音乐" target="_blank" class="iconfont icon-erji"></a></div> 
+  Theme by
+  <a href="https://github.com/xugaoyi/vuepress-theme-vdoing" target="_blank" title="本站主题">Vdoing</a> 
+    | Copyright © 2016-2024
+    <span>Alan0827</span></div> <div class="buttons"><div title="返回顶部" class="button blur go-to-top iconfont icon-fanhuidingbu" style="display:none;"></div> <div title="去评论" class="button blur go-to-comment iconfont icon-pinglun" style="display:none;"></div> <div title="主题模式" class="button blur theme-mode-but iconfont icon-zhuti"><ul class="select-box" style="display:none;"><li class="iconfont icon-zidong">
+          跟随系统
+        </li><li class="iconfont icon-rijianmoshi">
+          浅色模式
+        </li><li class="iconfont icon-yejianmoshi">
+          深色模式
+        </li><li class="iconfont icon-yuedu">
+          阅读模式
+        </li></ul></div></div> <div class="body-bg" style="background:url() center center / cover no-repeat;opacity:0.5;"></div> <!----> <!----></div><div class="global-ui"><div></div></div></div>
+    <script src="/blog/assets/js/app.c4ef267f.js" defer></script><script src="/blog/assets/js/2.738e1f2a.js" defer></script><script src="/blog/assets/js/31.d0bbfa7b.js" defer></script>
+  </body>
+</html>
